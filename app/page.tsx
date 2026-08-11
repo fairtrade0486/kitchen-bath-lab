@@ -43,6 +43,9 @@ export default function Home() {
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
+  const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
+  const [reviewSent, setReviewSent] = useState(false);
+  const [reviewsOpen, setReviewsOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -83,6 +86,19 @@ export default function Home() {
   useEffect(() => {
     refreshSlots();
   }, [calendarYear, calendarMonth]);
+
+  async function refreshReviews() {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=id,name,region,service,content,created_at&order=created_at.desc`, {
+      headers: supabaseHeaders,
+      cache: "no-store",
+    });
+    if (!response.ok) return;
+    setReviews(await response.json());
+  }
+
+  useEffect(() => {
+    refreshReviews();
+  }, []);
 
   function openAddressSearch() {
     if (!window.daum?.Postcode) {
@@ -140,6 +156,29 @@ export default function Home() {
     setSent(true);
   }
 
+  async function submitReview(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const rawName = data.get("review-name")?.toString().trim() ?? "";
+    const region = data.get("review-region")?.toString().trim() ?? "";
+    const service = data.get("review-service")?.toString().trim() ?? "";
+    const content = data.get("review-content")?.toString().trim() ?? "";
+    if (!rawName || !region || !service || !content) return;
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+      method: "POST",
+      headers: { ...supabaseHeaders, Prefer: "return=minimal" },
+      body: JSON.stringify({ name: rawName, region, service, content }),
+    });
+    if (!response.ok) {
+      window.alert("후기 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
+    form.reset();
+    setReviewSent(true);
+    await refreshReviews();
+  }
+
   return (
     <main>
       <header className="nav shell">
@@ -180,6 +219,7 @@ export default function Home() {
       <section className="service section" id="service">
         <div className="shell"><div className="section-head"><div><h2>서비스 범위</h2></div></div>
           <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-note"><strong>※</strong> 욕실 역시 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 욕실 전체를 멸균·소독 처리합니다.</p>}</article>})}</div>
+          <aside className="service-guide"><strong>방문 전 안내</strong><p>단순한 가사도움이 아닌, 전문 클린마스터의 방문 서비스입니다.<br />설거지와 집기·비품 세척은 서비스 범위에 포함되지 않습니다. 청소할 공간의 물건을 미리 정리해 주시면, 더 넓은 부분을 꼼꼼하게 관리해 드릴 수 있습니다.</p></aside>
         </div>
       </section>
 
@@ -221,6 +261,17 @@ export default function Home() {
             </div>}
           </form>
         </div></section>
+
+      <section className="reviews" id="reviews"><div className="shell reviews-shell">
+        <button className="reviews-toggle" type="button" aria-expanded={reviewsOpen} onClick={() => setReviewsOpen(open => !open)}><span>이용후기</span><b>{reviewsOpen ? "닫기 −" : "보기 +"}</b></button>
+        {reviewsOpen && <div className="reviews-panel"><p className="reviews-intro">서비스를 이용하신 고객님의 이야기를 전합니다.<br />후기는 작성 즉시 공개되며, 성함은 성만 표시됩니다.</p><div className="reviews-grid">
+          <form className="review-form" onSubmit={submitReview}>
+            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>주방</option><option>욕실</option><option>주방 + 욕실 1</option><option>주방 + 욕실 2</option></select></label></div>
+            <div className="review-compose"><textarea aria-label="후기 내용" name="review-content" required maxLength={200} rows={3} placeholder="이용 후기를 작성해 주세요." /><button className="review-submit" type="submit">등록</button></div>{reviewSent && <p className="review-success">후기가 등록되었습니다.</p>}
+          </form>
+          <div className="review-list" aria-live="polite">{reviews.map(review => <article className="review-card" key={review.id}><div><strong>{review.region} · {review.name} 고객님</strong><time>{new Date(review.created_at).toLocaleDateString("ko-KR")}</time></div><small>{review.service}</small><p>{review.content}</p></article>)}</div>
+        </div></div>}
+      </div></section>
 
       <footer><div className="shell footer-grid"><div><a className="brand footer-brand" href="#top"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 서비스</p></div><div><span>CONTACT</span><a className="phone-link" href="tel:01068227771"><b>010-6822-7771</b><small>누르면 전화로 연결됩니다 →</small></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
