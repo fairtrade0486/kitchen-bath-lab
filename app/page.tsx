@@ -43,6 +43,10 @@ export default function Home() {
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
+  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; completed: boolean }>>([]);
+  const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
+  const [reviewToken, setReviewToken] = useState<string | null>(null);
+  const [canWriteReview, setCanWriteReview] = useState(false);
   const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
   const [reviewSent, setReviewSent] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
@@ -98,7 +102,40 @@ export default function Home() {
 
   useEffect(() => {
     refreshReviews();
+    const savedToken = window.localStorage.getItem("review-booking-token");
+    if (savedToken) {
+      setReviewToken(savedToken);
+      checkReviewPermission(savedToken);
+    }
   }, []);
+
+  async function checkReviewPermission(token: string) {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/can_write_review`, {
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_token: token }),
+    });
+    if (response.ok) setCanWriteReview(Boolean(await response.json()));
+  }
+
+  async function refreshAdminBookings() {
+    if (!selectedDateKey || !adminMode) return;
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_bookings_for_date`, {
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "0486" }),
+    });
+    if (response.ok) setAdminBookings(await response.json());
+  }
+
+  useEffect(() => { refreshAdminBookings(); }, [selectedDateKey, adminMode]);
+
+  async function completeBooking(id: number) {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_booking_id: id, p_password: "0486" }),
+    });
+    if (!response.ok || !(await response.json())) {
+      window.alert("서비스 완료 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
+    await refreshAdminBookings();
+  }
 
   function openAddressSearch() {
     if (!window.daum?.Postcode) {
@@ -134,23 +171,39 @@ export default function Home() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const selectedTime = new FormData(e.currentTarget).get("booking-time")?.toString();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const selectedTime = data.get("booking-time")?.toString() ?? "";
+    const name = data.get("booking-name")?.toString().trim() ?? "";
+    const phone = data.get("booking-phone")?.toString().trim() ?? "";
+    const service = data.get("booking-service")?.toString().trim() ?? "";
+    const errors: Record<string, string> = {};
+    if (!selectedDateKey || !selectedTime) errors.datetime = "날짜·시간을 입력해 주세요.";
+    if (!name) errors.name = "이름을 입력해 주세요.";
+    if (!phone) errors.phone = "연락처를 입력해 주세요.";
+    if (!service) errors.service = "원하는 서비스를 입력해 주세요.";
+    setBookingErrors(errors);
+    if (Object.keys(errors).length) return;
     if (selectedDateKey && selectedTime) {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/reserve_slot`, {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/reserve_booking`, {
         method: "POST",
         headers: supabaseHeaders,
-        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime }),
+        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime, p_name: name, p_phone: phone, p_service: service }),
       });
       if (!response.ok) {
         window.alert("예약 접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
         return;
       }
-      const reserved = await response.json();
-      if (!reserved) {
+      const token = await response.json() as string | null;
+      if (!token) {
         window.alert("방금 다른 예약이 접수된 시간입니다. 다른 시간을 선택해 주세요.");
         await refreshSlots();
         return;
       }
+      window.localStorage.setItem("review-booking-token", token);
+      setReviewToken(token);
+      setCanWriteReview(false);
+      form.reset();
       await refreshSlots();
     }
     setSent(true);
@@ -165,17 +218,20 @@ export default function Home() {
     const service = data.get("review-service")?.toString().trim() ?? "";
     const content = data.get("review-content")?.toString().trim() ?? "";
     if (!rawName || !region || !service || !content) return;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+    if (!reviewToken || !canWriteReview) return;
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_completed_review`, {
       method: "POST",
-      headers: { ...supabaseHeaders, Prefer: "return=minimal" },
-      body: JSON.stringify({ name: rawName, region, service, content }),
+      headers: supabaseHeaders,
+      body: JSON.stringify({ p_token: reviewToken, p_name: rawName, p_region: region, p_service: service, p_content: content }),
     });
-    if (!response.ok) {
+    const submitted = response.ok ? Boolean(await response.json()) : false;
+    if (!submitted) {
       window.alert("후기 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
       return;
     }
     form.reset();
     setReviewSent(true);
+    setCanWriteReview(false);
     await refreshReviews();
   }
 
@@ -239,7 +295,7 @@ export default function Home() {
       </section>
 
       <section className="booking section" id="booking"><div className="shell booking-grid">
-          <form onSubmit={submit} className="booking-form">
+          <form onSubmit={submit} noValidate className="booking-form">
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
             <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
@@ -247,15 +303,15 @@ export default function Home() {
               <button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSent(false); }}>← 날짜 다시 선택</button>
               <p className="selected-date">선택한 날짜 <strong>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</strong></p>
               {weekendSurcharge && <p className="booking-surcharge">주말 할증 10,000원이 자동 적용되었습니다.</p>}
-              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); return <button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} key={time} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>; })}</div> : <>
-                <fieldset className="time-select"><legend>시간대 선택</legend><label><input required disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" /><span>{(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input required disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" /><span>{(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label></fieldset>
-                <div className="form-row"><label>이름<input required placeholder="성함을 입력해 주세요" /></label><label>연락처<input required inputMode="tel" placeholder="010-0000-0000" /></label></div>
+              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div> : <>
+                <fieldset className="time-select"><legend>시간대 선택</legend><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>
+                <div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" placeholder="010-0000-0000" onChange={() => setBookingErrors(current => ({ ...current, phone: "" }))} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
                 <div className="address-field">
                   <span>방문 주소</span>
                   <div className="address-search-row"><input required readOnly value={roadAddress} onClick={openAddressSearch} placeholder="도로명 주소를 검색해 주세요" /><button type="button" onClick={openAddressSearch}>주소 검색</button></div>
                   <input required disabled={!roadAddress} aria-label="상세 주소" placeholder="아파트명·동·호수 등 상세 주소" />
                 </div>
-                <label>원하는 서비스<select required defaultValue=""><option value="" disabled>서비스를 선택해 주세요</option><option>주방 청소 ({bookingPrice(30000)})</option><option>욕실 대 ({bookingPrice(30000)})</option><option>욕실 소 ({bookingPrice(20000)})</option><option>주방 + 욕실 2개 ({bookingPrice(70000)})</option><option>주방 + 욕실 1개 ({bookingPrice(60000)})</option><option>정기 구독 · 주방 + 욕실 1 ({bookingPrice(110000)})</option><option>정기 구독 · 주방 + 욕실 2 ({bookingPrice(130000)})</option></select></label>
+                <label>원하는 서비스<select name="booking-service" defaultValue="" onChange={() => setBookingErrors(current => ({ ...current, service: "" }))}><option value="" disabled>서비스를 선택해 주세요</option><option>주방 청소 ({bookingPrice(30000)})</option><option>욕실 대 ({bookingPrice(30000)})</option><option>욕실 소 ({bookingPrice(20000)})</option><option>주방 + 욕실 2개 ({bookingPrice(70000)})</option><option>주방 + 욕실 1개 ({bookingPrice(60000)})</option><option>정기 구독 · 주방 + 욕실 1 ({bookingPrice(110000)})</option><option>정기 구독 · 주방 + 욕실 2 ({bookingPrice(130000)})</option></select>{bookingErrors.service && <small className="field-error">{bookingErrors.service}</small>}</label>
                 <label>전달 내용<textarea rows={4} placeholder="요청사항 등을 작성해 주세요." /></label><button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button>
               </>}
             </div>}
@@ -265,15 +321,15 @@ export default function Home() {
       <section className="reviews" id="reviews"><div className="shell reviews-shell">
         <button className="reviews-toggle" type="button" aria-expanded={reviewsOpen} onClick={() => setReviewsOpen(open => !open)}><span>이용후기</span><b>{reviewsOpen ? "닫기 −" : "보기 +"}</b></button>
         {reviewsOpen && <div className="reviews-panel"><p className="reviews-intro">서비스를 이용하신 고객님의 이야기를 전합니다.<br />후기는 작성 즉시 공개되며, 성함은 성만 표시됩니다.</p><div className="reviews-grid">
-          <form className="review-form" onSubmit={submitReview}>
+          {canWriteReview ? <form className="review-form" onSubmit={submitReview}>
             <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>주방</option><option>욕실</option><option>주방 + 욕실 1</option><option>주방 + 욕실 2</option></select></label></div>
             <div className="review-compose"><textarea aria-label="후기 내용" name="review-content" required maxLength={200} rows={3} placeholder="이용 후기를 작성해 주세요." /><button className="review-submit" type="submit">등록</button></div>{reviewSent && <p className="review-success">후기가 등록되었습니다.</p>}
-          </form>
+          </form> : <div className="review-locked"><strong>이용후기</strong><p>일반 방문자는 후기를 볼 수 있습니다.<br />서비스 완료 처리된 예약자만 후기를 작성할 수 있습니다.</p></div>}
           <div className="review-list" aria-live="polite">{reviews.map(review => <article className="review-card" key={review.id}><div><strong>{review.region} · {review.name} 고객님</strong><time>{new Date(review.created_at).toLocaleDateString("ko-KR")}</time></div><small>{review.service}</small><p>{review.content}</p></article>)}</div>
         </div></div>}
       </div></section>
 
-      <footer><div className="shell footer-grid"><div><a className="brand footer-brand" href="#top"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 서비스</p></div><div><span>CONTACT</span><a className="phone-link" href="tel:01068227771"><b>010-6822-7771</b><small>누르면 전화로 연결됩니다 →</small></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
+      <footer><div className="shell footer-grid"><div><a className="brand footer-brand" href="#top"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a><span className="business-number">(784-61-00851)</span><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 서비스</p></div><div><span>CONTACT</span><a className="phone-link" href="tel:01068227771"><b>010-6822-7771</b><small>누르면 전화로 연결됩니다 →</small></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
     </main>
   );
