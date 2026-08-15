@@ -43,10 +43,6 @@ export default function Home() {
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
-  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; completed: boolean }>>([]);
-  const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
-  const [reviewToken, setReviewToken] = useState<string | null>(null);
-  const [canWriteReview, setCanWriteReview] = useState(false);
   const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
   const [reviewSent, setReviewSent] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
@@ -55,8 +51,6 @@ export default function Home() {
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
   const years = Array.from({ length: 3 }, (_, i) => today.getFullYear() + i);
   const selectedDateKey = selectedDate ? `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(selectedDate).padStart(2, "0")}` : "";
-  const weekendSurcharge = selectedDate !== null && [0, 6].includes(new Date(calendarYear, calendarMonth, selectedDate).getDay());
-  const bookingPrice = (basePrice: number) => `${(basePrice + (weekendSurcharge ? 10000 : 0)).toLocaleString("ko-KR")}원`;
 
   async function refreshSlots() {
     const monthStart = `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-01`;
@@ -102,40 +96,7 @@ export default function Home() {
 
   useEffect(() => {
     refreshReviews();
-    const savedToken = window.localStorage.getItem("review-booking-token");
-    if (savedToken) {
-      setReviewToken(savedToken);
-      checkReviewPermission(savedToken);
-    }
   }, []);
-
-  async function checkReviewPermission(token: string) {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/can_write_review`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_token: token }),
-    });
-    if (response.ok) setCanWriteReview(Boolean(await response.json()));
-  }
-
-  async function refreshAdminBookings() {
-    if (!selectedDateKey || !adminMode) return;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_bookings_for_date`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "0486" }),
-    });
-    if (response.ok) setAdminBookings(await response.json());
-  }
-
-  useEffect(() => { refreshAdminBookings(); }, [selectedDateKey, adminMode]);
-
-  async function completeBooking(id: number) {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_booking_id: id, p_password: "0486" }),
-    });
-    if (!response.ok || !(await response.json())) {
-      window.alert("서비스 완료 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-      return;
-    }
-    await refreshAdminBookings();
-  }
 
   function openAddressSearch() {
     if (!window.daum?.Postcode) {
@@ -171,39 +132,23 @@ export default function Home() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const selectedTime = data.get("booking-time")?.toString() ?? "";
-    const name = data.get("booking-name")?.toString().trim() ?? "";
-    const phone = data.get("booking-phone")?.toString().trim() ?? "";
-    const service = data.get("booking-service")?.toString().trim() ?? "";
-    const errors: Record<string, string> = {};
-    if (!selectedDateKey || !selectedTime) errors.datetime = "날짜·시간을 입력해 주세요.";
-    if (!name) errors.name = "이름을 입력해 주세요.";
-    if (!phone) errors.phone = "연락처를 입력해 주세요.";
-    if (!service) errors.service = "원하는 서비스를 입력해 주세요.";
-    setBookingErrors(errors);
-    if (Object.keys(errors).length) return;
+    const selectedTime = new FormData(e.currentTarget).get("booking-time")?.toString();
     if (selectedDateKey && selectedTime) {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/reserve_booking`, {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/reserve_slot`, {
         method: "POST",
         headers: supabaseHeaders,
-        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime, p_name: name, p_phone: phone, p_service: service }),
+        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime }),
       });
       if (!response.ok) {
         window.alert("예약 접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
         return;
       }
-      const token = await response.json() as string | null;
-      if (!token) {
+      const reserved = await response.json();
+      if (!reserved) {
         window.alert("방금 다른 예약이 접수된 시간입니다. 다른 시간을 선택해 주세요.");
         await refreshSlots();
         return;
       }
-      window.localStorage.setItem("review-booking-token", token);
-      setReviewToken(token);
-      setCanWriteReview(false);
-      form.reset();
       await refreshSlots();
     }
     setSent(true);
@@ -218,20 +163,17 @@ export default function Home() {
     const service = data.get("review-service")?.toString().trim() ?? "";
     const content = data.get("review-content")?.toString().trim() ?? "";
     if (!rawName || !region || !service || !content) return;
-    if (!reviewToken || !canWriteReview) return;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_completed_review`, {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
       method: "POST",
-      headers: supabaseHeaders,
-      body: JSON.stringify({ p_token: reviewToken, p_name: rawName, p_region: region, p_service: service, p_content: content }),
+      headers: { ...supabaseHeaders, Prefer: "return=minimal" },
+      body: JSON.stringify({ name: rawName, region, service, content }),
     });
-    const submitted = response.ok ? Boolean(await response.json()) : false;
-    if (!submitted) {
+    if (!response.ok) {
       window.alert("후기 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
       return;
     }
     form.reset();
     setReviewSent(true);
-    setCanWriteReview(false);
     await refreshReviews();
   }
 
@@ -239,11 +181,10 @@ export default function Home() {
     <main>
       <header className="nav shell">
         <a className="brand" href="#top" aria-label="홈으로"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a>
-        <nav><a href="#service">서비스</a><a href="#price">가격</a><a href="#about">담당자</a></nav>
-        <a className="nav-cta" href="#booking">예약 문의 <span>↗</span></a>
       </header>
 
       <section className="hero" id="top">
+        <div className="shell hero-subtitle">부분청소 정기구독 서비스</div>
         <div className="shell hero-grid">
           <div className="hero-copy">
             <h1 className="hero-one-line">주방과 욕실만 맡겨주세요.</h1>
@@ -265,7 +206,7 @@ export default function Home() {
           <h3>65세,<br /><em>인생 4막을 시작합니다.</em></h3>
           <p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 홈크린마스터입니다.</p>
           <p>저는 55세에 직장에서 퇴직한 뒤 청소업에 뛰어들었습니다.</p>
-          <p>이후 ㈜통인의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년간 전담했습니다. 그 뒤에는 ㈜영구크린의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년간 전담했습니다.</p>
+          <p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
           <p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
           <p className="greeting-principle">돈을 벌기 위한 수단이 아닌 만큼, 하루 최대 두 가정만 방문하려 합니다. 예약이 많아지면 마음이 조급해지고, 그 조급함은 서비스의 부족과 고객의 불편으로 이어질 수 있기 때문입니다.</p>
           <p className="greeting-sign">서두르지 않고 충분한 시간을 들여,<br />만족스러운 결과를 보여드리겠습니다.</p>
@@ -280,38 +221,32 @@ export default function Home() {
       </section>
 
       <section className="pricing section" id="price">
-        <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>가격 안내</h2></div><p>필요한 공간만 선택해서<br />부담 없이 맡겨주세요.</p></div>
-          <div className="pricing-grid">
-            <div className="price-group"><span className="price-label">단품 청소</span><div className="clean-price"><strong>주방</strong><b>30,000원</b></div><div className="clean-price"><strong>욕실 대</strong><b>30,000원</b></div><div className="clean-price"><strong>욕실 소</strong><b>20,000원</b></div></div>
-            <div className="price-group package"><span className="price-label">패키지</span><div className="clean-price"><strong>주방 + 욕실 1개</strong><b>60,000원</b></div><div className="clean-price"><strong>주방 + 욕실 2개</strong><b>70,000원</b></div></div>
+        <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>정기구독 가격 안내</h2></div></div>
+          <div className="pricing-grid monthly-pricing">
+            <div className="price-group monthly-plan"><span className="price-label">월 2회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">100,000원</b></div>
+            <div className="price-group monthly-plan"><span className="price-label">월 3회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">150,000원</b></div>
+            <div className="price-group monthly-plan"><span className="price-label">월 4회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">200,000원</b></div>
           </div>
-          <div className="subscription-price">
-            <span>패키지 정기 구독 (월 2회)</span>
-            <div className="subscription-row"><strong>주방 + 욕실 1</strong><b>110,000원</b></div>
-            <div className="subscription-row"><strong>주방 + 욕실 2</strong><b>130,000원</b></div>
-          </div>
-          <p className="weekend-surcharge">※ 토요일·일요일, 법정공휴일은 서비스 종류와 관계없이 1만 원 추가됩니다.</p>
         </div>
       </section>
 
       <section className="booking section" id="booking"><div className="shell booking-grid">
-          <form onSubmit={submit} noValidate className="booking-form">
+          <form onSubmit={submit} className="booking-form">
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
             <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
             {selectedDate && <div className="selected-booking">
               <button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSent(false); }}>← 날짜 다시 선택</button>
               <p className="selected-date">선택한 날짜 <strong>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</strong></p>
-              {weekendSurcharge && <p className="booking-surcharge">주말 할증 10,000원이 자동 적용되었습니다.</p>}
-              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div> : <>
-                <fieldset className="time-select"><legend>시간대 선택</legend><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>
-                <div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" placeholder="010-0000-0000" onChange={() => setBookingErrors(current => ({ ...current, phone: "" }))} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
+              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); return <button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} key={time} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>; })}</div> : <>
+                <fieldset className="time-select"><legend>시간대 선택</legend><label><input required disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" /><span>{(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input required disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" /><span>{(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label></fieldset>
+                <div className="form-row"><label>이름<input required placeholder="성함을 입력해 주세요" /></label><label>연락처<input required inputMode="tel" placeholder="010-0000-0000" /></label></div>
                 <div className="address-field">
                   <span>방문 주소</span>
                   <div className="address-search-row"><input required readOnly value={roadAddress} onClick={openAddressSearch} placeholder="도로명 주소를 검색해 주세요" /><button type="button" onClick={openAddressSearch}>주소 검색</button></div>
                   <input required disabled={!roadAddress} aria-label="상세 주소" placeholder="아파트명·동·호수 등 상세 주소" />
                 </div>
-                <label>원하는 서비스<select name="booking-service" defaultValue="" onChange={() => setBookingErrors(current => ({ ...current, service: "" }))}><option value="" disabled>서비스를 선택해 주세요</option><option>주방 청소 ({bookingPrice(30000)})</option><option>욕실 대 ({bookingPrice(30000)})</option><option>욕실 소 ({bookingPrice(20000)})</option><option>주방 + 욕실 2개 ({bookingPrice(70000)})</option><option>주방 + 욕실 1개 ({bookingPrice(60000)})</option><option>정기 구독 · 주방 + 욕실 1 ({bookingPrice(110000)})</option><option>정기 구독 · 주방 + 욕실 2 ({bookingPrice(130000)})</option></select>{bookingErrors.service && <small className="field-error">{bookingErrors.service}</small>}</label>
+                <label>원하는 서비스<select required defaultValue=""><option value="" disabled>서비스를 선택해 주세요</option><option>월 2회 · 주방 + 욕실 2개 (100,000원)</option><option>월 3회 · 주방 + 욕실 2개 (150,000원)</option><option>월 4회 · 주방 + 욕실 2개 (200,000원)</option></select></label>
                 <label>전달 내용<textarea rows={4} placeholder="요청사항 등을 작성해 주세요." /></label><button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button>
               </>}
             </div>}
@@ -321,15 +256,15 @@ export default function Home() {
       <section className="reviews" id="reviews"><div className="shell reviews-shell">
         <button className="reviews-toggle" type="button" aria-expanded={reviewsOpen} onClick={() => setReviewsOpen(open => !open)}><span>이용후기</span><b>{reviewsOpen ? "닫기 −" : "보기 +"}</b></button>
         {reviewsOpen && <div className="reviews-panel"><p className="reviews-intro">서비스를 이용하신 고객님의 이야기를 전합니다.<br />후기는 작성 즉시 공개되며, 성함은 성만 표시됩니다.</p><div className="reviews-grid">
-          {canWriteReview ? <form className="review-form" onSubmit={submitReview}>
-            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>주방</option><option>욕실</option><option>주방 + 욕실 1</option><option>주방 + 욕실 2</option></select></label></div>
+          <form className="review-form" onSubmit={submitReview}>
+            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>월 2회 · 주방 + 욕실 2개</option><option>월 3회 · 주방 + 욕실 2개</option><option>월 4회 · 주방 + 욕실 2개</option></select></label></div>
             <div className="review-compose"><textarea aria-label="후기 내용" name="review-content" required maxLength={200} rows={3} placeholder="이용 후기를 작성해 주세요." /><button className="review-submit" type="submit">등록</button></div>{reviewSent && <p className="review-success">후기가 등록되었습니다.</p>}
-          </form> : <div className="review-locked"><strong>이용후기</strong><p>일반 방문자는 후기를 볼 수 있습니다.<br />서비스 완료 처리된 예약자만 후기를 작성할 수 있습니다.</p></div>}
+          </form>
           <div className="review-list" aria-live="polite">{reviews.map(review => <article className="review-card" key={review.id}><div><strong>{review.region} · {review.name} 고객님</strong><time>{new Date(review.created_at).toLocaleDateString("ko-KR")}</time></div><small>{review.service}</small><p>{review.content}</p></article>)}</div>
         </div></div>}
       </div></section>
 
-      <footer><div className="shell footer-grid"><div><a className="brand footer-brand" href="#top"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a><span className="business-number">(784-61-00851)</span><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 서비스</p></div><div><span>CONTACT</span><a className="phone-link" href="tel:01068227771"><b>010-6822-7771</b><small>누르면 전화로 연결됩니다 →</small></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
+      <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 정기 구독서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
     </main>
   );
