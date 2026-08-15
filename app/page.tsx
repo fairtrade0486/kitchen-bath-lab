@@ -1,10 +1,10 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
-    daum?: { Postcode: new (options: { oncomplete: (data: { roadAddress: string; jibunAddress: string }) => void }) => { open: () => void } };
+    daum?: { Postcode: new (options: { oncomplete: (data: { roadAddress: string; jibunAddress: string; buildingName: string }) => void; width?: string; height?: string; maxSuggestItems?: number }) => { open: (options?: { q?: string }) => void; embed: (element: HTMLElement, options?: { q?: string; autoClose?: boolean }) => void } };
   }
 }
 
@@ -36,7 +36,12 @@ export default function Home() {
   const [calendarYear, setCalendarYear] = useState(today.getFullYear());
   const [calendarMonth, setCalendarMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
+  const [selectedTimeValue, setSelectedTimeValue] = useState("");
   const [roadAddress, setRoadAddress] = useState("");
+  const [addressQuery, setAddressQuery] = useState("");
+  const [addressSearchOpen, setAddressSearchOpen] = useState(false);
+  const addressSearchRef = useRef<HTMLDivElement | null>(null);
   const [adminLoginOpen, setAdminLoginOpen] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState(false);
@@ -55,6 +60,7 @@ export default function Home() {
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
   const years = Array.from({ length: 3 }, (_, i) => today.getFullYear() + i);
   const selectedDateKey = selectedDate ? `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(selectedDate).padStart(2, "0")}` : "";
+  const selectedPlanService = selectedPlan === 2 ? "월 2회 · 주방 + 욕실 2개 (100,000원)" : selectedPlan === 3 ? "월 3회 · 주방 + 욕실 2개 (150,000원)" : selectedPlan === 4 ? "월 4회 · 주방 + 욕실 2개 (200,000원)" : "";
 
   async function refreshSlots() {
     const monthStart = `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-01`;
@@ -141,9 +147,37 @@ export default function Home() {
       return;
     }
     new window.daum.Postcode({
-      oncomplete: data => setRoadAddress(data.roadAddress || data.jibunAddress),
-    }).open();
+      oncomplete: data => {
+        const address = data.roadAddress || data.jibunAddress;
+        const fullAddress = data.buildingName ? `${address} (${data.buildingName})` : address;
+        setRoadAddress(fullAddress);
+        setAddressQuery(fullAddress);
+        setAddressSearchOpen(false);
+      },
+    }).open({ q: addressQuery });
   }
+
+  useEffect(() => {
+    if (!addressSearchOpen || addressQuery.trim().length < 2 || !addressSearchRef.current || !window.daum?.Postcode) return;
+    const timer = window.setTimeout(() => {
+      const target = addressSearchRef.current;
+      if (!target || !window.daum?.Postcode) return;
+      target.innerHTML = "";
+      new window.daum.Postcode({
+        width: "100%",
+        height: "100%",
+        maxSuggestItems: 5,
+        oncomplete: data => {
+          const address = data.roadAddress || data.jibunAddress;
+          const fullAddress = data.buildingName ? `${address} (${data.buildingName})` : address;
+          setRoadAddress(fullAddress);
+          setAddressQuery(fullAddress);
+          setAddressSearchOpen(false);
+        },
+      }).embed(target, { q: addressQuery, autoClose: true });
+    }, 250);
+    return () => window.clearTimeout(timer);
+  }, [addressQuery, addressSearchOpen]);
 
   async function toggleSlot(time: string) {
     if (!selectedDateKey) return;
@@ -235,36 +269,36 @@ export default function Home() {
 
   return (
     <main>
-      <header className="nav shell">
-        <a className="brand" href="#top" aria-label="홈으로"><span>KITCHEN &amp; </span><b>BATH_LAB</b></a>
+      <header className="top-brand shell">
+        <a href="#top" aria-label="홈으로"><span>KITCHEN </span><em>&amp;</em><span> BATH_LAB</span></a>
       </header>
 
-      <section className="hero" id="top">
-        <div className="shell hero-subtitle">부분청소 정기구독 서비스</div>
-        <div className="shell hero-grid">
-          <div className="hero-copy">
-            <h1 className="hero-one-line">주방과 욕실만 맡겨주세요.</h1>
-            <p className="lead">집에서 가장 신경 쓰이는 두 곳에 집중합니다.</p>
-            <div className="hero-need"><p>집 전체 청소가 필요한 건 아닌데,<br />주방 기름때는 엄두가 안 나고<br />욕실 물때는 손대기 싫을 때.</p><strong>필요한 곳만, <em>제대로.</em></strong></div>
+      <section className="hero-redesign" id="top">
+        <div className="shell hero-stage">
+          <div className="hero-opening">
+            <p>영종도 부분청소 정기구독 서비스</p>
+            <h1>주방과 욕실만 맡겨주세요.</h1>
           </div>
-          <div className="hero-visual animated-art" aria-label="욕실과 주방을 담은 애니메이션 스타일 일러스트">
-            <img src="/hero-high-gloss.png" alt="하이글로시 3D 스타일의 깨끗한 욕실과 주방" />
-            <div className="proof-card"><b>오직 두 공간</b><span>BATH · KITCHEN</span></div>
+          <figure className="hero-picture">
+            <img src="/hero-high-gloss.png" alt="깨끗하게 관리된 욕실과 주방" />
+            <figcaption><b>오직 두 공간</b><span>BATH · KITCHEN</span></figcaption>
+          </figure>
+          <div className="hero-message">
+            <h2>집에서 가장 신경 쓰이는 두 곳에 집중합니다.</h2>
+            <div><p><span>집 전체 청소가 필요한 건 아닌데,</span><span>주방 기름때는 엄두가 안 나고 욕실 물때는 손대기 싫을 때.</span><span>매일 쓰는 두 공간만큼은 더 깨끗하고 편안하게.</span></p><strong>필요한 곳만, <em>제대로.</em></strong></div>
           </div>
         </div>
-        <div className="hero-strip"><strong>“플랫폼 인력 소개가 아닙니다</strong><span>상담부터 방문서비스까지 제가 직접 합니다.”</span></div>
+        <div className="hero-redesign-strip"><strong>“플랫폼 인력 소개가 아닙니다</strong><span>상담부터 방문서비스까지 제가 직접 합니다.”</span></div>
       </section>
 
       <section className="about shell section" id="about">
     <div className="about-left"><div className="portrait"><img className="profile-photo" src="/profile-navy.png" alt="직접 방문하는 담당자" /><div className="nameplate"><small>YOUR CLEANER</small><b>홈크린마스터</b></div></div><div className="about-copy"><h2 className="visitor-title"><span>누가 방문하는지,</span><em>미리 확인하세요.</em></h2><blockquote>“낯선 작업자가 오는 불안 없이,<br />사진 속 제가 직접 방문합니다.”</blockquote></div></div>
         <div className="about-greeting" aria-label="인사말 영역">
           <p className="greeting-kicker">HOME CLEAN MASTER’S STORY</p>
-          <h3>65세,<br /><em>인생 4막을 시작합니다.</em></h3>
           <p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 홈크린마스터입니다.</p>
-          <p>저는 55세에 직장에서 퇴직한 뒤 청소업에 뛰어들었습니다.</p>
           <p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
           <p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
-          <p className="greeting-principle">돈을 벌기 위한 수단이 아닌 만큼, 하루 최대 두 가정만 방문하려 합니다. 예약이 많아지면 마음이 조급해지고, 그 조급함은 서비스의 부족과 고객의 불편으로 이어질 수 있기 때문입니다.</p>
+          <p className="greeting-principle">하루 최대 두 가정만 방문하려 합니다. 예약이 많아지면 마음이 조급해지고, 그 조급함은 서비스의 부족과 고객의 불편으로 이어질 수 있기 때문입니다.</p>
           <p className="greeting-sign">서두르지 않고 충분한 시간을 들여,<br />만족스러운 결과를 보여드리겠습니다.</p>
         </div>
       </section>
@@ -277,35 +311,36 @@ export default function Home() {
       </section>
 
       <section className="pricing section" id="price">
-        <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>정기구독 가격 안내</h2></div></div>
+        <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>내 생활에 맞는<br />정기 관리 빈도를 골라 주세요.</h2></div></div>
           <div className="pricing-grid monthly-pricing">
-            <div className="price-group monthly-plan"><span className="price-label">월 2회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">100,000원</b></div>
-            <div className="price-group monthly-plan"><span className="price-label">월 3회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">150,000원</b></div>
-            <div className="price-group monthly-plan"><span className="price-label">월 4회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">200,000원</b></div>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">100,000원</b></button>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 3 ? " selected" : ""}`} onClick={() => setSelectedPlan(3)}><span className="price-label">월 3회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">150,000원</b></button>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 4 ? " selected" : ""}`} onClick={() => setSelectedPlan(4)}><span className="price-label">월 4회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">200,000원</b></button>
           </div>
         </div>
       </section>
 
       <section className="booking section" id="booking"><div className="shell booking-grid">
+          <div className="booking-intro-group"><h2 className="booking-intro">첫 방문 희망일을 골라 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활 패턴에 맞춰 함께 조율합니다.</p></div>
           <form onSubmit={submit} noValidate className="booking-form">
-            <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
+            <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
-            <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
-            {selectedDate && <div className="selected-booking">
-              <button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSent(false); }}>← 날짜 다시 선택</button>
-              <p className="selected-date">선택한 날짜 <strong>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</strong></p>
+            <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
+            <div className="selected-booking always-visible">
+              {selectedDate && <><button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSelectedTimeValue(""); setSent(false); }}>← 날짜 다시 선택</button><p className="selected-date">선택한 날짜 <strong>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</strong></p></>}
               {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div> : <>
-                <fieldset className="time-select"><legend>시간대 선택</legend><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => setBookingErrors(current => ({ ...current, datetime: "" }))} /><span>{(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>
-                <div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" placeholder="010-0000-0000" onChange={() => setBookingErrors(current => ({ ...current, phone: "" }))} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
+                {selectedDate && <fieldset className="time-select"><legend><small>TIME SELECT</small><strong>{calendarMonth + 1}월 {selectedDate}일 ({new Date(calendarYear, calendarMonth, selectedDate).toLocaleDateString("ko-KR", { weekday: "short" })})에 방문 가능한 시간</strong></legend><label><input checked={selectedTimeValue === "14:30"} disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" onChange={() => { setSelectedTimeValue("14:30"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input checked={selectedTimeValue === "17:00"} disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => { setSelectedTimeValue("17:00"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>}
+                {selectedPlan && selectedDate && selectedTimeValue && <div className="contact-step"><div className="contact-step-head"><small>STEP 3 · CONTACT</small><h3>연락 가능한 정보를 알려 주세요.</h3></div><input type="hidden" name="booking-service" value={selectedPlanService} /><div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" maxLength={19} placeholder="010 - 0000 - 0000" onChange={event => { const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 11); event.currentTarget.value = digits.length <= 3 ? digits : digits.length <= 7 ? `${digits.slice(0, 3)} - ${digits.slice(3)}` : `${digits.slice(0, 3)} - ${digits.slice(3, 7)} - ${digits.slice(7)}`; setBookingErrors(current => ({ ...current, phone: "" })); }} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
                 <div className="address-field">
                   <span>방문 주소</span>
-                  <div className="address-search-row"><input required readOnly value={roadAddress} onClick={openAddressSearch} placeholder="도로명 주소를 검색해 주세요" /><button type="button" onClick={openAddressSearch}>주소 검색</button></div>
+                  <div className="address-search-row"><input required value={addressQuery} onChange={event => { const value = event.currentTarget.value; setAddressQuery(value); setRoadAddress(""); setAddressSearchOpen(value.trim().length >= 2); }} onFocus={() => addressQuery.trim().length >= 2 && setAddressSearchOpen(true)} placeholder="도로명 주소를 입력해 주세요" /><button type="button" onClick={openAddressSearch}>주소 검색</button></div>
+                  {addressSearchOpen && <div className="address-inline-results" ref={addressSearchRef} />}
                   <input required disabled={!roadAddress} aria-label="상세 주소" placeholder="아파트명·동·호수 등 상세 주소" />
                 </div>
-                <label>원하는 서비스<select name="booking-service" defaultValue="" onChange={() => setBookingErrors(current => ({ ...current, service: "" }))}><option value="" disabled>서비스를 선택해 주세요</option><option>월 2회 · 주방 + 욕실 2개 (100,000원)</option><option>월 3회 · 주방 + 욕실 2개 (150,000원)</option><option>월 4회 · 주방 + 욕실 2개 (200,000원)</option></select>{bookingErrors.service && <small className="field-error">{bookingErrors.service}</small>}</label>
-                <label>전달 내용<textarea rows={4} placeholder="요청사항 등을 작성해 주세요." /></label><button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button>
+                <button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button><p className="booking-confirm-note">빠른 시간 내에 확인 전화드리겠습니다.</p>
+                </div>}
               </>}
-            </div>}
+            </div>
           </form>
         </div></section>
 
