@@ -276,7 +276,7 @@ export default function Home() {
       <section className="hero-redesign" id="top">
         <div className="shell hero-stage">
           <div className="hero-opening">
-            <p>영종도 부분청소 정기구독 서비스</p>
+            <p>인천.청라지역 부분청소 정기구독 서비스</p>
             <h1>주방과 욕실만 맡겨주세요.</h1>
           </div>
           <figure className="hero-picture">
@@ -297,7 +297,7 @@ export default function Home() {
           <p className="greeting-kicker">HOME CLEAN MASTER’S STORY</p>
           <p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 홈크린마스터입니다.</p>
           <p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
-          <p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
+          <p>이후 은퇴하여 인천.청라지역으로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
           <p className="greeting-principle">하루 최대 두 가정만 방문하려 합니다. 예약이 많아지면 마음이 조급해지고, 그 조급함은 서비스의 부족과 고객의 불편으로 이어질 수 있기 때문입니다.</p>
           <p className="greeting-sign">서두르지 않고 충분한 시간을 들여,<br />만족스러운 결과를 보여드리겠습니다.</p>
         </div>
@@ -355,7 +355,7 @@ export default function Home() {
         </div></div>}
       </div></section>
 
-      <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 정기 구독서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
+      <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실과 주방, 두 곳만 집중하는<br />인천.청라지역 부분청소 정기 구독서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천.청라지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
     </main>
   );
