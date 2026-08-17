@@ -225,3 +225,31 @@
 .monthly-plan::after{content:"선택";grid-column:4;grid-row:1;align-self:center;padding:7px 13px;border:1px solid var(--sage);border-radius:4px;color:var(--deep);font-family:"Pretendard","Noto Sans KR",sans-serif;font-size:13px;font-weight:500;text-align:center}
 .monthly-plan.selected::after{content:"선택됨";border-color:#fff;color:#fff}
 @media(max-width:760px){.monthly-plan{grid-template-columns:1fr auto auto}.monthly-plan::after{grid-column:3;grid-row:1 / span 2}.monthly-service{grid-column:1}.monthly-price{grid-column:2;grid-row:1 / span 2}}
+/* ===== 데스크톱 정렬 수정(추가) ===== */
+@media (min-width: 761px) {
+  /* 1. 제목 잘림 fix */
+  .hero-opening h1 {
+    white-space: normal !important;
+    font-size: clamp(36px, 3.6vw, 54px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -1px;
+  }
+
+  /* 2. 달력 간격 fix */
+  .calendar-week,
+  .calendar-days {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 6px !important;
+    height: auto !important;
+    align-content: start;
+  }
+  .calendar-days button {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 8px 0 !important;
+  }
+
+  /* 3. 이용후기를 달력 라인에 맞춤 */
+  .reviews-shell { max-width: 900px; }
+}
