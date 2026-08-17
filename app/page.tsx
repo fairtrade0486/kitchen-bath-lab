@@ -74,9 +74,10 @@ export default function Home() {
     const rows = await response.json() as Array<{ booking_date: string; booking_time: string; source: "booked" | "admin" }>;
     const nextBooked: Record<string, string[]> = {};
     const nextClosed: Record<string, string[]> = {};
-    rows.forEach(row => {
+        rows.forEach(row => {
+      const time = row.booking_time.slice(0, 5);
       const target = row.source === "admin" ? nextClosed : nextBooked;
-      target[row.booking_date] = [...(target[row.booking_date] ?? []), row.booking_time];
+      target[row.booking_date] = [...(target[row.booking_date] ?? []), time];
     });
     setBookedSlots(nextBooked);
     setClosedSlots(nextClosed);
