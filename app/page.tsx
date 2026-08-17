@@ -1,4 +1,3 @@
-
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
@@ -23,6 +22,9 @@ const supabaseHeaders = {
   apikey: SUPABASE_PUBLISHABLE_KEY,
   "Content-Type": "application/json",
 };
+
+const noticeStyle = { margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--deep)", letterSpacing: "0.3px" } as const;
+const NOTICE_TEXT = "주방 클린 서비스는 10월부터 시작합니다.";
 
 const steps = [
   ["01", "예약 전 상담", "현장 사진으로 오염 상태와 요청사항을 먼저 확인합니다."],
@@ -61,7 +63,7 @@ export default function Home() {
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
   const years = Array.from({ length: 3 }, (_, i) => today.getFullYear() + i);
   const selectedDateKey = selectedDate ? `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(selectedDate).padStart(2, "0")}` : "";
-  const selectedPlanService = selectedPlan === 2 ? "월 2회 · 주방 + 욕실 2개 (100,000원)" : selectedPlan === 3 ? "월 3회 · 주방 + 욕실 2개 (150,000원)" : selectedPlan === 4 ? "월 4회 · 주방 + 욕실 2개 (200,000원)" : "";
+  const selectedPlanService = selectedPlan === 2 ? "월 2회 · 욕실 2개" : selectedPlan === 3 ? "월 3회 · 욕실 2개" : selectedPlan === 4 ? "월 4회 · 욕실 2개" : "";
 
   async function refreshSlots() {
     const monthStart = `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-01`;
@@ -74,7 +76,7 @@ export default function Home() {
     const rows = await response.json() as Array<{ booking_date: string; booking_time: string; source: "booked" | "admin" }>;
     const nextBooked: Record<string, string[]> = {};
     const nextClosed: Record<string, string[]> = {};
-        rows.forEach(row => {
+    rows.forEach(row => {
       const time = row.booking_time.slice(0, 5);
       const target = row.source === "admin" ? nextClosed : nextBooked;
       target[row.booking_date] = [...(target[row.booking_date] ?? []), time];
@@ -230,14 +232,14 @@ export default function Home() {
       }
       const token = await response.json() as string | null;
       if (!token) {
-        window.alert("방금 다른 예약이 접수된 시간입니다. 다른 시간을 선택해 주세요.");
+        window.alert("방금 다른 예약이 접수된 시간입니다. 다른 시간을 선택하세요.");
         await refreshSlots();
         return;
       }
       window.localStorage.setItem("review-booking-token", token);
       setReviewToken(token);
       setCanWriteReview(false);
-      form.reset(); 
+      form.reset();
       window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
       await refreshSlots();
     }
@@ -288,7 +290,7 @@ export default function Home() {
           </figure>
           <div className="hero-message">
             <h2>집에서 가장 신경 쓰이는 두 곳에 집중합니다.</h2>
-            <div><p><span>집 전체 청소가 필요한 건 아닌데,</span><span>주방 기름때는 엄두가 안 나고 욕실 물때는 손대기 싫을 때.</span><span>매일 쓰는 두 공간만큼은 더 깨끗하고 편안하게.</span></p><strong>필요한 곳만, <em>제대로.</em></strong></div>
+            <div><p><span>집 전체 청소가 필요한 건 아닌데,</span><span>주방 기름때는 엄두가 안 나고 욕실 물때는 손대기 싫을 때.</span><span>매일 쓰는 두 공간만큼은 더 깨끗하고 편안하게.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
           </div>
         </div>
         <div className="hero-redesign-strip"><strong>“플랫폼 인력 소개가 아닙니다</strong><span>상담부터 방문서비스까지 제가 직접 합니다.”</span></div>
@@ -307,8 +309,8 @@ export default function Home() {
       </section>
 
       <section className="service section" id="service">
-        <div className="shell"><div className="section-head"><div><h2>서비스 범위</h2></div></div>
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-note"><strong>※</strong> 욕실 역시 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 욕실 전체를 멸균·소독 처리합니다.</p>}</article>})}</div>
+        <div className="shell"><div className="section-head"><div><p style={noticeStyle}>{NOTICE_TEXT}</p><h2>서비스 범위</h2></div></div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div>{s.en === "KITCHEN" && <p style={noticeStyle}>{NOTICE_TEXT}</p>}<h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-note"><strong>※</strong> 욕실 역시 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 욕실 전체를 멸균·소독 처리합니다.</p>}</article>})}</div>
           <aside className="service-guide"><strong>방문 전 안내</strong><p>단순한 가사도움이 아닌, 전문 클린마스터의 방문 서비스입니다.<br />설거지와 집기·비품 세척은 서비스 범위에 포함되지 않습니다. 청소할 공간의 물건을 미리 정리해 주시면, 더 넓은 부분을 꼼꼼하게 관리해 드릴 수 있습니다.</p></aside>
         </div>
       </section>
@@ -316,9 +318,9 @@ export default function Home() {
       <section className="pricing section" id="price">
         <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>내 생활에 맞는<br />정기 관리 빈도를 골라 주세요.</h2></div></div>
           <div className="pricing-grid monthly-pricing">
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">100,000원</b></button>
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 3 ? " selected" : ""}`} onClick={() => setSelectedPlan(3)}><span className="price-label">월 3회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">150,000원</b></button>
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 4 ? " selected" : ""}`} onClick={() => setSelectedPlan(4)}><span className="price-label">월 4회 패키지</span><strong className="monthly-service">주방 + 욕실 2개</strong><b className="monthly-price">200,000원</b></button>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 3 ? " selected" : ""}`} onClick={() => setSelectedPlan(3)}><span className="price-label">월 3회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 4 ? " selected" : ""}`} onClick={() => setSelectedPlan(4)}><span className="price-label">월 4회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
           </div>
         </div>
       </section>
@@ -351,7 +353,7 @@ export default function Home() {
         <button className="reviews-toggle" type="button" aria-expanded={reviewsOpen} onClick={() => setReviewsOpen(open => !open)}><span>이용후기</span><b>{reviewsOpen ? "닫기 −" : "보기 +"}</b></button>
         {reviewsOpen && <div className="reviews-panel"><p className="reviews-intro">서비스를 이용하신 고객님의 이야기를 전합니다.<br />후기는 작성 즉시 공개되며, 성함은 성만 표시됩니다.</p><div className="reviews-grid">
           {canWriteReview ? <form className="review-form" onSubmit={submitReview}>
-            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>월 2회 · 주방 + 욕실 2개</option><option>월 3회 · 주방 + 욕실 2개</option><option>월 4회 · 주방 + 욕실 2개</option></select></label></div>
+            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>월 2회 · 욕실 2개</option><option>월 3회 · 욕실 2개</option><option>월 4회 · 욕실 2개</option></select></label></div>
             <div className="review-compose"><textarea aria-label="후기 내용" name="review-content" required maxLength={200} rows={3} placeholder="이용 후기를 작성해 주세요." /><button className="review-submit" type="submit">등록</button></div>{reviewSent && <p className="review-success">후기가 등록되었습니다.</p>}
           </form> : <div className="review-locked"><strong>이용후기</strong><p>일반 방문자는 후기를 볼 수 있습니다.<br />서비스 완료 처리된 예약자만 후기를 작성할 수 있습니다.</p></div>}
           <div className="review-list" aria-live="polite">{reviews.map(review => <article className="review-card" key={review.id}><div><strong>{review.region} · {review.name} 고객님</strong><time>{new Date(review.created_at).toLocaleDateString("ko-KR")}</time></div><small>{review.service}</small><p>{review.content}</p></article>)}</div>
