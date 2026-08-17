@@ -237,7 +237,8 @@ export default function Home() {
       window.localStorage.setItem("review-booking-token", token);
       setReviewToken(token);
       setCanWriteReview(false);
-      form.reset();      window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
+      form.reset(); 
+      window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
       await refreshSlots();
     }
     setSent(true);
