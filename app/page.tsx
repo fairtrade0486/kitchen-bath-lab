@@ -315,17 +315,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pricing section" id="price">
-<div className="shell"><div className="section-head"><div><p className="section-no">02 / BATHROOM CARE</p><h2>욕실 (2개 기준)<br />딥케어 정기관리.</h2></div></div>
-          <div className="pricing-grid monthly-pricing single-price">
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 딥케어</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">100,000원</b></button>
-          </div>
-        </div>
+            <section className="pricing section" id="price">
+        <div className="shell"><div className="section-head"><div><p className="section-no">02 / BATHROOM CARE</p><h2>욕실 (2개 기준)<br />딥케어 정기관리.</h2></div></div></div>
       </section>
+
+
 
       <section className="booking section" id="booking"><div className="shell booking-grid">
           <div className="booking-intro-group"><h2 className="booking-intro">첫 방문 희망일을 골라 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활 패턴에 맞춰 함께 조율합니다.</p></div>
-          <form onSubmit={submit} noValidate className="booking-form">
+                    <form onSubmit={submit} noValidate className="booking-form">
+            <button type="button" className={`price-group monthly-plan booking-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 딥케어</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">100,000원</b><span className="booking-plan-state">{selectedPlan === 2 ? "선택됨" : "선택하기"}</span></button>
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
             <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
