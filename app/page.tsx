@@ -281,16 +281,16 @@ export default function Home() {
       <section className="hero-redesign" id="top">
         <div className="shell hero-stage">
           <div className="hero-opening">
-            <p>영종도 부분청소 정기구독 서비스</p>
-            <h1>주방과 욕실만 맡겨주세요.</h1>
+            <p>부분청소 관리 서비스</p>
+            <h1>욕실, 한 곳에 집중합니다.</h1>
           </div>
           <figure className="hero-picture">
-            <img src="/hero-high-gloss.png" alt="깨끗하게 관리된 욕실과 주방" />
-            <figcaption><b>오직 두 공간</b><span>BATH · KITCHEN</span></figcaption>
+            <img src="/9999.png" alt="깨끗하게 관리된 욕실과 주방" />
+            <figcaption><b>오직 욕실</b><span>BATH · KITCHEN</span></figcaption>
           </figure>
           <div className="hero-message">
-            <h2>집에서 가장 신경 쓰이는 두 곳에 집중합니다.</h2>
-            <div><p><span>집 전체 청소가 필요한 건 아닌데,</span><span>주방 기름때는 엄두가 안 나고 욕실 물때는 손대기 싫을 때.</span><span>매일 쓰는 두 공간만큼은 더 깨끗하고 편안하게.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
+            <h2>집 전체를 청소하지 않습니다.</h2>
+            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
           </div>
         </div>
         <div className="hero-redesign-strip"><strong>“플랫폼 인력 소개가 아닙니다</strong><span>상담부터 방문서비스까지 제가 직접 합니다.”</span></div>
