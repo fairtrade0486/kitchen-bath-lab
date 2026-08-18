@@ -253,3 +253,7 @@
   /* 3. 이용후기를 달력 라인에 맞춤 */
   .reviews-shell { max-width: 900px; }
 }
+
+/* Final bathroom hero image treatment: preserve the opened drain, steam plume, and lance on narrow screens. */
+.hero-picture img{object-position:center 62%}
+@media(max-width:760px){.hero-picture{aspect-ratio:4 / 3}.hero-picture img{object-position:center 62%}}

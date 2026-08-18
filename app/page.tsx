@@ -24,7 +24,7 @@ const supabaseHeaders = {
 };
 
 const noticeStyle = { margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--deep)", letterSpacing: "0.3px" } as const;
-const NOTICE_TEXT = "주방 클린 서비스는 10월부터 시작합니다.";
+const NOTICE_TEXT = "욕실 스팀 케어는 충분한 시간을 들여 진행합니다.";
 
 const steps = [
   ["01", "예약 전 상담", "현장 사진으로 오염 상태와 요청사항을 먼저 확인합니다."],
@@ -285,15 +285,15 @@ export default function Home() {
             <h1>욕실, 한 곳에 집중합니다.</h1>
           </div>
           <figure className="hero-picture">
-            <img src="/9999.png" alt="깨끗하게 관리된 욕실과 주방" />
-            <figcaption><b>오직 욕실</b><span>BATH · KITCHEN</span></figcaption>
+<img src="/hero-bathroom-steam-final.png" alt="열린 배수구에 강한 스팀을 분사하는 욕실 청소 장면" />
+            <figcaption><b>오직 욕실</b><span>BATHROOM CARE</span></figcaption>
           </figure>
           <div className="hero-message">
             <h2>집 전체를 청소하지 않습니다.</h2>
-            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
+            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리.</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
           </div>
         </div>
-        <div className="hero-redesign-strip"><strong>“플랫폼 인력 소개가 아닙니다</strong><span>상담부터 방문서비스까지 제가 직접 합니다.”</span></div>
+        <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 직접 방문합니다.”</span></div>
       </section>
 
       <section className="about shell section" id="about">
@@ -316,11 +316,9 @@ export default function Home() {
       </section>
 
       <section className="pricing section" id="price">
-        <div className="shell"><div className="section-head"><div><p className="section-no">02 / PRICE</p><h2>내 생활에 맞는<br />정기 관리 빈도를 골라 주세요.</h2></div></div>
-          <div className="pricing-grid monthly-pricing">
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 3 ? " selected" : ""}`} onClick={() => setSelectedPlan(3)}><span className="price-label">월 3회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
-            <button type="button" className={`price-group monthly-plan${selectedPlan === 4 ? " selected" : ""}`} onClick={() => setSelectedPlan(4)}><span className="price-label">월 4회 패키지</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">가격 미정</b></button>
+<div className="shell"><div className="section-head"><div><p className="section-no">02 / BATHROOM CARE</p><h2>욕실 (2개 기준)<br />딥케어 정기관리.</h2></div></div>
+          <div className="pricing-grid monthly-pricing single-price">
+            <button type="button" className={`price-group monthly-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">월 2회 딥케어</span><strong className="monthly-service">욕실 2개</strong><b className="monthly-price">100,000원</b></button>
           </div>
         </div>
       </section>
@@ -360,7 +358,7 @@ export default function Home() {
         </div></div>}
       </div></section>
 
-      <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실과 주방, 두 곳만 집중하는<br />영종도 부분청소 정기 구독서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
+      <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실 한 곳에 집중하는<br />부분청소 정기관리 서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천 영종도 전 지역</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
     </main>
   );
