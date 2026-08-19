@@ -343,8 +343,8 @@
 .quote-indent{display:inline-block;padding-left:2.6em}
 .hero-banner{display:none}
 @media(min-width:761px){
-  .hero-banner{display:block;width:100%;height:620px;overflow:hidden;margin:0;position:relative}
-  .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center 40%}
+  .hero-banner{display:block;width:100%;aspect-ratio:2560/1440;overflow:hidden;margin:0;position:relative}
+  .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center center}
   .hero-banner figcaption{position:absolute;left:0;bottom:0;min-width:210px;padding:24px 30px;background:var(--deep);color:#fff;display:flex;flex-direction:column;gap:7px}
   .hero-banner figcaption b{font-family:"MaruBuri","Noto Serif KR",serif;font-size:22px;font-weight:600}
   .hero-banner figcaption span{font-size:10px;letter-spacing:2.5px}
