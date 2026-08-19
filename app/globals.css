@@ -371,15 +371,16 @@
 .hero-stage .hero-lead-accent{color:#e0a878!important}
 }
 .hero-overlay-text{display:none}
+.hero-overlay-tag{display:none}
 @media(min-width:761px){
   .hero-redesign{position:relative}
   .hero-stage .hero-opening,.hero-stage .hero-message{display:none}
-  .hero-overlay-text{display:block;position:absolute;top:14%;left:5vw;z-index:3;max-width:min(600px,42vw)}
-  .hero-overlay-text .ov-tag{display:inline-block;margin:0 0 22px;padding:7px 14px;border:1px solid rgba(255,255,255,.55);color:#f2efe9;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-  .hero-overlay-text h2.ov-line{display:block;margin:0 0 4px;color:#fff;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:56px;line-height:1.22;letter-spacing:-1.5px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
-  .hero-overlay-text h1.ov-line{display:block;margin:22px 0 0;color:#f4ece2;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:500;font-size:30px;letter-spacing:-.5px;opacity:.92}
-  .hero-overlay-text strong.ov-line{display:block;margin:14px 0 0;color:#e0a878;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:22px;letter-spacing:-.3px}
-  .hero-overlay-text strong.ov-line em{color:#e0a878;font-style:normal}
-  .hero-overlay-text .ov-lead{margin:34px 0 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.28)}
-  .hero-overlay-text .ov-lead .hero-lead-accent{color:#d8ddd6!important;font-size:16px!important;font-weight:400!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;line-height:1.75;letter-spacing:-.2px}
+  .hero-overlay-tag{display:block;position:absolute;top:5vw;left:5vw;z-index:3}
+  .hero-overlay-tag .ov-tag{display:inline-block;margin:0;padding:8px 14px;border:1px solid rgba(255,255,255,.6);color:#fff;font-size:14px;font-weight:700;letter-spacing:1.5px}
+  .hero-overlay-text{display:block;position:absolute;top:11vw;left:5vw;z-index:3;max-width:min(760px,50vw)}
+  .hero-overlay-text .ov-row{display:flex;align-items:baseline;gap:28px;flex-wrap:wrap}
+  .hero-overlay-text .ov-line{margin:0;color:#fff;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:42px;letter-spacing:-1px}
+  .hero-overlay-text .ov-line em{color:#e0a878;font-style:normal}
+  .hero-overlay-text .ov-lead{margin:22px 0 0}
+  .hero-overlay-text .ov-lead .hero-lead-accent{color:#fff!important;font-size:42px!important;font-weight:600!important;font-family:"MaruBuri","Noto Serif KR",serif!important;letter-spacing:-1px}
 }
