@@ -36,6 +36,9 @@
 .service-emphasis{font-size:inherit;font-weight:800;color:var(--charcoal)}
 .service-card .service-note{margin:4px 0 20px;padding:12px 14px;background:var(--beige);color:#555;font-size:11px;line-height:1.65;min-height:auto}
 .service-note strong{color:#9a5d35;margin-right:7px}
+.tags-label{display:inline-block;margin:14px 0 2px;padding:6px 10px;border:1px solid var(--line);color:var(--charcoal);font-size:11px;font-weight:700}
+.service-highlight{margin:16px 0 0;padding:0;font-size:13px;line-height:1.75;color:#555}
+.service-highlight strong{display:block;margin-bottom:4px;color:#9a5d35;font-size:14px;font-weight:800}
 .pricing{background:var(--warm)}.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}.price-group{background:var(--beige);padding:30px}.price-group.package{background:var(--deep);color:white}.price-label{display:block;font-size:10px;letter-spacing:1.7px;color:var(--sage);margin-bottom:25px}.package .price-label{color:#c4cec5}.clean-price{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-top:1px solid var(--line)}.package .clean-price{border-color:rgba(255,255,255,.2)}.clean-price strong{font-size:16px}.clean-price b{font-family:Georgia,"Noto Serif KR",serif;font-size:24px;font-weight:500}
 .clean-price small{font-size:11px;font-weight:400;color:#c5cec6;line-height:1.8}
 .subscription-price{margin-top:0;padding:28px 30px;border:2px solid var(--sage);display:flex;justify-content:space-between;align-items:center}.subscription-price>div{display:flex;flex-direction:row;align-items:center;gap:18px;white-space:nowrap}.subscription-price span{font-size:18px;letter-spacing:0;color:var(--sage);font-weight:800}.subscription-price strong{font-size:18px}.subscription-price>b{font-family:Georgia,"Noto Serif KR",serif;font-size:29px;color:var(--deep)}
