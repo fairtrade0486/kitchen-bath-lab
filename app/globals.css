@@ -350,6 +350,10 @@
   .hero-banner figcaption span{font-size:10px;letter-spacing:2.5px}
   .hero-stage{grid-template-columns:1fr;grid-template-areas:"opening" "message";column-gap:0;padding-top:44px}
   .hero-stage .hero-picture{display:none}
-  .hero-opening{align-self:auto}
+.hero-redesign{position:relative}
+.hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,33,27,.62) 0%,rgba(28,33,27,.28) 42%,rgba(28,33,27,0) 62%)}
+.hero-stage .hero-opening{position:absolute;top:64px;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:480px}
+.hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff}
+.hero-stage .hero-opening h1{color:#fff}
   .hero-message{padding-top:32px}
 }
