@@ -229,7 +229,7 @@ export default function Home() {
       </header>
 
       <section className="hero-redesign" id="top">
-        <figure className="hero-banner"><img src="/hero-bathroom-steam-cropped.png" alt="열린 배수구에 강한 스팀을 분사하는 욕실 청소 장면" /><figcaption><b>오직 욕실</b><span>BATHROOM CARE</span></figcaption></figure>
+        <figure className="hero-banner"><img src="/hero-bathroom-steam-cropped.png" alt="열린 배수구에 강한 스팀을 분사하는 욕실 청소 장면" /></figure>
         <div className="hero-overlay-tag"><p className="ov-tag">부분청소 관리 서비스</p></div>
         <div className="hero-overlay-text">
           <h2 className="ov-line">집 전체를 청소하지 않습니다.</h2><p className="ov-line">욕실, 한곳에 집중합니다.</p><strong className="ov-line">필요한 곳만, <em>제대로.</em></strong>
