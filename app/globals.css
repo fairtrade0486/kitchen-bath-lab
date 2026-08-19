@@ -341,3 +341,12 @@
 .booking-plan{align-items:center!important}
 .hero-lead-accent{color:#b87846!important}
 .quote-indent{display:inline-block;padding-left:2.6em}
+.hero-banner{display:none}
+@media(min-width:761px){
+  .hero-banner{display:block;width:100%;height:460px;overflow:hidden;margin:0}
+  .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center 55%}
+  .hero-stage{grid-template-columns:1fr;grid-template-areas:"opening" "message";column-gap:0;padding-top:44px}
+  .hero-stage .hero-picture{display:none}
+  .hero-opening{align-self:auto}
+  .hero-message{padding-top:32px}
+}

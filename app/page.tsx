@@ -229,6 +229,7 @@ export default function Home() {
       </header>
 
       <section className="hero-redesign" id="top">
+        <figure className="hero-banner"><img src="/hero-bathroom-steam-final.png" alt="열린 배수구에 강한 스팀을 분사하는 욕실 청소 장면" /></figure>
         <div className="shell hero-stage">
           <div className="hero-opening">
             <p>부분청소 관리 서비스</p>
