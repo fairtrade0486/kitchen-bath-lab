@@ -1,12 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
-
-declare global {
-  interface Window {
-    daum?: { Postcode: new (options: { oncomplete: (data: { roadAddress: string; jibunAddress: string; buildingName: string }) => void; width?: string; height?: string; maxSuggestItems?: number }) => { open: (options?: { q?: string }) => void; embed: (element: HTMLElement, options?: { q?: string; autoClose?: boolean }) => void } };
-  }
-}
+import { FormEvent, useEffect, useState } from "react";
 
 const services = [
   { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "샤워 시 샴푸나 비누 거품에 피지와 단백질 오염이 섞여 쌓입니다. 이런 오염이 방치되면 꿉꿉한 냄새를 유발합니다.\n습하다고 곰팡이가 생기는 것이 아니라, 이런 오염 방치가 원인이 됩니다.", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
@@ -38,17 +32,14 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
   const [selectedTimeValue, setSelectedTimeValue] = useState("");
-  const [roadAddress, setRoadAddress] = useState("");
-  const [addressQuery, setAddressQuery] = useState("");
-  const [addressSearchOpen, setAddressSearchOpen] = useState(false);
-  const addressSearchRef = useRef<HTMLDivElement | null>(null);
+  const [addressDetail, setAddressDetail] = useState("");
   const [adminLoginOpen, setAdminLoginOpen] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState(false);
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
-  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; completed: boolean }>>([]);
+  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean }>>([]);
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
   const [reviewToken, setReviewToken] = useState<string | null>(null);
   const [canWriteReview, setCanWriteReview] = useState(false);
@@ -81,16 +72,6 @@ export default function Home() {
     setBookedSlots(nextBooked);
     setClosedSlots(nextClosed);
   }
-
-  useEffect(() => {
-    if (!document.querySelector('script[data-postcode="daum"]')) {
-      const script = document.createElement("script");
-      script.src = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-      script.async = true;
-      script.dataset.postcode = "daum";
-      document.head.appendChild(script);
-    }
-  }, []);
 
   useEffect(() => {
     refreshSlots();
@@ -142,44 +123,6 @@ export default function Home() {
     await refreshAdminBookings();
   }
 
-  function openAddressSearch() {
-    if (!window.daum?.Postcode) {
-      window.alert("주소 검색을 불러오는 중입니다. 잠시 후 다시 눌러주세요.");
-      return;
-    }
-    new window.daum.Postcode({
-      oncomplete: data => {
-        const address = data.roadAddress || data.jibunAddress;
-        const fullAddress = data.buildingName ? `${address} (${data.buildingName})` : address;
-        setRoadAddress(fullAddress);
-        setAddressQuery(fullAddress);
-        setAddressSearchOpen(false);
-      },
-    }).open({ q: addressQuery });
-  }
-
-  useEffect(() => {
-    if (!addressSearchOpen || addressQuery.trim().length < 2 || !addressSearchRef.current || !window.daum?.Postcode) return;
-    const timer = window.setTimeout(() => {
-      const target = addressSearchRef.current;
-      if (!target || !window.daum?.Postcode) return;
-      target.innerHTML = "";
-      new window.daum.Postcode({
-        width: "100%",
-        height: "100%",
-        maxSuggestItems: 5,
-        oncomplete: data => {
-          const address = data.roadAddress || data.jibunAddress;
-          const fullAddress = data.buildingName ? `${address} (${data.buildingName})` : address;
-          setRoadAddress(fullAddress);
-          setAddressQuery(fullAddress);
-          setAddressSearchOpen(false);
-        },
-      }).embed(target, { q: addressQuery, autoClose: true });
-    }, 250);
-    return () => window.clearTimeout(timer);
-  }, [addressQuery, addressSearchOpen]);
-
   async function toggleSlot(time: string) {
     if (!selectedDateKey) return;
     const current = closedSlots[selectedDateKey] ?? [];
@@ -210,18 +153,20 @@ export default function Home() {
     const name = data.get("booking-name")?.toString().trim() ?? "";
     const phone = data.get("booking-phone")?.toString().trim() ?? "";
     const service = data.get("booking-service")?.toString().trim() ?? "";
+    const address = addressDetail.trim();
     const errors: Record<string, string> = {};
     if (!selectedDateKey || !selectedTime) errors.datetime = "날짜·시간을 입력해 주세요.";
     if (!name) errors.name = "이름을 입력해 주세요.";
     if (!phone) errors.phone = "연락처를 입력해 주세요.";
     if (!service) errors.service = "원하는 서비스를 입력해 주세요.";
+    if (!address) errors.address = "동·호수를 입력해 주세요.";
     setBookingErrors(errors);
     if (Object.keys(errors).length) return;
     if (selectedDateKey && selectedTime) {
       const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/reserve_booking`, {
         method: "POST",
         headers: supabaseHeaders,
-        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime, p_name: name, p_phone: phone, p_service: service }),
+        body: JSON.stringify({ p_date: selectedDateKey, p_time: selectedTime, p_name: name, p_phone: phone, p_service: service, p_address: `영종자이아파트 ${address}` }),
       });
       if (!response.ok) {
         window.alert("예약 접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -237,6 +182,7 @@ export default function Home() {
       setReviewToken(token);
       setCanWriteReview(false);
       form.reset();
+      setAddressDetail("");
       window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
       await refreshSlots();
     }
@@ -321,14 +267,14 @@ export default function Home() {
             <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
             <div className="selected-booking always-visible">
               {selectedDate && <><button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSelectedTimeValue(""); setSent(false); }}>← 날짜 다시 선택</button><p className="selected-date">선택한 날짜 <strong>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</strong></p></>}
-              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div> : <>
+              {adminMode ? <div className="admin-slot-control"><h3>예약 시간 관리</h3><p>버튼을 눌러 예약 가능 여부를 변경하세요.</p>{[["14:30","오후 2시 30분"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small><small>{booking.address}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div> : <>
                 {selectedDate && <fieldset className="time-select"><legend><small>TIME SELECT</small><strong>{calendarMonth + 1}월 {selectedDate}일 ({new Date(calendarYear, calendarMonth, selectedDate).toLocaleDateString("ko-KR", { weekday: "short" })})에 방문 가능한 시간</strong></legend><label><input checked={selectedTimeValue === "14:30"} disabled={(closedSlots[selectedDateKey] ?? []).includes("14:30") || (bookedSlots[selectedDateKey] ?? []).includes("14:30")} type="radio" name="booking-time" value="14:30" onChange={() => { setSelectedTimeValue("14:30"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("14:30") || (closedSlots[selectedDateKey] ?? []).includes("14:30") ? "오후 2시 30분 · 예약 마감" : "오후 2시 30분"}</span></label><label><input checked={selectedTimeValue === "17:00"} disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => { setSelectedTimeValue("17:00"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>}
                 {selectedPlan && selectedDate && selectedTimeValue && <div className="contact-step"><div className="contact-step-head"><small>STEP 3 · CONTACT</small><h3>연락 가능한 정보를 알려 주세요.</h3></div><input type="hidden" name="booking-service" value={selectedPlanService} /><div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" maxLength={19} placeholder="010 - 0000 - 0000" onChange={event => { const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 11); event.currentTarget.value = digits.length <= 3 ? digits : digits.length <= 7 ? `${digits.slice(0, 3)} - ${digits.slice(3)}` : `${digits.slice(0, 3)} - ${digits.slice(3, 7)} - ${digits.slice(7)}`; setBookingErrors(current => ({ ...current, phone: "" })); }} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
                 <div className="address-field">
                   <span>방문 주소</span>
-                  <div className="address-search-row"><input required value={addressQuery} onChange={event => { const value = event.currentTarget.value; setAddressQuery(value); setRoadAddress(""); setAddressSearchOpen(value.trim().length >= 2); }} onFocus={() => addressQuery.trim().length >= 2 && setAddressSearchOpen(true)} placeholder="도로명 주소를 입력해 주세요" /><button type="button" onClick={openAddressSearch}>주소 검색</button></div>
-                  {addressSearchOpen && <div className="address-inline-results" ref={addressSearchRef} />}
-                  <input required disabled={!roadAddress} aria-label="상세 주소" placeholder="아파트명·동·호수 등 상세 주소" />
+                  <div className="address-fixed">영종자이아파트</div>
+                  <input required value={addressDetail} onChange={event => { setAddressDetail(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="동·호수" placeholder="동·호수를 입력해 주세요 (예: 101동 1204호)" />
+                  {bookingErrors.address && <small className="field-error">{bookingErrors.address}</small>}
                 </div>
                 <button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button><p className="booking-confirm-note">빠른 시간 내에 확인 전화드리겠습니다.</p>
                 </div>}
