@@ -355,13 +355,13 @@
 .hero-stage .hero-opening{position:absolute;top:calc(6.5vw - 40px);left:calc(4vw - 30px);z-index:3;max-width:none;width:max-content}
 .hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:44px;position:relative;top:-50px}
 .hero-stage .hero-opening h1{color:#fff;font-size:clamp(50px,4.3vw,76px);white-space:nowrap}
-.hero-stage .hero-message{position:absolute;top:calc(23.6vw - 20px);left:calc(4vw - 30px);z-index:3;max-width:min(700px,48vw)}
+.hero-stage .hero-message{position:absolute;top:calc(23.6vw - 50px);left:calc(4vw - 30px);z-index:3;max-width:min(700px,48vw)}
 .hero-stage .hero-message>div{padding-left:18px;border-left-width:2px}
-.hero-stage .hero-message h2{color:#fff;font-size:76px}
-.hero-stage .hero-message p{color:#e9ece9;font-size:58px}
-.hero-stage .hero-message p .hero-lead{font-size:62px;color:#fff}
+.hero-stage .hero-message h2{color:#fff;font-size:44px;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-weight:700;letter-spacing:-1px}
+.hero-stage .hero-message p{color:#e9ece9;font-size:44px;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
+.hero-stage .hero-message p .hero-lead{font-size:44px;color:#fff;font-weight:700}
 .hero-stage .hero-message strong em{color:#fff}
 .hero-stage .hero-message>div{border-left-color:rgba(255,255,255,.5)}
-.hero-stage .hero-message strong{color:#fff;font-size:80px}
+.hero-stage .hero-message strong{color:#fff;font-size:44px;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-weight:700}
 .hero-stage .hero-lead-accent{color:#e0a878!important}
 }
