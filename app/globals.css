@@ -260,3 +260,28 @@
 /* Final bathroom hero image treatment: preserve the opened drain, steam plume, and lance on narrow screens. */
 .hero-picture img{object-position:center 62%}
 @media(max-width:760px){.hero-picture{aspect-ratio:4 / 3}.hero-picture img{object-position:center 62%}}
+
+/* 요금 카드 한 줄 정렬 + 중복 선택 버튼(빈 박스) 제거 */
+.monthly-plan::after{content:none!important}
+.booking-plan{
+    display:flex!important;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 14px;
+}
+.booking-plan .price-label{
+    border:0;padding:0;margin:0;transform:none;
+    font-family:"MaruBuri","Noto Serif KR",serif;
+    font-size:16px;font-weight:800;color:var(--deep);
+}
+.booking-plan .monthly-service{font-size:14px;font-weight:600;color:var(--charcoal)}
+.booking-plan .monthly-freq{font-size:13px;font-weight:700;color:var(--sage)}
+.booking-plan .monthly-price{margin-left:auto;font-size:18px;font-weight:700;color:var(--deep);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
+.booking-plan .booking-plan-state{justify-self:auto;border:1px solid var(--sage);border-radius:4px;padding:8px 14px;color:var(--deep);font-size:12px;font-weight:800;white-space:nowrap}
+.booking-plan.selected .booking-plan-state{background:var(--deep);border-color:var(--deep);color:#fff}
+@media(max-width:760px){
+    .booking-plan{gap:6px 10px}
+    .booking-plan .price-label{font-size:15px}
+    .booking-plan .monthly-price{font-size:16px}
+    .booking-plan .booking-plan-state{padding:7px 10px;font-size:11px}
+}
