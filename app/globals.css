@@ -359,7 +359,8 @@
 .hero-stage .hero-message>div{padding-left:18px;border-left-width:2px}
 .hero-stage .hero-message h2{color:#fff;font-size:33px}
 .hero-stage .hero-message p{color:#e9ece9;font-size:25px}
-.hero-stage .hero-message p .hero-lead{font-size:27px}
+.hero-stage .hero-message p .hero-lead{font-size:27px;color:#fff}
+.hero-stage .hero-message strong em{color:#fff}
 .hero-stage .hero-message>div{border-left-color:rgba(255,255,255,.5)}
 .hero-stage .hero-message strong{color:#fff;font-size:35px}
 .hero-stage .hero-lead-accent{color:#e0a878!important}
