@@ -352,13 +352,14 @@
   .hero-stage .hero-picture{display:none}
 .hero-redesign{position:relative}
 .hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,33,27,.62) 0%,rgba(28,33,27,.28) 42%,rgba(28,33,27,0) 62%)}
-.hero-stage .hero-opening{position:absolute;top:64px;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:480px}
-.hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff}
-.hero-stage .hero-opening h1{color:#fff}
-.hero-stage .hero-message{position:absolute;top:250px;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:480px;padding-top:0}
-.hero-stage .hero-message h2{color:#fff}
-.hero-stage .hero-message p{color:#e9ece9}
+.hero-stage .hero-opening{position:absolute;top:94px;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:480px}
+.hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:23px}
+.hero-stage .hero-opening h1{color:#fff;font-size:clamp(58px,5vw,78px)}
+.hero-stage .hero-message{position:absolute;top:280px;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:480px;padding-top:0}
+.hero-stage .hero-message h2{color:#fff;font-size:33px}
+.hero-stage .hero-message p{color:#e9ece9;font-size:25px}
+.hero-stage .hero-message p .hero-lead{font-size:27px}
 .hero-stage .hero-message>div{border-left-color:rgba(255,255,255,.5)}
-.hero-stage .hero-message strong{color:#fff}
+.hero-stage .hero-message strong{color:#fff;font-size:35px}
 .hero-stage .hero-lead-accent{color:#e0a878!important}
 }
