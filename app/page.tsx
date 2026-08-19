@@ -32,7 +32,8 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
   const [selectedTimeValue, setSelectedTimeValue] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
+  const [addressDong, setAddressDong] = useState("");
+  const [addressHo, setAddressHo] = useState("");
   const [adminLoginOpen, setAdminLoginOpen] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState(false);
@@ -153,13 +154,13 @@ export default function Home() {
     const name = data.get("booking-name")?.toString().trim() ?? "";
     const phone = data.get("booking-phone")?.toString().trim() ?? "";
     const service = data.get("booking-service")?.toString().trim() ?? "";
-    const address = addressDetail.trim();
+    const address = `${addressDong} ${addressHo.trim()}`.trim();
     const errors: Record<string, string> = {};
     if (!selectedDateKey || !selectedTime) errors.datetime = "날짜·시간을 입력해 주세요.";
     if (!name) errors.name = "이름을 입력해 주세요.";
     if (!phone) errors.phone = "연락처를 입력해 주세요.";
     if (!service) errors.service = "원하는 서비스를 입력해 주세요.";
-    if (!address) errors.address = "동·호수를 입력해 주세요.";
+    if (!addressDong || !addressHo.trim()) errors.address = "동·호수를 입력해 주세요.";
     setBookingErrors(errors);
     if (Object.keys(errors).length) return;
     if (selectedDateKey && selectedTime) {
@@ -182,7 +183,8 @@ export default function Home() {
       setReviewToken(token);
       setCanWriteReview(false);
       form.reset();
-      setAddressDetail("");
+      setAddressDong("");
+      setAddressHo("");
       window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
       await refreshSlots();
     }
@@ -273,7 +275,13 @@ export default function Home() {
                 <div className="address-field">
                   <span>방문 주소</span>
                   <div className="address-fixed">영종자이아파트</div>
-                  <input required value={addressDetail} onChange={event => { setAddressDetail(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="동·호수" placeholder="동·호수를 입력해 주세요 (예: 101동 1204호)" />
+                  <div className="address-dong-ho">
+                    <select required value={addressDong} onChange={event => { setAddressDong(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="동">
+                      <option value="">동 선택</option>
+                      {Array.from({ length: 15 }, (_, i) => `${101 + i}동`).map(dong => <option key={dong} value={dong}>{dong}</option>)}
+                    </select>
+                    <input required value={addressHo} onChange={event => { setAddressHo(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="호수" placeholder="호수 (예: 1204호)" />
+                  </div>
                   {bookingErrors.address && <small className="field-error">{bookingErrors.address}</small>}
                 </div>
                 <button className="submit" type="submit">{sent ? "예약이 접수되었습니다 ✓" : "예약 신청"}</button><p className="booking-confirm-note">빠른 시간 내에 확인 전화드리겠습니다.</p>

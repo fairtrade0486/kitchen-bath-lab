@@ -61,6 +61,8 @@
 @media(max-width:760px){.pricing .price-label{display:inline-block;font-size:11px;border:1px solid var(--sage);padding:5px 8px;line-height:1}}
 .booking-form .address-field{margin:2px 0 24px;padding:14px 16px;background:var(--beige);border-left:3px solid var(--sage)}.booking-form .address-field>span{display:block;margin-bottom:4px;color:var(--deep);font-size:12px;font-weight:800}.booking-form .address-field>input{border-bottom-color:rgba(52,72,61,.35);font-size:14px}
 .address-fixed{margin:8px 0 10px;font-size:15px;font-weight:700;color:var(--deep)}
+.address-dong-ho{display:grid;grid-template-columns:1fr 1.4fr;gap:8px}
+.address-dong-ho select{border:0;border-bottom:1px solid rgba(52,72,61,.35);background:transparent;font-size:14px;padding:6px 0;color:var(--deep)}
 
 .booking-form .address-field{padding-left:0;padding-right:0;background:transparent;border-left:0}
 .booking-confirm-note{margin:10px 0 0;text-align:center;color:#6f766f;font-size:15px;font-weight:700;line-height:1.5}
