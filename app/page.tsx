@@ -185,6 +185,11 @@ export default function Home() {
       form.reset();
       setAddressDong("");
       setAddressHo("");
+      fetch(`${SUPABASE_URL}/functions/v1/send-booking-sms`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      }).catch(() => {});
       window.alert("예약이 접수되었습니다!\n빠른 시간 내에 확인 전화드리겠습니다.");
       await refreshSlots();
     }
