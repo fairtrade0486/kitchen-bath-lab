@@ -323,3 +323,15 @@
     .calendar-days button,.calendar-days i{aspect-ratio:auto!important;height:72px!important;padding:0!important}
 }
 .booking-frequency-note{margin:0 0 16px;font-size:14px;font-weight:700;color:var(--deep);text-align:center}
+.booking-plan{display:grid!important;grid-template-columns:auto 1fr auto auto!important;align-items:center!important;column-gap:12px!important;row-gap:0!important}
+.booking-plan .price-label{grid-column:1;grid-row:1;white-space:nowrap}
+.booking-plan .monthly-freq{grid-column:2;grid-row:1;justify-self:center;text-align:center}
+.booking-plan .monthly-price{grid-column:3;grid-row:1;margin-left:0!important;white-space:nowrap}
+.booking-plan .booking-plan-state{grid-column:4;grid-row:1;margin-top:0!important;white-space:nowrap}
+@media(max-width:760px){
+  .booking-plan{grid-template-columns:auto 1fr auto auto!important;column-gap:6px!important}
+  .booking-plan .price-label{font-size:13px}
+  .booking-plan .monthly-freq{font-size:12px}
+  .booking-plan .monthly-price{font-size:14px}
+  .booking-plan .booking-plan-state{padding:6px 8px;font-size:10px}
+}
