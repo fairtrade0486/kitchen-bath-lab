@@ -309,16 +309,16 @@ export default function Home() {
       </section>
 
       <section className="service section" id="service">
-        <div className="shell"><div className="section-head"><div><h2>서비스 범위</h2></div></div>
+        <div className="shell">
           <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
           
         </div>
       </section>
 
             <section className="booking section" id="booking"><div className="shell booking-grid">
-          <div className="booking-intro-group"><h2 className="booking-intro">첫 방문 희망일을 골라 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활 패턴에 맞춰 함께 조율합니다.</p></div>
+          
                     <form onSubmit={submit} noValidate className="booking-form">
-            <button type="button" className={`price-group monthly-plan booking-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">딥케어</span><strong className="monthly-service">욕실(2개)</strong><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b><span className="booking-plan-state">{selectedPlan === 2 ? "선택됨" : "선택"}</span></button>
+            <button type="button" className={`price-group monthly-plan booking-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">딥케어</span><strong className="monthly-service">욕실(2개)</strong><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b><span className="booking-plan-state">{selectedPlan === 2 ? "선택됨" : "선택"}</span></button><div className="booking-intro-group"><h2 className="booking-intro">첫 방문 희망일을 골라 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활 패턴에 맞춰 함께 조율합니다.</p></div>
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
             <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
