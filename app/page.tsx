@@ -309,9 +309,9 @@ export default function Home() {
       </section>
 
       <section className="service section" id="service">
-        <div className="shell"><div className="section-head"><div><p style={noticeStyle}>{NOTICE_TEXT}</p><h2>서비스 범위</h2></div></div>
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div>{s.en === "KITCHEN" && <p style={noticeStyle}>{NOTICE_TEXT}</p>}<h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-note"><strong>※</strong> 욕실 역시 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 욕실 전체를 멸균·소독 처리합니다.</p>}</article>})}</div>
-          <aside className="service-guide"><strong>방문 전 안내</strong><p>단순한 가사도움이 아닌, 전문 클린마스터의 방문 서비스입니다.<br />설거지와 집기·비품 세척은 서비스 범위에 포함되지 않습니다. 청소할 공간의 물건을 미리 정리해 주시면, 더 넓은 부분을 꼼꼼하게 관리해 드릴 수 있습니다.</p></aside>
+        <div className="shell"><div className="section-head"><div><h2>서비스 범위</h2></div></div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><span>0{index + 1}</span><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-note"><strong>※</strong> 욕실 역시 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 욕실 전체를 멸균·소독 처리합니다.</p>}</article>})}</div>
+          
         </div>
       </section>
 
