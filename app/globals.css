@@ -285,3 +285,10 @@
     .booking-plan .monthly-price{font-size:16px}
     .booking-plan .booking-plan-state{padding:7px 10px;font-size:11px}
 }
+
+/* 요금 줄 좌우 끝까지 고르게 정렬 + 예약 안내 문구를 가격카드 밑으로 이동 */
+.booking-plan{justify-content:space-between!important}
+.booking-plan .monthly-price{margin-left:0!important}
+.booking-form .booking-intro-group{margin:6px 0 32px}
+.booking-form .booking-intro-group .booking-intro{color:var(--deep)}
+.booking-form .booking-intro-group p{margin:0;color:#5f645f;font-size:13px;line-height:1.6}
