@@ -314,3 +314,12 @@
     .booking-plan .monthly-price{grid-column:2;grid-row:2;justify-self:end}
     .booking-plan .booking-plan-state{grid-column:1/-1;grid-row:3}
 }
+
+/* 전체 디자인 다듬기: 문단 여백, 데스크톱 정렬/여백 개선 (구성·문안은 변경 없음) */
+.about-greeting>p:not(.greeting-kicker){margin:0 0 16px}
+.about-greeting>p:not(.greeting-kicker):last-of-type{margin-bottom:0}
+@media(min-width:761px){
+    .about{align-items:center}
+    .service-card{max-width:640px}
+    .calendar-days button,.calendar-days i{aspect-ratio:auto!important;height:72px!important;padding:0!important}
+}
