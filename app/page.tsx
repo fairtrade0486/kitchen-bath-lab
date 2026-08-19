@@ -14,7 +14,7 @@ const services = [
   { no: "03", name: "욕실 + 주방", en: "BATH + KITCHEN", time: "약 4시간", price: "패키지 가격 미정", desc: "가장 부담스러운 두 공간을 하루에. 따로 예약하는 번거로움 없이 한 번에 집중합니다.", tags: ["욕실 전체", "주방 전체", "묶음 구성", "한 번에 방문"] },
 ];
 
-const serviceAreas = [services[1], services[0]];
+const serviceAreas = [services[0]];
 
 const SUPABASE_URL = "https://jhwfdfgzofksbttvfpwk.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hpIQt4JFbBuRz9w8UaJ66g_m9bjYuOK";
