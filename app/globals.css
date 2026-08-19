@@ -109,7 +109,7 @@
 .admin-time-row>button{width:100%;border:1px solid var(--line);padding:16px 18px;margin-bottom:10px;display:flex;justify-content:space-between;background:white}.admin-time-row>button.open b{color:#39714f}.admin-time-row>button.closed{background:#eee;color:#888}.admin-time-row>button.closed b{color:#b34b43}.admin-booking-info{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:-2px 0 14px;padding:14px 16px;background:var(--beige);font-size:12px}.admin-booking-info span small{display:block;margin-top:5px;color:#6d746d}.admin-booking-info>button{flex:0 0 auto;border:0;background:var(--deep);color:white;padding:10px 13px;font-size:11px;font-weight:800;cursor:pointer}.admin-booking-info>button:disabled{background:#879188;cursor:default}.field-error{display:block;margin-top:7px;color:#b34b43;font-size:11px;font-weight:700}.time-select>.field-error{margin-top:10px}.footer-grid .business-number{display:inline-block;margin:5px 0 12px;color:#aeb2ae;font-size:11px;letter-spacing:0}
 
 /* 상단 상호명: 짙은 녹색 명조체와 황동색 앰퍼샌드 */
-.top-brand a{font-family:Georgia,"Times New Roman",serif;font-size:27px;font-weight:700;letter-spacing:-.5px;color:var(--deep)}
+.top-brand a{font-family:Georgia,"Times New Roman",serif;font-size:54px;font-weight:700;letter-spacing:-.5px;color:var(--deep)}
 .top-brand a em{color:#b87846;font-style:normal}
 .hero-opening h1,.hero-message h2,.hero-message p span{white-space:nowrap}
 .hero-message p span{display:block}
@@ -353,7 +353,7 @@
 .hero-redesign{position:relative}
 .hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,33,27,.62) 0%,rgba(28,33,27,.28) 42%,rgba(28,33,27,0) 62%)}
 .hero-stage .hero-opening{position:absolute;top:calc(6.5vw - 40px);left:calc(4vw - 30px);z-index:3;max-width:none;width:max-content}
-.hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:52px;position:relative;top:-30px}
+.hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:44px;position:relative;top:-50px}
 .hero-stage .hero-opening h1{color:#fff;font-size:clamp(50px,4.3vw,76px);white-space:nowrap}
 .hero-stage .hero-message{position:absolute;top:calc(23.6vw - 20px);left:calc(4vw - 30px);z-index:3;max-width:min(700px,48vw)}
 .hero-stage .hero-message>div{padding-left:18px;border-left-width:2px}
