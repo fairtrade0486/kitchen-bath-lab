@@ -31,7 +31,7 @@
 .about .nameplate{background:#D8C7AC;color:var(--deep);justify-content:center;text-align:center}.about .nameplate small,.about .nameplate b{font-weight:750;color:var(--deep)}
 .profile-photo{width:84%;height:100%;display:block;margin:0 auto;object-fit:cover;object-position:center 22%}
 .about .nameplate{display:flex;align-items:center;gap:18px}.about .nameplate small{grid-column:auto;margin:0;font-size:18px;letter-spacing:0}.about .nameplate b{margin:0}
-.service-list.service-areas{grid-template-columns:repeat(2,1fr)}
+.service-list.service-areas{grid-template-columns:1fr}
 .service-card>p{white-space:pre-line}
 .service-emphasis{font-size:inherit;font-weight:800;color:var(--charcoal)}
 .service-card .service-note{margin:4px 0 20px;padding:12px 14px;background:var(--beige);color:#555;font-size:11px;line-height:1.65;min-height:auto}
