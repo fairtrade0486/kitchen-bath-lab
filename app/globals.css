@@ -370,3 +370,14 @@
 .hero-stage .hero-message strong{color:#fff;font-size:44px;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-weight:700}
 .hero-stage .hero-lead-accent{color:#e0a878!important}
 }
+.hero-overlay-text{display:none}
+@media(min-width:761px){
+  .hero-redesign{position:relative}
+  .hero-stage .hero-opening,.hero-stage .hero-message{display:none}
+  .hero-overlay-text{display:block;position:absolute;top:5vw;left:4vw;z-index:3;max-width:min(700px,48vw)}
+  .hero-overlay-text .ov-tag{display:inline-block;margin:0 0 18px;padding:8px 12px;border:1px solid rgba(255,255,255,.65);color:#fff;font-size:16px;font-weight:700;letter-spacing:.2px}
+  .hero-overlay-text .ov-line{display:block;margin:0 0 14px;color:#fff;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:44px;letter-spacing:-1px}
+  .hero-overlay-text .ov-line em{color:#e0a878;font-style:normal}
+  .hero-overlay-text .ov-lead{font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-weight:400}
+  .hero-overlay-text .ov-lead .hero-lead-accent{color:#e0a878!important;font-size:44px;font-weight:700}
+}
