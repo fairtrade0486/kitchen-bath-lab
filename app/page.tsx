@@ -235,7 +235,7 @@ export default function Home() {
           </figure>
           <div className="hero-message">
             <h2>집 전체를 청소하지 않습니다.</h2>
-            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리.</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong></div>
+            <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead">아파트의 가치를 지키는 욕실 관리.</span></p><strong>필요한 곳만, <em>제대로.</em></strong></div>
           </div>
         </div>
         <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 직접 방문합니다.”</span></div>
@@ -263,6 +263,7 @@ export default function Home() {
             <section className="booking section" id="booking"><div className="shell booking-grid">
           
                     <form onSubmit={submit} noValidate className="booking-form">
+            <p className="booking-frequency-note">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</p>
             <button type="button" className={`price-group monthly-plan booking-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">딥케어</span><strong className="monthly-service">욕실(2개)</strong><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b><span className="booking-plan-state">{selectedPlan === 2 ? "선택됨" : "선택"}</span></button><div className="booking-intro-group"><h2 className="booking-intro">첫 방문 희망일을 골라 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활 패턴에 맞춰 함께 조율합니다.</p></div>
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
