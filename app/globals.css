@@ -335,3 +335,6 @@
   .booking-plan .monthly-price{font-size:14px}
   .booking-plan .booking-plan-state{padding:6px 8px;font-size:10px}
 }
+.booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{font-weight:800!important}
+.booking-plan{align-items:baseline!important}
+.booking-plan .booking-plan-state{align-self:center!important}
