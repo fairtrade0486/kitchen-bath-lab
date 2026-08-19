@@ -355,7 +355,7 @@
 .hero-stage .hero-opening{position:absolute;top:6.5vw;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:min(480px,33vw)}
 .hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:23px}
 .hero-stage .hero-opening h1{color:#fff;font-size:clamp(58px,5vw,78px)}
-.hero-stage .hero-message{position:absolute;top:23.6vw;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:min(480px,33vw);padding:22px 26px;padding-left:26px;background:rgba(20,24,19,.55);backdrop-filter:blur(2px);border-radius:4px}
+.hero-stage .hero-message{position:absolute;top:23.6vw;left:max(24px,calc((100% - 1180px)/2));z-index:3;max-width:min(480px,33vw)}
 .hero-stage .hero-message>div{padding-left:18px;border-left-width:2px}
 .hero-stage .hero-message h2{color:#fff;font-size:33px}
 .hero-stage .hero-message p{color:#e9ece9;font-size:25px}
