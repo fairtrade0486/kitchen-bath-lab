@@ -235,7 +235,7 @@ export default function Home() {
           <h2 className="ov-line">집 전체를 청소하지 않습니다.</h2>
           <h1 className="ov-line">욕실, 한 곳에 집중합니다.</h1>
           <strong className="ov-line">필요한 곳만, <em>제대로.</em></strong>
-          <p className="ov-line ov-lead"><span className="hero-lead-accent">단순청소, 깨끗함을 넘어,아파트의 가치를 지키는 욕실 관리.</span></p>
+          <p className="ov-line ov-lead"><span className="hero-lead-accent">단순청소, 깨끗함을 넘어,</span><br /><span className="hero-lead-accent">아파트의 가치를 지키는 욕실 관리.</span></p>
         </div>
         <div className="shell hero-stage">
           <div className="hero-opening">
