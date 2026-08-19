@@ -352,9 +352,9 @@
   .hero-stage .hero-picture{display:none}
 .hero-redesign{position:relative}
 .hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,33,27,.62) 0%,rgba(28,33,27,.28) 42%,rgba(28,33,27,0) 62%)}
-.hero-stage .hero-opening{position:absolute;top:calc(6.5vw - 20px);left:calc(4vw - 30px);z-index:3;max-width:min(700px,48vw)}
+.hero-stage .hero-opening{position:absolute;top:calc(6.5vw - 20px);left:calc(4vw - 30px);z-index:3;max-width:none;width:max-content}
 .hero-stage .hero-opening>p{border-color:rgba(255,255,255,.65);color:#fff;font-size:52px}
-.hero-stage .hero-opening h1{color:#fff;font-size:clamp(132px,11.6vw,180px)}
+.hero-stage .hero-opening h1{color:#fff;font-size:clamp(50px,4.3vw,76px);white-space:nowrap}
 .hero-stage .hero-message{position:absolute;top:calc(23.6vw - 20px);left:calc(4vw - 30px);z-index:3;max-width:min(700px,48vw)}
 .hero-stage .hero-message>div{padding-left:18px;border-left-width:2px}
 .hero-stage .hero-message h2{color:#fff;font-size:76px}
