@@ -375,8 +375,8 @@
 @media(min-width:761px){
   .hero-redesign{position:relative}
   .hero-stage .hero-opening,.hero-stage .hero-message{display:none}
-  .hero-overlay-tag{display:block;position:absolute;top:5vw;left:5vw;z-index:3}
-  .hero-overlay-tag .ov-tag{display:inline-block;margin:0;padding:8px 14px;border:1px solid rgba(255,255,255,.6);color:#fff;font-size:14px;font-weight:700;letter-spacing:1.5px}
+  .hero-overlay-tag{display:block;position:absolute;top:calc(5vw - 25px);left:5vw;z-index:3}
+  .hero-overlay-tag .ov-tag{display:inline-block;margin:0;padding:8px 14px;border:1px solid rgba(255,255,255,.6);color:#fff;font-size:39px;font-weight:700;letter-spacing:1.5px}
   .hero-overlay-text{display:block;position:absolute;top:11vw;left:5vw;z-index:3;max-width:min(760px,50vw)}
   .hero-overlay-text .ov-row{display:flex;align-items:baseline;gap:28px;flex-wrap:wrap}
   .hero-overlay-text .ov-line{margin:0;color:#fff;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:42px;letter-spacing:-1px}
