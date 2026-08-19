@@ -9,7 +9,7 @@ declare global {
 }
 
 const services = [
-  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "욕실 역시 샤워 시 샴푸나 비누 거품에 피지와 단백질 오염이 섞여 쌓입니다. 이런 오염이 방치되면 꿉꿉한 냄새를 유발합니다.\n습하다고 곰팡이가 생기는 것이 아니라, 이런 오염 방치가 원인이 됩니다.", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
+  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "샤워 시 샴푸나 비누 거품에 피지와 단백질 오염이 섞여 쌓입니다. 이런 오염이 방치되면 꿉꿉한 냄새를 유발합니다.\n습하다고 곰팡이가 생기는 것이 아니라, 이런 오염 방치가 원인이 됩니다.", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
   { no: "02", name: "주방 청소", en: "KITCHEN", time: "약 2–3시간", price: "가격 미정", desc: "주방에는 눈에 잘 보이지 않는 기름때가 공간 전체에 넓게 쌓입니다. 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 주방 전체를 멸균·소독 처리합니다.\n깨끗하고 위생적인 주방을 만들어 드리겠습니다.", tags: ["후드및 필터", "가스레인지, 인덕션", "싱크대", "주방 조리 상판", "상·하부장 겉면", "수전", "아일랜드 식탁"] },
   { no: "03", name: "욕실 + 주방", en: "BATH + KITCHEN", time: "약 4시간", price: "패키지 가격 미정", desc: "가장 부담스러운 두 공간을 하루에. 따로 예약하는 번거로움 없이 한 번에 집중합니다.", tags: ["욕실 전체", "주방 전체", "묶음 구성", "한 번에 방문"] },
 ];
@@ -22,9 +22,6 @@ const supabaseHeaders = {
   apikey: SUPABASE_PUBLISHABLE_KEY,
   "Content-Type": "application/json",
 };
-
-const noticeStyle = { margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--deep)", letterSpacing: "0.3px" } as const;
-const NOTICE_TEXT = "욕실 스팀 케어는 충분한 시간을 들여 진행합니다.";
 
 const steps = [
   ["01", "예약 전 상담", "현장 사진으로 오염 상태와 요청사항을 먼저 확인합니다."],
@@ -290,7 +287,7 @@ export default function Home() {
           </figure>
           <div className="hero-message">
             <h2>집 전체를 청소하지 않습니다.</h2>
-            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리.</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong><p style={noticeStyle}>{NOTICE_TEXT}</p></div>
+            <div><p><span>단순청소, 깨끗함을 넘어,</span><span>아파트의 가치를 지키는 욕실 관리.</span><span>한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span></p><strong>필요한 곳만, <em>제대로.</em></strong></div>
           </div>
         </div>
         <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 직접 방문합니다.”</span></div>
