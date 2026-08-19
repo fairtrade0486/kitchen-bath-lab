@@ -18,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
  const image = `${protocol}://${host}/og.png`;
  return {
  title: "욕실·주방 부분청소 | KITCHEN & BATH_LAB",
- description: "매칭하지 않습니다. 욕실과 주방, 두 곳에 집중하는 인천.청라지역 1인 부분청소 서비스.",
- openGraph: { title: "집 전체를 청소하지 않습니다.", description: "욕실과 주방, 두 곳에 집중하는 인천.청라지역 1:1 홈케어", images: [image], locale: "ko_KR", type: "website" },
+ description: "매칭하지 않습니다. 욕실과 주방, 두 곳에 집중하는 영종지역 1인 부분청소 서비스.",
+ openGraph: { title: "집 전체를 청소하지 않습니다.", description: "욕실과 주방, 두 곳에 집중하는 영종지역 1:1 홈케어", images: [image], locale: "ko_KR", type: "website" },
  twitter: { card: "summary_large_image", images: [image] },
  };
 }
