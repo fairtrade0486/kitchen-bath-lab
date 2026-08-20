@@ -114,7 +114,7 @@
 .hero-opening h1,.hero-message h2,.hero-message p span{white-space:nowrap}
 .hero-message p span{display:block}
 @media(max-width:760px){.top-brand a{font-size:23px}}
-@media(max-width:760px){.hero-opening h1{font-size:clamp(24px,8.4vw,31px);letter-spacing:-2px}.hero-message h2{font-size:28px}.hero-message strong{margin-top:0px;margin-bottom:4px}.hero-opening-sub em{color:var(--charcoal)}.hero-message p{font-size:clamp(16px,3.5vw,20px);letter-spacing:-.45px}.hero-message p .hero-lead{font-size:25px}.hero-message p .hero-lead.hero-lead-accent{font-size:25px;font-weight:400}.hero-message p .apt-value-strong{font-weight:900}}
+@media(max-width:760px){.hero-opening h1{font-size:clamp(24px,8.4vw,31px);letter-spacing:-2px}.hero-message h2{font-size:28px}.hero-message strong{margin-top:0px;margin-bottom:4px}.hero-opening-sub em{color:var(--charcoal)}.hero-message p{font-size:clamp(16px,3.5vw,20px);letter-spacing:-.45px}.hero-message p .hero-lead{font-size:25px}.hero-message p .hero-lead.hero-lead-accent{font-size:25px;font-weight:400}.hero-message p .apt-value-strong{font-weight:900!important}}
 @media(max-width:760px){.hero-stage{grid-template-areas:"opening" "message" "picture"}.hero-message{padding-top:8px}.hero-picture{margin-top:32px}}
 
 /* 담당자 사진: 둥근 사진과 왼쪽 아래 작은 명찰 */
