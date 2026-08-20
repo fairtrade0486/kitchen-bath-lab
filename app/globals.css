@@ -352,3 +352,5 @@
 @media(max-width:760px){.about-greeting .greeting-principle{font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:18px!important;font-weight:400;line-height:1.95;color:#5e635e!important}}
 
 @media(max-width:760px){.selected-date{background:var(--deep);color:#fff}.selected-date strong{color:#fff}}
+
+@media(max-width:760px){.calendar-back{font-size:22px}}
