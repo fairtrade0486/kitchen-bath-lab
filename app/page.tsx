@@ -304,17 +304,6 @@ export default function Home() {
           </form>
         </div></section>
 
-      <section className="reviews" id="reviews"><div className="shell reviews-shell">
-        <button className="reviews-toggle" type="button" aria-expanded={reviewsOpen} onClick={() => setReviewsOpen(open => !open)}><span>이용후기</span><b>{reviewsOpen ? "닫기 −" : "보기 +"}</b></button>
-        {reviewsOpen && <div className="reviews-panel"><p className="reviews-intro">서비스를 이용하신 고객님의 이야기를 전합니다.<br />후기는 작성 즉시 공개되며, 성함은 성만 표시됩니다.</p><div className="reviews-grid">
-          {canWriteReview ? <form className="review-form" onSubmit={submitReview}>
-            <strong>이용후기</strong><div className="review-meta-row"><label><input aria-label="성명" name="review-name" required maxLength={5} placeholder="성명" /></label><label><input aria-label="지역명" name="review-region" required maxLength={5} placeholder="지역명" /></label><label><select aria-label="서비스 종류" name="review-service" required defaultValue=""><option value="" disabled>서비스 종류</option><option>월 2회 · 욕실 2개</option><option>월 3회 · 욕실 2개</option><option>월 4회 · 욕실 2개</option></select></label></div>
-            <div className="review-compose"><textarea aria-label="후기 내용" name="review-content" required maxLength={200} rows={3} placeholder="이용 후기를 작성해 주세요." /><button className="review-submit" type="submit">등록</button></div>{reviewSent && <p className="review-success">후기가 등록되었습니다.</p>}
-          </form> : <div className="review-locked"><strong>이용후기</strong><p>일반 방문자는 후기를 볼 수 있습니다.<br />서비스 완료 처리된 예약자만 후기를 작성할 수 있습니다.</p></div>}
-          <div className="review-list" aria-live="polite">{reviews.map(review => <article className="review-card" key={review.id}><div><strong>{review.region} · {review.name} 고객님</strong><time>{new Date(review.created_at).toLocaleDateString("ko-KR")}</time></div><small>{review.service}</small><p>{review.content}</p></article>)}</div>
-        </div></div>}
-      </div></section>
-
       <footer><div className="shell footer-grid"><div><div className="business-title"><a className="footer-brand" href="#top">키친앤 바스 랩</a><span className="business-number">(784-61-00851)</span></div><p>욕실 한 곳에 집중하는<br />부분청소 정기관리 서비스</p></div><div><span>CONTACT</span><a className="phone-link phone-button" href="tel:01068227771"><small className="phone-caption">클릭 연결</small><strong>010-6822-7771</strong></a></div><div><span>AREA</span><b>인천 영종자이 아파트</b><button className="secret-admin-trigger" type="button" onClick={() => adminMode ? (setAdminMode(false), setSelectedDate(null)) : setAdminLoginOpen(true)}>[지역 외 서비스 불가]</button></div></div><div className="shell copyright"><span>© KITCHEN &amp; BATH_LAB. ALL RIGHTS RESERVED.</span></div></footer>
       {adminLoginOpen && <div className="admin-modal" role="dialog" aria-modal="true" aria-label="관리자 로그인"><form onSubmit={loginAdmin}><button type="button" className="modal-close" onClick={() => { setAdminLoginOpen(false); setAdminError(false); setAdminPassword(""); }}>×</button><strong>관리자 모드</strong><p>비밀번호를 입력해 주세요.</p><input autoFocus type="password" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setAdminError(false); }} placeholder="비밀번호" />{adminError && <small>비밀번호가 올바르지 않습니다.</small>}<button type="submit">관리자 모드 시작</button></form></div>}
     </main>
