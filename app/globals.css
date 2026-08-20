@@ -221,7 +221,7 @@
 @media(max-width:520px){.time-select{grid-template-columns:1fr}.time-select legend,.time-select>.field-error{grid-column:1}}
 .about-greeting{position:relative;top:-20px}
 .hero-redesign-strip{font-size:25px}
-@media(max-width:760px){.hero-redesign-strip{font-size:20px}}
+@media(max-width:760px){.hero-redesign-strip{font-size:21px}}
 .service.section{margin-top:-40px}
 .monthly-plan{grid-template-columns:1fr 1fr auto auto}
 .monthly-plan::after{content:"선택";grid-column:4;grid-row:1;align-self:center;padding:7px 13px;border:1px solid var(--sage);border-radius:4px;color:var(--deep);font-family:"Pretendard","Noto Sans KR",sans-serif;font-size:13px;font-weight:500;text-align:center}
