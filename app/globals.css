@@ -384,3 +384,5 @@
   .hero-overlay-text .ov-lead{margin:22px 0 0}
   .hero-overlay-text .ov-lead .hero-lead-accent{color:#fff!important;font-size:42px!important;font-weight:600!important;font-family:"MaruBuri","Noto Serif KR",serif!important;letter-spacing:-1px}
 }
+
+@media(max-width:760px){.booking-plan-stack{display:flex;flex-direction:column}.booking-plan-stack .monthly-plan{order:-1}}
