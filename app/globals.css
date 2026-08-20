@@ -354,3 +354,5 @@
 @media(max-width:760px){.selected-date{background:var(--deep);color:#fff}.selected-date strong{color:#fff}}
 
 @media(max-width:760px){.calendar-back{font-size:22px}}
+
+@media(max-width:760px){.selected-date{border:1px solid var(--deep);border-radius:12px;padding:18px 20px}}
