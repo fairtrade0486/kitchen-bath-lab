@@ -339,7 +339,7 @@
 .booking-plan{align-items:baseline!important}
 .booking-plan .booking-plan-state{align-self:center!important}
 .booking-plan{align-items:center!important}
-.hero-lead-accent{color:#b87846!important}
+.hero-lead-accent{color:#b87846!important}.accent-xbold{font-weight:900}
 .quote-indent{display:inline-block;padding-left:2.6em}
 .hero-banner{display:none}
 @media(min-width:761px){
