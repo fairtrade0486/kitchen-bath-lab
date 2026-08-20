@@ -343,7 +343,7 @@
 
 @media(max-width:760px){.time-select label{display:flex!important;align-items:center;justify-content:space-between;gap:10px}.time-select label>span:first-of-type{flex:1;text-align:left}.time-select .time-select-action{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;min-width:62px;padding:8px 10px;border:1px solid var(--sage);border-radius:4px;background:transparent;color:var(--deep);font-size:12px;font-weight:800;line-height:1}.time-select input:checked~.time-select-action{background:var(--deep);border-color:var(--deep);color:#fff}}
 
-@media(max-width:760px){.calendar-days button.fully-booked{opacity:.5;cursor:not-allowed;text-decoration:line-through}.calendar-days button.fully-booked span{background:transparent!important}}
+@media(max-width:760px){.calendar-days button.fully-booked{opacity:1;cursor:not-allowed;text-decoration:none}.calendar-days button.fully-booked span{background:transparent!important}}
 
 .admin-blacklist{margin:22px 0 28px;padding:16px;background:var(--beige);border:1px solid var(--line)}.admin-blacklist>strong{display:block;margin-bottom:12px;color:var(--deep);font-size:14px}.admin-blacklist-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-blacklist-fields select,.admin-blacklist-fields input{width:100%;margin:0;border:1px solid var(--line);background:#fff;padding:12px;font-size:13px}
 @media(max-width:760px){.admin-blacklist-fields{grid-template-columns:1fr 1fr}.admin-blacklist{margin-top:14px}}
