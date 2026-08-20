@@ -339,8 +339,10 @@
 @media(max-width:760px){.booking-form .calendar-days{padding-bottom:2px}}
 @media(max-width:760px){.booking.section{padding-top:20px;padding-bottom:20px}.booking .booking-grid{width:calc(100% - 12px);gap:10px}.booking-form{padding:12px}}
 
-.business-title .footer-amp{color:#b87846!important}
+.business-title .footer-brand{color:#3f6654!important}.business-title .footer-amp{color:#b87846!important}
 
 @media(max-width:760px){.time-select label{display:flex!important;align-items:center;justify-content:space-between;gap:10px}.time-select label>span:first-of-type{flex:1;text-align:left}.time-select .time-select-action{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;min-width:62px;padding:8px 10px;border:1px solid var(--sage);border-radius:4px;background:transparent;color:var(--deep);font-size:12px;font-weight:800;line-height:1}.time-select input:checked~.time-select-action{background:var(--deep);border-color:var(--deep);color:#fff}}
 
 @media(max-width:760px){.calendar-days button.fully-booked{opacity:1;cursor:not-allowed;text-decoration:none}.calendar-days button.fully-booked span{background:transparent!important}}
+
+@media(max-width:760px){.business-title{flex-direction:column;align-items:center;gap:0}.business-title .business-number{margin-top:5px}}
