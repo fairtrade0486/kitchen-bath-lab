@@ -22,7 +22,7 @@
 .hero-strip span{font-family:Georgia,"Noto Serif KR",serif;font-size:clamp(21px,2.4vw,31px);font-weight:650;letter-spacing:-.6px;color:white}
 .about .portrait{height:430px}
 .about{align-items:start}.about-left .about-copy{margin-top:48px}.about-greeting{min-height:430px}
-.about-greeting{padding:12px 0 0}.greeting-kicker{font-size:13px!important;letter-spacing:2px;color:var(--sage)!important;font-weight:800}.about-greeting h3{font-family:Georgia,"Noto Serif KR",serif;font-size:clamp(36px,4vw,54px);font-weight:500;line-height:1.15;letter-spacing:-2.5px;margin:24px 0 38px}.about-greeting h3 em{color:var(--sage)}.about-greeting>p:not(.greeting-kicker){font-size:17px;line-height:1.95;color:#5e635e;margin:0}.about-greeting .greeting-principle{border-bottom:1px solid var(--line);padding:0 0 10px;color:var(--charcoal)!important}.about-greeting .greeting-sign{font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;font-size:19px!important;color:var(--deep)!important;font-weight:700;margin-top:10px!important}
+.greeting-kicker{font-size:13px!important;letter-spacing:2px;color:var(--sage)!important;font-weight:800}.about-greeting h3{font-family:Georgia,"Noto Serif KR",serif;font-size:clamp(36px,4vw,54px);font-weight:500;line-height:1.15;letter-spacing:-2.5px;margin:24px 0 38px}.about-greeting h3 em{color:var(--sage)}.about-greeting>p:not(.greeting-kicker){font-size:17px;line-height:1.95;color:#5e635e;margin:0}.about-greeting .greeting-principle{border-bottom:1px solid var(--line);padding:0 0 10px;color:var(--charcoal)!important}.about-greeting .greeting-sign{font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;font-size:19px!important;color:var(--deep)!important;font-weight:700;margin-top:10px!important}
 .about-greeting{padding-top:0;transform:translateY(-8px)}
 .about-copy h2,.about-greeting h3{font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600}
 .brand{gap:5px}.brand span,.brand b{font-weight:700}
@@ -59,12 +59,11 @@
 .subscription-price{display:block}.subscription-price>span{display:block;margin-bottom:6px}.subscription-price .subscription-row{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;padding:0;line-height:1.4}.subscription-price .subscription-row+.subscription-row{margin-top:2px}.subscription-price .subscription-row b{font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:20px;font-weight:700;color:var(--deep)}
 @media(max-width:760px){.pricing .subscription-price .subscription-row{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;white-space:nowrap}}
 @media(max-width:760px){.pricing .price-label{display:inline-block;font-size:11px;border:1px solid var(--sage);padding:5px 8px;line-height:1}}
-.booking-form .address-field{margin:2px 0 24px;padding:14px 16px;background:var(--beige);border-left:3px solid var(--sage)}.booking-form .address-field>span{display:block;margin-bottom:4px;color:var(--deep);font-size:12px;font-weight:800}.booking-form .address-field>input{border-bottom-color:rgba(52,72,61,.35);font-size:14px}
+.booking-form .address-field{margin:2px 0 24px;padding:14px 0;background:transparent;border-left:0}.booking-form .address-field>span{display:block;margin-bottom:4px;color:var(--deep);font-size:12px;font-weight:800}.booking-form .address-field>input{border-bottom-color:rgba(52,72,61,.35);font-size:14px}
 .address-fixed{margin:8px 0 10px;font-size:15px;font-weight:700;color:var(--deep)}
 .address-dong-ho{display:grid;grid-template-columns:1fr 1.4fr;gap:8px}
 .address-dong-ho select{border:0;border-bottom:1px solid rgba(52,72,61,.35);background:transparent;font-size:14px;padding:6px 0;color:var(--deep)}
 
-.booking-form .address-field{padding-left:0;padding-right:0;background:transparent;border-left:0}
 .booking-confirm-note{margin:10px 0 0;text-align:center;color:#6f766f;font-size:15px;font-weight:700;line-height:1.5}
 .phone-link{display:block;margin-bottom:10px}.phone-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border:1px solid #527362;border-radius:4px;background:linear-gradient(180deg,#3f6654 0%,#294a3b 100%);box-shadow:0 4px 0 #172d24,0 7px 14px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.25);color:#fff!important;font-size:16px;font-weight:700;line-height:1;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}.phone-button:hover{transform:translateY(-1px);box-shadow:0 5px 0 #172d24,0 9px 16px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.3)}.phone-button:active{transform:translateY(3px);box-shadow:0 1px 0 #172d24,0 3px 7px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.2)}
 .nav{justify-content:center}.brand{font-family:Consolas,"Courier New",monospace;font-size:30px;letter-spacing:-.6px}.footer-brand{font-size:25px}.brand span{font-weight:700}.brand b{font-weight:900}@media(max-width:760px){.brand{font-size:24px}}
@@ -223,10 +222,6 @@
 .hero-redesign-strip{font-size:25px}
 @media(max-width:760px){.hero-redesign-strip{font-size:21px;margin-bottom:4px}}
 .service.section{margin-top:-40px}
-.monthly-plan{grid-template-columns:1fr 1fr auto auto}
-.monthly-plan::after{content:"선택";grid-column:4;grid-row:1;align-self:center;padding:7px 13px;border:1px solid var(--sage);border-radius:4px;color:var(--deep);font-family:"Pretendard","Noto Sans KR",sans-serif;font-size:13px;font-weight:500;text-align:center}
-.monthly-plan.selected::after{content:"선택됨";border-color:#fff;color:#fff}
-@media(max-width:760px){.monthly-plan{grid-template-columns:1fr auto auto}.monthly-plan::after{grid-column:3;grid-row:1 / span 2}.monthly-service{grid-column:1}.monthly-price{grid-column:2;grid-row:1 / span 2}}
 /* ===== 데스크톱 정렬 수정(추가) ===== */
 @media (min-width: 761px) {
   /* 1. 제목 잘림 fix */
@@ -262,12 +257,6 @@
 
 /* 요금 카드 한 줄 정렬 + 중복 선택 버튼(빈 박스) 제거 */
 .monthly-plan::after{content:none!important}
-.booking-plan{
-    display:flex!important;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:8px 14px;
-}
 .booking-plan .price-label{
     border:0;padding:0;margin:0;transform:none;
     font-family:"MaruBuri","Noto Serif KR",serif;
@@ -275,7 +264,7 @@
 }
 .booking-plan .monthly-service{font-size:14px;font-weight:600;color:var(--charcoal)}
 .booking-plan .monthly-freq{font-size:13px;font-weight:700;color:var(--sage)}
-.booking-plan .monthly-price{margin-left:auto;font-size:18px;font-weight:700;color:var(--deep);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
+.booking-plan .monthly-price{font-size:18px;font-weight:700;color:var(--deep);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
 .booking-plan .booking-plan-state{justify-self:auto;border:1px solid var(--sage);border-radius:4px;padding:8px 14px;color:var(--deep);font-size:12px;font-weight:800;white-space:nowrap}
 .booking-plan.selected .booking-plan-state{background:var(--deep);border-color:var(--deep);color:#fff}
 
@@ -315,7 +304,6 @@
 .booking-plan .monthly-price{grid-column:3;grid-row:1;margin-left:0!important;white-space:nowrap}
 .booking-plan .booking-plan-state{grid-column:4;grid-row:1;margin-top:0!important;white-space:nowrap}
 .booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{font-weight:800!important}
-.booking-plan{align-items:baseline!important}
 .booking-plan .booking-plan-state{align-self:center!important}
 .booking-plan{align-items:center!important}
 .hero-lead-accent{color:#b87846!important}.apt-value-strong{font-weight:900}.accent-xbold{font-weight:900}
