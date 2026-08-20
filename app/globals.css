@@ -350,3 +350,5 @@
 @media(max-width:760px){.hero-message p .apt-value-strong{color:#8a5a3a!important;font-weight:900!important;text-shadow:.3px 0 #8a5a3a,-.3px 0 #8a5a3a}}
 
 @media(max-width:760px){.about-greeting .greeting-principle{font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:18px!important;font-weight:400;line-height:1.95;color:#5e635e!important}}
+
+@media(max-width:760px){.selected-date{background:var(--deep);color:#fff}.selected-date strong{color:#fff}}
