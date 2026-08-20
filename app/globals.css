@@ -386,3 +386,4 @@
 }
 
 @media(max-width:760px){.booking-plan-stack{display:flex;flex-direction:column}.booking-plan-stack .monthly-plan{order:-1}}
+@media(max-width:760px){.booking-plan-stack .booking-frequency-note{position:relative;top:-2px}}
