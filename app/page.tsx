@@ -78,6 +78,10 @@ export default function Home() {
     refreshSlots();
   }, [calendarYear, calendarMonth]);
 
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 760px)").matches) setSelectedPlan(2);
+  }, []);
+
   async function refreshReviews() {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=id,name,region,service,content,created_at&order=created_at.desc`, {
       headers: supabaseHeaders,
@@ -275,7 +279,7 @@ export default function Home() {
 
                     <form onSubmit={submit} noValidate className="booking-form">
                         <div className="booking-plan-stack"><p className="booking-frequency-note">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</p>
-            <button type="button" className={`price-group monthly-plan booking-plan${selectedPlan === 2 ? " selected" : ""}`} onClick={() => setSelectedPlan(2)}><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b><span className="booking-plan-state">{selectedPlan === 2 ? "선택됨" : "선택"}</span></button></div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
+            <div className="price-group monthly-plan booking-plan selected" aria-label="딥케어 욕실 2개 월 2회 100,000원"><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div></div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
 패턴에 맞춰 조율합니다.</p></div>
             <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
             <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
