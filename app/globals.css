@@ -257,37 +257,16 @@
 
 /* 요금 카드 한 줄 정렬 + 중복 선택 버튼(빈 박스) 제거 */
 .monthly-plan::after{content:none!important}
-.booking-plan .price-label{
-    border:0;padding:0;margin:0;transform:none;
-    font-family:"MaruBuri","Noto Serif KR",serif;
-    font-size:16px;font-weight:800;color:var(--deep);
-}
-.booking-plan .monthly-service{font-size:14px;font-weight:600;color:var(--charcoal)}
-.booking-plan .monthly-freq{font-size:13px;font-weight:700;color:var(--sage)}
-.booking-plan .monthly-price{font-size:18px;font-weight:700;color:var(--deep);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
-.booking-plan .booking-plan-state{justify-self:auto;border:1px solid var(--sage);border-radius:4px;padding:8px 14px;color:var(--deep);font-size:12px;font-weight:800;white-space:nowrap}
+.booking-plan{display:grid!important;grid-template-columns:auto 1fr auto auto!important;align-items:center!important;justify-content:space-between!important;column-gap:12px!important;row-gap:0!important}
+.booking-plan .price-label{grid-column:1;grid-row:1;white-space:nowrap;border:0;padding:0;margin:0;transform:none;font-family:"MaruBuri","Noto Serif KR",serif;font-size:16px;font-weight:800;color:var(--deep)}
+.booking-plan .monthly-service{grid-column:2;grid-row:1;font-size:14px;font-weight:600;color:var(--charcoal)}
+.booking-plan .monthly-freq{grid-column:2;grid-row:1;justify-self:center;text-align:center;font-size:13px;font-weight:700;color:var(--sage)}
+.booking-plan .monthly-price{grid-column:3;grid-row:1;justify-self:end;margin-left:0!important;white-space:nowrap;font-size:18px;font-weight:700;color:var(--deep);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif}
+.booking-plan .booking-plan-state{grid-column:4;grid-row:1;justify-self:auto;align-self:center!important;margin-top:0!important;border:1px solid var(--sage);border-radius:4px;padding:8px 14px;color:var(--deep);font-size:12px;font-weight:800;white-space:nowrap}
 .booking-plan.selected .booking-plan-state{background:var(--deep);border-color:var(--deep);color:#fff}
-
-/* 요금 줄 좌우 끝까지 고르게 정렬 + 예약 안내 문구를 가격카드 밑으로 이동 */
-.booking-plan{justify-content:space-between!important}
-.booking-plan .monthly-price{margin-left:0!important}
 .booking-form .booking-intro-group{margin:6px 0 32px}
 .booking-form .booking-intro-group .booking-intro{color:var(--deep)}
 .booking-form .booking-intro-group p{margin:0;color:#5f645f;font-size:13px;line-height:1.6}
-
-/* 요금 줄: 표처럼 각 항목을 고정된 위치에 정렬(그리드) */
-.booking-plan{
-    display:grid!important;
-    grid-template-columns:auto auto 1fr auto!important;
-    align-items:baseline!important;
-    column-gap:10px!important;
-    row-gap:10px!important;
-}
-.booking-plan .price-label{grid-column:1;grid-row:1}
-.booking-plan .monthly-service{grid-column:2;grid-row:1}
-.booking-plan .monthly-freq{grid-column:3;grid-row:1;justify-self:start}
-.booking-plan .monthly-price{grid-column:4;grid-row:1;justify-self:end;margin-left:0!important}
-.booking-plan .booking-plan-state{grid-column:1/-1;grid-row:2;justify-self:start;margin-top:4px}
 
 /* 전체 디자인 다듬기: 문단 여백, 데스크톱 정렬/여백 개선 (구성·문안은 변경 없음) */
 .about-greeting>p:not(.greeting-kicker){margin:0 0 16px}
@@ -298,14 +277,6 @@
     .calendar-days button,.calendar-days i{aspect-ratio:auto!important;height:72px!important;padding:0!important}
 }
 .booking-plan-stack{display:contents}.booking-frequency-note{margin:0 0 16px;font-size:14px;font-weight:700;color:var(--deep);text-align:center}
-.booking-plan{display:grid!important;grid-template-columns:auto 1fr auto auto!important;align-items:center!important;column-gap:12px!important;row-gap:0!important}
-.booking-plan .price-label{grid-column:1;grid-row:1;white-space:nowrap}
-.booking-plan .monthly-freq{grid-column:2;grid-row:1;justify-self:center;text-align:center}
-.booking-plan .monthly-price{grid-column:3;grid-row:1;margin-left:0!important;white-space:nowrap}
-.booking-plan .booking-plan-state{grid-column:4;grid-row:1;margin-top:0!important;white-space:nowrap}
-.booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{font-weight:800!important}
-.booking-plan .booking-plan-state{align-self:center!important}
-.booking-plan{align-items:center!important}
 .hero-lead-accent{color:#b87846!important}.apt-value-strong{font-weight:900}.accent-xbold{font-weight:900}
 .quote-indent{display:inline-block;padding-left:2.6em}
 .hero-banner{display:none}
