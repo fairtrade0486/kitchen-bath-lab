@@ -249,7 +249,7 @@ export default function Home() {
             <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent"><b className="apt-value-strong">“아파트의 가치”</b>를 지키는 욕실 관리.</span></p></div>
           </div>
         </div>
-        <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 직접 방문합니다.”</span></div>
+        <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span></div>
       </section>
 
       <section className="about shell section" id="about">
