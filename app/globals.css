@@ -390,3 +390,4 @@
 @media(max-width:760px){.monthly-plan.selected .monthly-freq{color:#fff}}
 @media(max-width:760px){.booking-plan-stack .booking-frequency-note{border:2px solid var(--line);padding:8px 10px}}
 @media(max-width:760px){.booking-plan .price-label{position:relative;top:2px}}
+@media(max-width:760px){.booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{font-weight:900!important}}
