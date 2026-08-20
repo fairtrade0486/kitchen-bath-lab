@@ -242,12 +242,11 @@ export default function Home() {
           </div>
           <figure className="hero-picture">
 <img src="/hero-bathroom-steam-final.png" alt="열린 배수구에 강한 스팀을 분사하는 욕실 청소 장면" />
-            <figcaption><b>오직 욕실</b><span>BATHROOM CARE</span></figcaption>
           </figure>
           <div className="hero-message">
             <h2>욕실, 한 곳에 집중합니다.</h2>
-            <strong className="hero-opening-sub">필요한 곳만, <em>제대로.</em></strong>
             <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent">아파트의 가치를 지키는 욕실 관리.</span></p></div>
+            <strong className="hero-opening-sub">필요한 곳만, <em>제대로.</em></strong>
           </div>
         </div>
         <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 직접 방문합니다.”</span></div>
