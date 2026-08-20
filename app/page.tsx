@@ -291,7 +291,7 @@ export default function Home() {
                   <div className="address-dong-ho">
                     <select required value={addressDong} onChange={event => { setAddressDong(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="동">
                       <option value="">동 선택</option>
-                      {Array.from({ length: 15 }, (_, i) => `${101 + i}동`).map(dong => <option key={dong} value={dong}>{dong}</option>)}
+                      {Array.from({ length: 13 }, (_, i) => `${521 + i}동`).map(dong => <option key={dong} value={dong}>{dong}</option>)}
                     </select>
                     <input required value={addressHo} onChange={event => { setAddressHo(event.currentTarget.value); setBookingErrors(current => ({ ...current, address: "" })); }} aria-label="호수" placeholder="호수 (예: 1204호)" />
                   </div>
