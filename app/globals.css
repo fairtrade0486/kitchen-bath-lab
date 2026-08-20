@@ -358,3 +358,5 @@
 @media(max-width:760px){.selected-date{border:1px solid var(--deep);border-radius:12px;padding:18px 20px}}
 
 @media(max-width:760px){.selected-date{display:flex!important;align-items:center!important;justify-content:space-between!important;background:var(--deep)!important;border:1px solid var(--deep)!important;border-radius:12px!important;padding:18px 20px!important;margin:0 0 24px!important;color:#fff!important}.selected-date strong{color:#fff!important}}
+
+@media(max-width:760px){.selected-date-card{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-height:58px!important;margin:0 0 24px!important;padding:18px 20px!important;background:#34483D!important;border:1px solid #34483D!important;border-radius:12px!important;color:#fff!important}.selected-date-card strong{color:#fff!important}}
