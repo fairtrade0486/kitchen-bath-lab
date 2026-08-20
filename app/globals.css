@@ -356,3 +356,5 @@
 @media(max-width:760px){.calendar-back{font-size:22px}}
 
 @media(max-width:760px){.selected-date{border:1px solid var(--deep);border-radius:12px;padding:18px 20px}}
+
+@media(max-width:760px){.selected-date{display:flex!important;align-items:center!important;justify-content:space-between!important;background:var(--deep)!important;border:1px solid var(--deep)!important;border-radius:12px!important;padding:18px 20px!important;margin:0 0 24px!important;color:#fff!important}.selected-date strong{color:#fff!important}}
