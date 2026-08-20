@@ -270,7 +270,7 @@ export default function Home() {
 
       <section className="service section" id="service">
         <div className="shell">
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3><p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p><div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
 
         </div>
       </section>
