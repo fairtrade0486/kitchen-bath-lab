@@ -331,5 +331,5 @@
   .monthly-plan.selected .monthly-freq{color:#fff}
   .booking-plan{align-items:center!important}
   .booking-plan .price-label{position:static!important}
-  .booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{font-weight:900!important;font-size:16px!important;line-height:1.2!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif!important}
+  .booking-plan .price-label,.booking-plan .monthly-freq,.booking-plan .monthly-price,.booking-plan .booking-plan-state{display:flex;align-items:center;height:19.2px;margin-top:0!important;margin-bottom:0!important;font-weight:900!important;font-size:16px!important;line-height:1.2!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif!important}
 }
