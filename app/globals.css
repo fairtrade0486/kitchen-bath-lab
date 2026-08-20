@@ -363,3 +363,5 @@
 
 .mobile-only-scope-tag{display:none}
 @media(max-width:760px){.mobile-only-scope-tag{display:inline-block}}
+
+@media(max-width:760px){.service-list.service-areas .service-highlight strong{font-size:17px}}
