@@ -337,3 +337,5 @@
 @media(max-width:760px){.booking-form .calendar-head,.booking-form .calendar-week,.booking-form .calendar-days{position:relative;top:-10px}}
 @media(max-width:760px){.booking-form .submit{margin-top:-10px}}
 @media(max-width:760px){.booking-form .calendar-days{padding-bottom:12px}}
+
+.business-title .footer-amp{color:#b87846!important}
