@@ -180,7 +180,12 @@ export default function Home() {
     if (calendarTouchStart === null) return;
     const endY = event.changedTouches[0]?.clientY ?? calendarTouchStart;
     const delta = calendarTouchStart - endY;
-    if (delta > 50 && selectedDate) setAdminCalendarView("day");
+    if (delta > 50) {
+      setCalendarYear(today.getFullYear());
+      setCalendarMonth(today.getMonth());
+      setSelectedDate(today.getDate());
+      setAdminCalendarView("day");
+    }
     if (delta < -50) setAdminCalendarView("month");
     setCalendarTouchStart(null);
   }
