@@ -464,3 +464,6 @@
 .admin-new-calendar .calendar-days button{height:auto!important;max-height:none!important;align-self:start!important;justify-content:flex-start!important;vertical-align:top!important}
 .admin-new-calendar .calendar-days button>span{margin-top:0!important;margin-bottom:2px!important;height:auto!important;min-height:18px!important}
 .admin-new-calendar .calendar-days button small:first-of-type{margin-top:0!important}
+
+.admin-new-calendar .calendar-days button{gap:0!important;padding-top:0!important}
+.admin-new-calendar .calendar-days button>span{margin-bottom:0!important;min-height:16px!important}
