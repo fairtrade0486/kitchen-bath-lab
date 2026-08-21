@@ -544,3 +544,7 @@
 .admin-adjust-card .admin-calendar-panel{display:block!important}
 .admin-adjust-card .admin-day-view{display:none!important}
 .admin-adjust-card .admin-month-return{display:none!important}
+
+/* 관리자 모드 고정 상태와 명시적 고객 화면 이동 버튼 */
+.admin-exit-button{width:100%;min-height:48px;border:1px solid var(--deep);border-radius:8px;background:var(--deep);color:#fff;padding:12px 16px;font-size:13px;font-weight:800;cursor:pointer;text-align:center}
+.admin-exit-button:active{transform:translateY(1px)}

@@ -357,7 +357,9 @@ export default function Home() {
               {selectedDate && <><button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSelectedTimeValue(""); setSent(false); }}>← 날짜 다시 선택</button><div className="price-group monthly-plan booking-plan selected selected-date-card" aria-label={`선택한 날짜 ${calendarYear}년 ${calendarMonth + 1}월 ${selectedDate}일`}><span className="price-label">선택한 날짜</span><span className="monthly-freq">방문일</span><b className="monthly-price">{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</b></div></>}
               {adminMode ? <>
                 <div className={`admin-container${adminSection === "calendar" ? " calendar-open" : ""}`}>
+                  <button type="button" className="admin-exit-button" onClick={() => { setAdminMode(false); setAdminSection(null); setSelectedDate(null); setSelectedTimeValue(""); }}>고객 화면으로 가기</button>
                   <div className={`admin-section-card${adminSection === "customers" ? " expanded" : ""}`}>
+
                     <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "customers" ? null : "customers")}>
                       <strong>회원정보</strong>
                       <span>{adminSection === "customers" ? "▲" : "▼"}</span>
