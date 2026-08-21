@@ -507,3 +507,6 @@
 .admin-status-buttons button:last-child{color:#b34b43!important;border-color:#e2c4c0!important;background:#fff8f7!important}
 .admin-status-buttons button:last-child.selected{color:#fff!important;border-color:#b34b43!important;background:#b34b43!important}
 @media(max-width:380px){.admin-status-buttons{gap:3px!important}.admin-status-buttons button{font-size:9px!important;padding-left:1px!important;padding-right:1px!important}}
+
+/* 예약취소 완료 후에는 빨간 강조를 해제하고 일반 선택 버튼 색상으로 표시 */
+.admin-status-buttons button:last-child.selected{color:#fff!important;border-color:var(--deep)!important;background:var(--deep)!important}
