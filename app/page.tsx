@@ -401,7 +401,7 @@ export default function Home() {
                         </div>
                         <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
                           <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
-                          <div className="admin-day-heading">{selectedDate ? `${calendarMonth + 1}월 ${selectedDate}일` : "날짜를 선택해 주세요"}</div>
+                          <div className="admin-day-heading">예약 상세</div>
                           {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^영종자이아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}</div></article>; })}
                         </div>
                       </div>
