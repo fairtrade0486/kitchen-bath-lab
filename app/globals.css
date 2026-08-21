@@ -470,3 +470,7 @@
 
 .admin-new-calendar .admin-calendar-controls{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;margin:0 -14px 14px!important;padding:12px 14px!important;background:var(--beige)!important;border-bottom:1px solid #eadfd2!important}
 .admin-new-calendar .admin-calendar-controls select{min-width:78px!important;padding:7px 8px!important;border:1px solid #d9cbbb!important;border-radius:5px!important;background:#fff!important;color:var(--deep)!important;font-size:13px!important;font-weight:800!important}
+
+.admin-new-calendar .admin-calendar-controls{justify-content:space-between!important;flex-wrap:nowrap!important}
+.admin-new-calendar .admin-calendar-controls>strong{color:var(--deep)!important;font-size:18px!important;white-space:nowrap!important}
+.admin-new-calendar .admin-calendar-selects{display:flex!important;align-items:center!important;gap:6px!important;white-space:nowrap!important}
