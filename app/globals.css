@@ -398,3 +398,20 @@
 .admin-active .admin-slot-control{margin-top:20px!important}
 .admin-active .admin-slot-control h3{margin:0 0 6px!important;font-size:18px!important;color:var(--deep)!important}
 @media(max-width:760px){.admin-active .booking-form{width:calc(100% - 24px)!important;padding:14px!important}.admin-active .admin-section-trigger{min-height:72px!important;font-size:20px!important}.admin-active .admin-section-content{padding:0 14px 18px!important}.admin-active .calendar-days button span,.admin-active .calendar-days button{width:36px!important;height:36px!important}.admin-active .admin-customer-history-head{gap:8px!important;padding:14px 12px!important}.admin-active .admin-customer-history-head>button{font-size:12px!important}}
+
+/* 새 관리자 캘린더: 월간 화면에서 위로 밀어 당일 상세로 전환 */
+.admin-new-calendar{touch-action:pan-y!important}
+.admin-day-hidden{display:none!important}
+.admin-day-view{display:none!important}
+.admin-day-view.visible{display:block!important}
+.admin-calendar-hint{margin:18px 0 0!important;color:#7a8179!important;font-size:12px!important;text-align:center!important}
+.admin-month-return{border:0;background:transparent;color:var(--deep);font-size:13px;font-weight:800;padding:4px 0 16px;cursor:pointer}
+.admin-day-heading{font-family:Georgia,"Noto Serif KR",serif;color:var(--deep);font-size:23px;margin:0 0 18px}
+.admin-day-booking-card{border-left:4px solid #70a9cf;background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:4px;padding:16px 14px;margin:0 0 12px;box-shadow:0 3px 10px rgba(37,39,37,.05)}
+.admin-day-booking-info{display:grid;gap:5px;margin-bottom:14px;color:#606860;font-size:13px}
+.admin-day-booking-info strong{color:var(--deep);font-size:19px}
+.admin-day-booking-info span:last-child{color:var(--deep);font-weight:800;font-size:16px}
+.admin-status-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.admin-status-buttons button{border:1px solid var(--line);border-radius:5px;background:#fff;color:#6e756e;padding:10px 4px;font-size:11px;font-weight:800;cursor:pointer}
+.admin-status-buttons button.selected{background:var(--deep);border-color:var(--deep);color:#fff}
+@media(max-width:760px){.admin-day-booking-card{padding:15px 12px}.admin-status-buttons button{font-size:10px;padding:10px 2px}}

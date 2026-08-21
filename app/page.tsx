@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, TouchEvent, useEffect, useState } from "react";
 
 const services = [
   { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "샤워 시 샴푸나 비누 거품에 피지와 단백질 오염이 섞여 쌓입니다. 이런 오염이 방치되면 꿉꿉한 냄새를 유발합니다.\n습하다고 곰팡이가 생기는 것이 아니라, 이런 오염 방치가 원인이 됩니다.", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
@@ -41,7 +41,10 @@ export default function Home() {
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
   const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean }>>([]);
-  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | null>("customers");
+  const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정">>({});
+  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>("customers");
+  const [adminCalendarView, setAdminCalendarView] = useState<"month" | "day">("month");
+  const [calendarTouchStart, setCalendarTouchStart] = useState<number | null>(null);
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
@@ -154,6 +157,23 @@ export default function Home() {
       return;
     }
     await refreshSlots();
+  }
+
+  function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정") {
+    setBookingStatuses(current => ({ ...current, [id]: status }));
+  }
+
+  function handleCalendarTouchStart(event: TouchEvent<HTMLDivElement>) {
+    setCalendarTouchStart(event.touches[0]?.clientY ?? null);
+  }
+
+  function handleCalendarTouchEnd(event: TouchEvent<HTMLDivElement>) {
+    if (calendarTouchStart === null) return;
+    const endY = event.changedTouches[0]?.clientY ?? calendarTouchStart;
+    const delta = calendarTouchStart - endY;
+    if (delta > 50 && selectedDate) setAdminCalendarView("day");
+    if (delta < -50) setAdminCalendarView("month");
+    setCalendarTouchStart(null);
   }
 
   function loginAdmin(e: FormEvent<HTMLFormElement>) {
@@ -339,12 +359,34 @@ export default function Home() {
 
                   <div className={`admin-section-card${adminSection === "calendar" ? " expanded" : ""}`}>
                     <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "calendar" ? null : "calendar")}>
-                      <strong>예약조정</strong>
+                      <strong>캘린더</strong>
                       <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
                     </button>
                     {adminSection === "calendar" && (
-                      <div className="admin-section-content">
-                        <div className="admin-calendar-panel">
+                      <div className="admin-section-content admin-new-calendar" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd}>
+                        <div className={`admin-calendar-panel${adminCalendarView === "day" ? " admin-day-hidden" : ""}`}>
+                          <div className="calendar-head"><strong>{calendarMonth + 1}월 일정</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }} >{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
+                          <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
+                          <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}>{day}</button> : <i key={i} />)}</div>
+                          <p className="admin-calendar-hint">날짜를 선택한 뒤 위로 밀어 올리면 당일 상세내역이 나옵니다.</p>
+                        </div>
+                        <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
+                          <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
+                          <div className="admin-day-heading">{selectedDate ? `${calendarMonth + 1}월 ${selectedDate}일` : "날짜를 선택해 주세요"}</div>
+                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{booking.address || "주소 미입력"}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={() => setBookingStatus(booking.id, item)}>{item}</button>)}</div></article>; })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={`admin-section-card${adminSection === "adjust" ? " expanded" : ""}`}>
+                    <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "adjust" ? null : "adjust")}>
+                      <strong>예약조정</strong>
+                      <span>{adminSection === "adjust" ? "⌃" : "⌄"}</span>
+                    </button>
+                    {adminSection === "adjust" && (
+                      <div className="admin-section-content" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd}>
+                        <div className={`admin-calendar-panel${adminCalendarView === "day" ? " admin-day-hidden" : ""}`}>
                           <div className="calendar-head">
                             <strong>날짜 선택</strong>
                             <div>
@@ -388,6 +430,28 @@ export default function Home() {
                               );
                             })}
                           </div>
+                        </div>
+                        <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
+                          <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
+                          <div className="admin-day-heading">{selectedDate ? `${calendarMonth + 1}월 ${selectedDate}일 예약` : "날짜를 선택해 주세요"}</div>
+                          {!selectedDate ? (
+                            <p className="admin-section-desc">캘린더에서 날짜를 선택한 뒤 위로 밀어 올리면 당일 상세내역이 나옵니다.</p>
+                          ) : adminBookings.length === 0 ? (
+                            <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div>
+                          ) : adminBookings.map(booking => {
+                            const status = bookingStatuses[booking.id] ?? "예약접수";
+                            return <article className="admin-day-booking-card" key={booking.id}>
+                              <div className="admin-day-booking-info">
+                                <strong>{booking.name}</strong>
+                                <span>{booking.phone}</span>
+                                <span>{booking.address || "주소 미입력"}</span>
+                                <span>{booking.booking_time.slice(0, 5)}</span>
+                              </div>
+                              <div className="admin-status-buttons" aria-label={`${booking.name} 예약 상태`}>
+                                {(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={() => setBookingStatus(booking.id, item)}>{item}</button>)}
+                              </div>
+                            </article>;
+                          })}
                         </div>
                       </div>
                     )}
