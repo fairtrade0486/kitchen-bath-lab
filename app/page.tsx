@@ -388,14 +388,16 @@ export default function Home() {
                   </div>
 
                   <div className={`admin-section-card${adminSection === "calendar" ? " expanded" : ""}`}>
-                    <button type="button" className="admin-section-trigger" onClick={() => { if (adminSection === "calendar") { setAdminSection(null); return; } setCalendarYear(today.getFullYear()); setCalendarMonth(today.getMonth()); setSelectedDate(today.getDate()); setAdminCalendarView("month"); setAdminSection("calendar"); }}>
-                      <strong>캘린더</strong>
-                      <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
-                    </button>
+                    <div className="admin-calendar-menu-row">
+                      <button type="button" className="admin-section-trigger" onClick={() => { if (adminSection === "calendar") { setAdminSection(null); return; } setCalendarYear(today.getFullYear()); setCalendarMonth(today.getMonth()); setSelectedDate(today.getDate()); setAdminCalendarView("month"); setAdminSection("calendar"); }}>
+                        <strong>캘린더</strong>
+                        <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
+                      </button>
+                      <div className="admin-calendar-menu-selects"><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div>
+                    </div>
                     {adminSection === "calendar" && (
                       <div className="admin-section-content admin-new-calendar">
                         <div className="admin-calendar-panel">
-                          <div className="admin-calendar-controls"><strong>캘린더</strong><div className="admin-calendar-selects"><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
                           <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
                           <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={`${selectedDate === day ? "selected " : ""}${(bookedSlots[monthDateKey(day)] ?? []).length ? "has-booking" : ""}`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}><span>{day}</span>{(bookedSlots[monthDateKey(day)] ?? []).map(time => <small key={time}>{time}</small>)}</button> : <i key={i} />)}</div>
                         </div>
