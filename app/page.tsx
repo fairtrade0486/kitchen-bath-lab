@@ -339,7 +339,7 @@ export default function Home() {
 
                   <div className={`admin-section-card${adminSection === "calendar" ? " expanded" : ""}`}>
                     <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "calendar" ? null : "calendar")}>
-                      <strong>예약달력</strong>
+                      <strong>예약조정</strong>
                       <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
                     </button>
                     {adminSection === "calendar" && (
