@@ -429,3 +429,5 @@
 .admin-day-booking-info strong{flex:0 0 auto!important}
 .admin-day-booking-info span{flex:0 0 auto!important}
 .admin-day-booking-info span:not(:last-child)::after{content:" ·";color:#a7aea7;margin-left:8px}
+
+.admin-day-booking-info span:nth-child(2),.admin-day-booking-info span:nth-child(3){font-weight:800!important;color:var(--deep)!important}
