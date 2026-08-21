@@ -519,3 +519,17 @@
 .admin-active .admin-section-trigger>span{display:block!important;flex:0 0 22px!important;width:22px!important;text-align:center!important;line-height:1!important}
 .admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:76px!important;padding-top:20px!important;padding-bottom:20px!important}
 @media(max-width:760px){.admin-active .admin-section-card>.admin-section-trigger,.admin-active .admin-calendar-menu-row{min-height:72px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:72px!important}}
+
+/* 관리자 메뉴 3개를 캘린더와 동일한 베이지색으로 통일 */
+.admin-active .admin-section-card>.admin-section-trigger,
+.admin-active .admin-calendar-menu-row,
+.admin-active .admin-calendar-menu-row .admin-section-trigger{background:var(--beige)!important;color:var(--deep)!important}
+.admin-active .admin-section-card>.admin-section-trigger{padding-left:22px!important;padding-right:22px!important}
+.admin-active .admin-calendar-menu-row{padding-left:22px!important;padding-right:22px!important}
+.admin-active .admin-calendar-menu-row .admin-section-trigger{padding-left:0!important;padding-right:0!important}
+.admin-active .admin-section-trigger strong{font-size:21px!important;font-weight:800!important;letter-spacing:0!important}
+@media(max-width:760px){
+  .admin-active .admin-section-trigger strong{font-size:20px!important}
+  .admin-active .admin-section-card>.admin-section-trigger{padding-left:14px!important;padding-right:14px!important}
+  .admin-active .admin-calendar-menu-row{padding-left:14px!important;padding-right:14px!important}
+}
