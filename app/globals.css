@@ -436,3 +436,8 @@
 .admin-new-calendar .calendar-days button{min-height:92px!important;width:100%!important;overflow:visible!important;padding:4px 2px 6px!important}
 .admin-new-calendar .calendar-days button>span{font-size:15px!important;line-height:1.25!important;margin-bottom:3px!important}
 .admin-new-calendar .calendar-days button small{min-height:28px!important;padding:6px 2px!important;font-size:12px!important;line-height:1.2!important;white-space:nowrap!important}
+
+.admin-new-calendar .calendar-days{grid-template-columns:repeat(7,minmax(0,1fr))!important;width:100%!important;overflow:hidden!important}
+.admin-new-calendar .calendar-days button>span{font-size:inherit!important;font-weight:inherit!important}
+.admin-new-calendar .calendar-days button{min-width:0!important;min-height:78px!important}
+.admin-new-calendar .calendar-days button small{font-size:10px!important;min-height:24px!important;padding:5px 1px!important;overflow:hidden!important}
