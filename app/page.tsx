@@ -447,7 +447,7 @@ export default function Home() {
                           <div className="admin-slot-control">
                             <h3>예약 시간 관리</h3>
                             <p className="admin-section-desc">시간 버튼을 눌러 예약을 마감하거나 다시 열 수 있습니다.</p>
-                            {[["09:00","오전 9시"],["15:00","오후 3시"],["17:00","오후 5시"]].map(([time,label]) => {
+                            {[["11:00","오전 11시"],["13:00","오후 1시"],["15:00","오후 3시"]].map(([time,label]) => {
                               const booked = (bookedSlots[selectedDateKey] ?? []).includes(time);
                               const closed = (closedSlots[selectedDateKey] ?? []).includes(time);
                               const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time);
