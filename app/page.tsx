@@ -393,13 +393,13 @@ export default function Home() {
                         <div className="admin-calendar-panel">
                           <div className="calendar-head"><strong>{calendarMonth + 1}월 일정</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }} >{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
                           <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
-                          <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={`${selectedDate === day ? "selected " : ""}${(bookedSlots[monthDateKey(day)] ?? []).length ? "has-booking" : ""}`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}><span>{day}</span>{(bookedSlots[monthDateKey(day)] ?? []).length > 0 && <small>{(bookedSlots[monthDateKey(day)] ?? []).length}</small>}</button> : <i key={i} />)}</div>
+                          <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={`${selectedDate === day ? "selected " : ""}${(bookedSlots[monthDateKey(day)] ?? []).length ? "has-booking" : ""}`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}><span>{day}</span>{(bookedSlots[monthDateKey(day)] ?? []).map(time => <small key={time}>{time}</small>)}</button> : <i key={i} />)}</div>
                           <p className="admin-calendar-hint">오늘 날짜와 예약 상세내역이 아래에 표시됩니다.</p>
                         </div>
                         <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
                           <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
                           <div className="admin-day-heading">{selectedDate ? `${calendarMonth + 1}월 ${selectedDate}일` : "날짜를 선택해 주세요"}</div>
-                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^영종자이아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item}</button>)}</div></article>; })}
+                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^영종자이아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item}</button>)}</div></article>; })}
                         </div>
                       </div>
                     )}
@@ -463,7 +463,7 @@ export default function Home() {
                           {!selectedDate ? (
                             <p className="admin-section-desc">캘린더에서 날짜를 선택한 뒤 위로 밀어 올리면 당일 상세내역이 나옵니다.</p>
                           ) : adminBookings.length === 0 ? (
-                            <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div>
+                            <div className="admin-empty">아직 예약이 없습니다.</div>
                           ) : adminBookings.map(booking => {
                             const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수";
                             return <article className="admin-day-booking-card" key={booking.id}>

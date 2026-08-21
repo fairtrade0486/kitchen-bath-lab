@@ -416,9 +416,9 @@
 .admin-status-buttons button.selected{background:var(--deep);border-color:var(--deep);color:#fff}
 @media(max-width:760px){.admin-day-booking-card{padding:15px 12px}.admin-status-buttons button{font-size:10px;padding:10px 2px}}
 
-.admin-new-calendar .calendar-days button{position:relative!important;display:grid!important;place-items:center!important}
-.admin-new-calendar .calendar-days button.has-booking:after{content:"";position:absolute;bottom:2px;width:5px;height:5px;border-radius:50%;background:#d58b3d}
-.admin-new-calendar .calendar-days button small{position:absolute;top:1px;right:3px;color:#d58b3d;font-size:8px;font-weight:800}
+.admin-new-calendar .calendar-days button{position:relative!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:3px!important;min-height:58px!important;padding:2px 1px 4px!important}
+.admin-new-calendar .calendar-days button.has-booking:after{display:none!important}
+.admin-new-calendar .calendar-days button small{position:static!important;display:block!important;width:100%!important;padding:3px 2px!important;border:1px solid #70a9cf!important;border-radius:3px!important;color:#3e83b5!important;background:#fff!important;font-size:9px!important;font-weight:800!important;line-height:1.1!important}
 
 /* 캘린더 진입 시 월간 달력 아래에 오늘 상세를 기본 표시 */
 .admin-new-calendar .admin-day-view{display:block!important}
