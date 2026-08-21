@@ -539,3 +539,8 @@
 .admin-active .admin-section-trigger>strong{flex:1 1 auto!important;text-align:left!important}
 .admin-active .admin-section-trigger>span{margin-left:auto!important;align-self:center!important}
 .admin-active .admin-calendar-menu-row .admin-section-trigger{justify-content:flex-start!important}
+
+/* 예약조정은 날짜·시간 마감 관리용이므로 캘린더 화면을 항상 펼침 */
+.admin-adjust-card .admin-calendar-panel{display:block!important}
+.admin-adjust-card .admin-day-view{display:none!important}
+.admin-adjust-card .admin-month-return{display:none!important}

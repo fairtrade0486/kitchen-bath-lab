@@ -416,7 +416,7 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className={`admin-section-card${adminSection === "adjust" ? " expanded" : ""}`}>
+                  <div className={`admin-section-card admin-adjust-card${adminSection === "adjust" ? " expanded" : ""}`}>
                     <button type="button" className="admin-section-trigger" onClick={() => { if (adminSection === "adjust") { setAdminSection(null); return; } setCalendarYear(today.getFullYear()); setCalendarMonth(today.getMonth()); setSelectedDate(today.getDate()); setSelectedTimeValue(""); setAdminCalendarView("month"); setAdminSection("adjust"); }}>
                       <strong>예약조정</strong>
                       <span>{adminSection === "adjust" ? "▲" : "▼"}</span>
