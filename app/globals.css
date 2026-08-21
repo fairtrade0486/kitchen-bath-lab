@@ -460,3 +460,7 @@
 .admin-new-calendar .admin-day-heading{display:none!important}
 .admin-new-calendar .calendar-days button small{border:1px solid #c9dbe4!important;box-shadow:none!important}
 .admin-new-calendar .calendar-days button{border-bottom:1px solid #edf2f4!important}
+
+.admin-new-calendar .calendar-days button{height:auto!important;max-height:none!important;align-self:start!important;justify-content:flex-start!important;vertical-align:top!important}
+.admin-new-calendar .calendar-days button>span{margin-top:0!important;margin-bottom:2px!important;height:auto!important;min-height:18px!important}
+.admin-new-calendar .calendar-days button small:first-of-type{margin-top:0!important}
