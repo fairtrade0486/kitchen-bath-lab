@@ -500,3 +500,10 @@
 .admin-new-calendar .calendar-days button{border-bottom:0!important}
 
 .admin-active .admin-container.calendar-open>.admin-section-card:last-child{display:none!important}
+
+/* 예약 상세 4개 상태 버튼: 취소는 별도 안전 액션으로 표시 */
+.admin-status-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}
+.admin-status-buttons button{min-width:0!important;padding:9px 2px!important;font-size:10px!important;white-space:nowrap!important}
+.admin-status-buttons button:last-child{color:#b34b43!important;border-color:#e2c4c0!important;background:#fff8f7!important}
+.admin-status-buttons button:last-child.selected{color:#fff!important;border-color:#b34b43!important;background:#b34b43!important}
+@media(max-width:380px){.admin-status-buttons{gap:3px!important}.admin-status-buttons button{font-size:9px!important;padding-left:1px!important;padding-right:1px!important}}

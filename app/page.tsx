@@ -40,8 +40,8 @@ export default function Home() {
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
-  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" }>>([]);
-  const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정">>({});
+  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" | "예약취소" }>>([]);
+  const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정" | "예약취소">>({});
   const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>("customers");
   const [adminCalendarView, setAdminCalendarView] = useState<"month" | "day">("month");
   const [calendarTouchStart, setCalendarTouchStart] = useState<number | null>(null);
@@ -120,7 +120,7 @@ export default function Home() {
       method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "930707" }),
     });
     if (response.ok) {
-      const rows = await response.json() as Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" }>;
+      const rows = await response.json() as Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" | "예약취소" }>;
       setAdminBookings(rows);
       setBookingStatuses(Object.fromEntries(rows.map(row => [row.id, row.booking_status || "예약접수"])));
     }
@@ -164,7 +164,7 @@ export default function Home() {
     await refreshSlots();
   }
 
-  async function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정") {
+  async function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정" | "예약취소") {
     setBookingStatuses(current => ({ ...current, [id]: status }));
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_set_booking_status`, {
       method: "POST",
@@ -404,7 +404,7 @@ export default function Home() {
                         <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
                           <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
                           <div className="admin-day-heading">예약 상세</div>
-                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^영종자이아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}</div></article>; })}
+                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^영종자이아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정", "예약취소"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { if (item === "예약취소" && !window.confirm("정말 이 고객의 예약을 취소하시겠습니까?")) return; await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}</div></article>; })}
                         </div>
                       </div>
                     )}
@@ -479,7 +479,7 @@ export default function Home() {
                                 <span>{booking.booking_time.slice(0, 5)}</span>
                               </div>
                               <div className="admin-status-buttons" aria-label={`${booking.name} 예약 상태`}>
-                                {(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}
+                                {(["예약접수", "통화필요", "예약확정", "예약취소"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { if (item === "예약취소" && !window.confirm("정말 이 고객의 예약을 취소하시겠습니까?")) return; await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}
                               </div>
                             </article>;
                           })}
