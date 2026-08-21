@@ -480,3 +480,5 @@
 .admin-active .admin-calendar-menu-selects{display:flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important}
 .admin-active .admin-calendar-menu-selects select{width:92px!important;min-width:92px!important;padding:9px 7px!important;border:1px solid #d9cbbb!important;border-radius:5px!important;background:#fff!important;color:var(--deep)!important;font-size:13px!important;font-weight:800!important}
 @media(max-width:760px){.admin-active .admin-calendar-menu-row{min-height:72px!important;padding:0 14px!important;gap:6px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{padding:18px 0!important}.admin-active .admin-calendar-menu-selects select{width:82px!important;min-width:82px!important;font-size:12px!important;padding:8px 5px!important}}
+
+.booking-form.admin-mode .selected-booking>.calendar-back,.booking-form.admin-mode .selected-booking>.selected-date-card{display:none!important}
