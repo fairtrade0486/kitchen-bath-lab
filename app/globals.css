@@ -444,3 +444,8 @@
 
 .admin-new-calendar .calendar-days{column-gap:2px!important;row-gap:8px!important}
 .admin-new-calendar .calendar-days button small{box-sizing:border-box!important;width:100%!important;min-height:30px!important;padding:7px 1px!important;font-size:12px!important;font-weight:800!important}
+
+.admin-new-calendar .calendar-days{grid-template-columns:repeat(7,calc(100% / 7))!important;column-gap:0!important;row-gap:10px!important}
+.admin-new-calendar .calendar-days button{box-sizing:border-box!important;width:100%!important;min-height:116px!important;padding:5px 2px 6px!important;gap:5px!important}
+.admin-new-calendar .calendar-days button>span{margin-bottom:2px!important}
+.admin-new-calendar .calendar-days button small{box-sizing:border-box!important;width:100%!important;min-height:27px!important;padding:6px 1px!important}
