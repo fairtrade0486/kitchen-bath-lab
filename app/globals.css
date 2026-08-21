@@ -510,3 +510,12 @@
 
 /* 예약취소 완료 후에는 빨간 강조를 해제하고 일반 선택 버튼 색상으로 표시 */
 .admin-status-buttons button:last-child.selected{color:#fff!important;border-color:var(--deep)!important;background:var(--deep)!important}
+
+/* 관리자 3개 메뉴 접힘 상태 공통 정렬 */
+.admin-active .admin-section-card>.admin-section-trigger,
+.admin-active .admin-calendar-menu-row{min-height:76px!important}
+.admin-active .admin-section-trigger{line-height:1!important}
+.admin-active .admin-section-trigger strong{display:block!important;line-height:1.25!important;margin:0!important;white-space:nowrap!important}
+.admin-active .admin-section-trigger>span{display:block!important;flex:0 0 22px!important;width:22px!important;text-align:center!important;line-height:1!important}
+.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:76px!important;padding-top:20px!important;padding-bottom:20px!important}
+@media(max-width:760px){.admin-active .admin-section-card>.admin-section-trigger,.admin-active .admin-calendar-menu-row{min-height:72px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:72px!important}}
