@@ -482,3 +482,10 @@
 @media(max-width:760px){.admin-active .admin-calendar-menu-row{min-height:72px!important;padding:0 14px!important;gap:6px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{padding:18px 0!important}.admin-active .admin-calendar-menu-selects select{width:82px!important;min-width:82px!important;font-size:12px!important;padding:8px 5px!important}}
 
 .booking-form.admin-mode .selected-booking>.calendar-back,.booking-form.admin-mode .selected-booking>.selected-date-card{display:none!important}
+
+.admin-active .admin-calendar-menu-row{min-height:54px!important;padding:0 16px!important}
+.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:54px!important;padding:10px 0!important}
+.admin-active .admin-calendar-menu-selects select{padding:6px 6px!important}
+.admin-new-calendar .calendar-week{height:34px!important;align-items:center!important}
+.admin-new-calendar .calendar-week span{font-size:16px!important;font-weight:800!important;line-height:1.2!important;color:var(--deep)!important}
+@media(max-width:760px){.admin-active .admin-calendar-menu-row{min-height:52px!important;padding:0 12px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:52px!important;padding:8px 0!important}.admin-active .admin-calendar-menu-selects select{width:78px!important;min-width:78px!important;padding:6px 4px!important}.admin-new-calendar .calendar-week span{font-size:15px!important}}
