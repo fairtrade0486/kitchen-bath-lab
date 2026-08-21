@@ -452,3 +452,7 @@
 
 .admin-new-calendar .calendar-days button.selected{background:transparent!important;color:inherit!important;border-color:#70a9cf!important;box-shadow:none!important;font-weight:800!important}
 .admin-new-calendar .calendar-days button.selected>span{font-weight:900!important;color:var(--deep)!important}
+
+.admin-new-calendar .calendar-days button{align-items:center!important;text-align:center!important;padding-left:0!important;padding-right:0!important}
+.admin-new-calendar .calendar-days button>span{display:block!important;width:100%!important;text-align:center!important}
+.admin-new-calendar .calendar-days button small{align-self:stretch!important;text-align:center!important;margin-left:0!important;margin-right:0!important}
