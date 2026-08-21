@@ -83,6 +83,13 @@ export default function Home() {
 
   useEffect(() => {
     refreshSlots();
+    const refreshOnFocus = () => { refreshSlots(); };
+    window.addEventListener("focus", refreshOnFocus);
+    const interval = window.setInterval(refreshOnFocus, 10000);
+    return () => {
+      window.removeEventListener("focus", refreshOnFocus);
+      window.clearInterval(interval);
+    };
   }, [calendarYear, calendarMonth]);
 
   useEffect(() => {
@@ -160,6 +167,12 @@ export default function Home() {
     });
     if (!response.ok) {
       window.alert("예약 마감 변경에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
+    const changed = await response.json() as boolean;
+    if (!changed) {
+      window.alert("해당 시간은 이미 예약되어 있거나 마감 변경이 처리되지 않았습니다.");
+      await refreshSlots();
       return;
     }
     await refreshSlots();
