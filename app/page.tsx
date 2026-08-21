@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, TouchEvent, useEffect, useState } from "react";
+import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
 
 const services = [
   { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "샤워 시 샴푸나 비누 거품에 피지와 단백질 오염이 섞여 쌓입니다. 이런 오염이 방치되면 꿉꿉한 냄새를 유발합니다.\n습하다고 곰팡이가 생기는 것이 아니라, 이런 오염 방치가 원인이 됩니다.", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
@@ -173,6 +173,13 @@ export default function Home() {
     }
   }
 
+  function showTodayDetails() {
+    setCalendarYear(today.getFullYear());
+    setCalendarMonth(today.getMonth());
+    setSelectedDate(today.getDate());
+    setAdminCalendarView("day");
+  }
+
   function handleCalendarTouchStart(event: TouchEvent<HTMLDivElement>) {
     setCalendarTouchStart(event.touches[0]?.clientY ?? null);
   }
@@ -181,13 +188,20 @@ export default function Home() {
     if (calendarTouchStart === null) return;
     const endY = event.changedTouches[0]?.clientY ?? calendarTouchStart;
     const delta = calendarTouchStart - endY;
-    if (delta > 50) {
-      setCalendarYear(today.getFullYear());
-      setCalendarMonth(today.getMonth());
-      setSelectedDate(today.getDate());
-      setAdminCalendarView("day");
-    }
-    if (delta < -50) setAdminCalendarView("month");
+    if (delta > 35) showTodayDetails();
+    if (delta < -35) setAdminCalendarView("month");
+    setCalendarTouchStart(null);
+  }
+
+  function handleCalendarPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+    setCalendarTouchStart(event.clientY);
+  }
+
+  function handleCalendarPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
+    if (calendarTouchStart === null) return;
+    const delta = calendarTouchStart - event.clientY;
+    if (delta > 35) showTodayDetails();
+    if (delta < -35) setAdminCalendarView("month");
     setCalendarTouchStart(null);
   }
 
@@ -378,7 +392,7 @@ export default function Home() {
                       <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
                     </button>
                     {adminSection === "calendar" && (
-                      <div className="admin-section-content admin-new-calendar" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd}>
+                      <div className="admin-section-content admin-new-calendar" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd} onPointerDown={handleCalendarPointerDown} onPointerUp={handleCalendarPointerUp}>
                         <div className={`admin-calendar-panel${adminCalendarView === "day" ? " admin-day-hidden" : ""}`}>
                           <div className="calendar-head"><strong>{calendarMonth + 1}월 일정</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }} >{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
                           <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
@@ -400,7 +414,7 @@ export default function Home() {
                       <span>{adminSection === "adjust" ? "⌃" : "⌄"}</span>
                     </button>
                     {adminSection === "adjust" && (
-                      <div className="admin-section-content" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd}>
+                      <div className="admin-section-content" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd} onPointerDown={handleCalendarPointerDown} onPointerUp={handleCalendarPointerUp}>
                         <div className={`admin-calendar-panel${adminCalendarView === "day" ? " admin-day-hidden" : ""}`}>
                           <div className="calendar-head">
                             <strong>날짜 선택</strong>
