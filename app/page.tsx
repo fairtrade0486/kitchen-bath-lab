@@ -40,7 +40,7 @@ export default function Home() {
   const [adminMode, setAdminMode] = useState(false);
   const [closedSlots, setClosedSlots] = useState<Record<string, string[]>>({});
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
-  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean }>>([]);
+  const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" }>>([]);
   const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정">>({});
   const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>("customers");
   const [adminCalendarView, setAdminCalendarView] = useState<"month" | "day">("month");
@@ -159,8 +159,17 @@ export default function Home() {
     await refreshSlots();
   }
 
-  function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정") {
+  async function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정") {
     setBookingStatuses(current => ({ ...current, [id]: status }));
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_set_booking_status`, {
+      method: "POST",
+      headers: supabaseHeaders,
+      body: JSON.stringify({ p_booking_id: id, p_status: status, p_password: "930707" }),
+    });
+    if (!response.ok || !(await response.json())) {
+      window.alert("예약 상태 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      await refreshAdminBookings();
+    }
   }
 
   function handleCalendarTouchStart(event: TouchEvent<HTMLDivElement>) {
@@ -373,7 +382,7 @@ export default function Home() {
                         <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>
                           <button type="button" className="admin-month-return" onClick={() => setAdminCalendarView("month")}>‹ 캘린더로 돌아가기</button>
                           <div className="admin-day-heading">{selectedDate ? `${calendarMonth + 1}월 ${selectedDate}일` : "날짜를 선택해 주세요"}</div>
-                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{booking.address || "주소 미입력"}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={() => setBookingStatus(booking.id, item)}>{item}</button>)}</div></article>; })}
+                          {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = booking.booking_status ?? bookingStatuses[booking.id] ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{booking.address || "주소 미입력"}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons">{(["예약접수", "통화필요", "예약확정"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={() => setBookingStatus(booking.id, item)}>{item}</button>)}</div></article>; })}
                         </div>
                       </div>
                     )}
@@ -439,7 +448,7 @@ export default function Home() {
                           ) : adminBookings.length === 0 ? (
                             <div className="admin-empty">이 날짜에는 접수된 예약이 없습니다.</div>
                           ) : adminBookings.map(booking => {
-                            const status = bookingStatuses[booking.id] ?? "예약접수";
+                            const status = booking.booking_status ?? bookingStatuses[booking.id] ?? "예약접수";
                             return <article className="admin-day-booking-card" key={booking.id}>
                               <div className="admin-day-booking-info">
                                 <strong>{booking.name}</strong>
