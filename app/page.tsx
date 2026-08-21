@@ -119,7 +119,11 @@ export default function Home() {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_bookings_for_date`, {
       method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "930707" }),
     });
-    if (response.ok) setAdminBookings(await response.json());
+    if (response.ok) {
+      const rows = await response.json() as Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" }>;
+      setAdminBookings(rows);
+      setBookingStatuses(Object.fromEntries(rows.map(row => [row.id, row.booking_status || "예약접수"])));
+    }
   }
 
   useEffect(() => { refreshAdminBookings(); }, [selectedDateKey, adminMode]);
