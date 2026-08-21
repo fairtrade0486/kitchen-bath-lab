@@ -42,7 +42,7 @@ export default function Home() {
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
   const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" | "예약취소" }>>([]);
   const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정" | "예약취소">>({});
-  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>("customers");
+  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>(null);
   const [adminCalendarView, setAdminCalendarView] = useState<"month" | "day">("month");
   const [calendarTouchStart, setCalendarTouchStart] = useState<number | null>(null);
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
@@ -215,7 +215,7 @@ export default function Home() {
   function loginAdmin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (adminPassword === "930707") {
-      setAdminMode(true); setAdminLoginOpen(false); setAdminPassword(""); setAdminError(false); setSelectedDate(null); setAdminSection("customers");
+      setAdminMode(true); setAdminLoginOpen(false); setAdminPassword(""); setAdminError(false); setSelectedDate(null); setAdminSection(null);
     } else setAdminError(true);
   }
 

@@ -533,3 +533,9 @@
   .admin-active .admin-section-card>.admin-section-trigger{padding-left:14px!important;padding-right:14px!important}
   .admin-active .admin-calendar-menu-row{padding-left:14px!important;padding-right:14px!important}
 }
+
+/* 관리자 메뉴 제목·화살표 기준선 고정 */
+.admin-active .admin-section-trigger{justify-content:flex-start!important;text-align:left!important}
+.admin-active .admin-section-trigger>strong{flex:1 1 auto!important;text-align:left!important}
+.admin-active .admin-section-trigger>span{margin-left:auto!important;align-self:center!important}
+.admin-active .admin-calendar-menu-row .admin-section-trigger{justify-content:flex-start!important}
