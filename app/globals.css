@@ -424,3 +424,8 @@
 .admin-new-calendar .admin-day-view{display:block!important}
 .admin-new-calendar .admin-month-return{display:none!important}
 .admin-new-calendar .admin-calendar-hint{margin-bottom:18px!important}
+
+.admin-day-booking-info{display:flex!important;align-items:center!important;gap:8px!important;white-space:nowrap!important;overflow-x:auto!important;margin-bottom:14px!important}
+.admin-day-booking-info strong{flex:0 0 auto!important}
+.admin-day-booking-info span{flex:0 0 auto!important}
+.admin-day-booking-info span:not(:last-child)::after{content:" ·";color:#a7aea7;margin-left:8px}
