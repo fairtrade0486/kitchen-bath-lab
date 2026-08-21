@@ -121,8 +121,9 @@ export default function Home() {
     });
     if (response.ok) {
       const rows = await response.json() as Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" | "예약취소" }>;
-      setAdminBookings(rows);
-      setBookingStatuses(Object.fromEntries(rows.map(row => [row.id, row.booking_status || "예약접수"])));
+      const activeRows = rows.filter(row => row.booking_status !== "예약취소");
+      setAdminBookings(activeRows);
+      setBookingStatuses(Object.fromEntries(activeRows.map(row => [row.id, row.booking_status || "예약접수"])));
     }
   }
 
