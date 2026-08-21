@@ -360,7 +360,7 @@ export default function Home() {
                   <div className={`admin-section-card${adminSection === "customers" ? " expanded" : ""}`}>
                     <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "customers" ? null : "customers")}>
                       <strong>회원정보</strong>
-                      <span>{adminSection === "customers" ? "⌃" : "⌄"}</span>
+                      <span>{adminSection === "customers" ? "▲" : "▼"}</span>
                     </button>
                     {adminSection === "customers" && (
                       <div className="admin-section-content">
@@ -376,7 +376,7 @@ export default function Home() {
                                 <div className="admin-customer-history-head">
                                   <span><b>{customer.name}</b><small>{customer.phone}</small><small>{customer.address}</small></span>
                                   <button type="button" onClick={() => setExpandedCustomers(current => ({ ...current, [key]: !open }))}>
-                                    누적 {customer.visit_count}회 <em>{open ? "⌃" : "⌄"}</em>
+                                    누적 {customer.visit_count}회 <em>{open ? "▲" : "▼"}</em>
                                   </button>
                                 </div>
                                 {open && (
@@ -397,7 +397,7 @@ export default function Home() {
                     <div className="admin-calendar-menu-row">
                       <button type="button" className="admin-section-trigger" onClick={() => { if (adminSection === "calendar") { setAdminSection(null); return; } setCalendarYear(today.getFullYear()); setCalendarMonth(today.getMonth()); setSelectedDate(today.getDate()); setAdminCalendarView("month"); setAdminSection("calendar"); }}>
                         <strong>캘린더</strong>
-                        <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
+                        <span>{adminSection === "calendar" ? "▲" : "▼"}</span>
                       </button>
                       <div className="admin-calendar-menu-selects"><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div>
                     </div>
@@ -419,7 +419,7 @@ export default function Home() {
                   <div className={`admin-section-card${adminSection === "adjust" ? " expanded" : ""}`}>
                     <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "adjust" ? null : "adjust")}>
                       <strong>예약조정</strong>
-                      <span>{adminSection === "adjust" ? "⌃" : "⌄"}</span>
+                      <span>{adminSection === "adjust" ? "▲" : "▼"}</span>
                     </button>
                     {adminSection === "adjust" && (
                       <div className="admin-section-content" onTouchStart={handleCalendarTouchStart} onTouchEnd={handleCalendarTouchEnd} onPointerDown={handleCalendarPointerDown} onPointerUp={handleCalendarPointerUp}>
