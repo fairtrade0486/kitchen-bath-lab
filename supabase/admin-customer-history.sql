@@ -16,7 +16,7 @@ as $$
     count(*)::bigint as visit_count,
     array_agg(to_char(b.booking_date, 'YYYY-MM-DD') order by b.booking_date) as service_dates
   from public.bookings b
-  where p_password = '0486'
+  where p_password = '930707'
     and b.completed = true
   group by b.name, b.phone
   order by max(b.booking_date) desc, b.name asc;

@@ -373,3 +373,28 @@
 
 /* 관리자 모드에서는 고객용 홈페이지 콘텐츠를 숨기고 관리자 패널만 표시 */
 .admin-active>.top-brand,.admin-active>.hero-redesign,.admin-active>.about,.admin-active>.service,.admin-active>footer{display:none!important}.admin-active>.booking{min-height:100vh;padding-top:24px}.admin-active .booking-form{max-width:720px;margin:0 auto}.admin-active .selected-booking{margin-top:0}
+
+/* Kitchen & Bath 관리자 화면: One Clean과 동일한 모바일 전체폭 카드형 레이아웃 */
+.admin-active{background:var(--sage)!important;min-height:100dvh}
+.admin-active>.booking{min-height:100dvh!important;padding:24px 0 48px!important;background:var(--sage)!important}
+.admin-active .booking-grid{display:block!important;width:100%!important}
+.admin-active .booking-copy{display:none!important}
+.admin-active .booking-form{width:min(100% - 32px,720px)!important;max-width:none!important;margin:0 auto!important;background:var(--warm)!important;padding:18px!important;border-radius:0!important;box-shadow:none!important}
+.admin-active .selected-booking{width:100%!important;padding:0!important;margin:0!important;background:transparent!important}
+.admin-active .admin-container{display:flex!important;flex-direction:column!important;gap:14px!important;width:100%!important;margin:0!important}
+.admin-active .admin-section-card{width:100%!important;background:#fff!important;border:1px solid rgba(52,72,61,.18)!important;border-radius:14px!important;overflow:hidden!important;box-shadow:0 5px 16px rgba(37,39,37,.06)!important}
+.admin-active .admin-section-card.expanded{border-color:var(--deep)!important}
+.admin-active .admin-section-trigger{width:100%!important;min-height:76px!important;padding:20px 22px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border:0!important;background:#fff!important;color:var(--deep)!important;font-size:21px!important;font-weight:800!important;text-align:left!important;cursor:pointer!important}
+.admin-active .admin-section-card.expanded .admin-section-trigger{background:var(--beige)!important}
+.admin-active .admin-section-trigger span{font-size:18px!important;color:var(--sage)!important}
+.admin-active .admin-section-content{padding:0 20px 22px!important;background:#fff!important}
+.admin-active .admin-section-desc{margin:0 0 16px!important;color:#747a73!important;font-size:13px!important;line-height:1.6!important}
+.admin-active .admin-customer-history-card{border:1px solid var(--line)!important;border-radius:10px!important;margin:0 0 10px!important;overflow:hidden!important}
+.admin-active .admin-customer-history-head{padding:16px!important}
+.admin-active .admin-calendar-panel{margin:0!important}
+.admin-active .calendar-head{display:flex!important;justify-content:space-between!important;align-items:center!important;margin:0 0 16px!important}
+.admin-active .calendar-head strong{font-size:17px!important;color:var(--deep)!important}
+.admin-active .calendar-days button span,.admin-active .calendar-days button{width:40px!important;height:40px!important}
+.admin-active .admin-slot-control{margin-top:20px!important}
+.admin-active .admin-slot-control h3{margin:0 0 6px!important;font-size:18px!important;color:var(--deep)!important}
+@media(max-width:760px){.admin-active .booking-form{width:calc(100% - 24px)!important;padding:14px!important}.admin-active .admin-section-trigger{min-height:72px!important;font-size:20px!important}.admin-active .admin-section-content{padding:0 14px 18px!important}.admin-active .calendar-days button span,.admin-active .calendar-days button{width:36px!important;height:36px!important}.admin-active .admin-customer-history-head{gap:8px!important;padding:14px 12px!important}.admin-active .admin-customer-history-head>button{font-size:12px!important}}

@@ -113,7 +113,7 @@ export default function Home() {
   async function refreshAdminBookings() {
     if (!selectedDateKey || !adminMode) return;
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_bookings_for_date`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "0486" }),
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_date: selectedDateKey, p_password: "930707" }),
     });
     if (response.ok) setAdminBookings(await response.json());
   }
@@ -123,7 +123,7 @@ export default function Home() {
   async function refreshCustomerHistory() {
     if (!adminMode) return;
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_customer_history_kitchen`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_password: "0486" }),
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_password: "930707" }),
     });
     if (response.ok) setCustomerHistory(await response.json());
   }
@@ -132,7 +132,7 @@ export default function Home() {
 
   async function completeBooking(id: number) {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_booking_id: id, p_password: "0486" }),
+      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_booking_id: id, p_password: "930707" }),
     });
     if (!response.ok || !(await response.json())) {
       window.alert("서비스 완료 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -147,7 +147,7 @@ export default function Home() {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_set_slot`, {
       method: "POST",
       headers: supabaseHeaders,
-      body: JSON.stringify({ p_date: selectedDateKey, p_time: time, p_closed: !current.includes(time), p_password: "0486" }),
+      body: JSON.stringify({ p_date: selectedDateKey, p_time: time, p_closed: !current.includes(time), p_password: "930707" }),
     });
     if (!response.ok) {
       window.alert("예약 마감 변경에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -158,7 +158,7 @@ export default function Home() {
 
   function loginAdmin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (adminPassword === "0486") {
+    if (adminPassword === "930707") {
       setAdminMode(true); setAdminLoginOpen(false); setAdminPassword(""); setAdminError(false); setSelectedDate(null); setAdminSection("customers");
     } else setAdminError(true);
   }
@@ -300,11 +300,99 @@ export default function Home() {
             <div className="selected-booking always-visible">
               {selectedDate && <><button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSelectedTimeValue(""); setSent(false); }}>← 날짜 다시 선택</button><div className="price-group monthly-plan booking-plan selected selected-date-card" aria-label={`선택한 날짜 ${calendarYear}년 ${calendarMonth + 1}월 ${selectedDate}일`}><span className="price-label">선택한 날짜</span><span className="monthly-freq">방문일</span><b className="monthly-price">{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</b></div></>}
               {adminMode ? <>
-                <div className="admin-menu" role="navigation" aria-label="관리자 메뉴">
-                  <button type="button" className={adminSection === "customers" ? "active" : ""} onClick={() => setAdminSection(current => current === "customers" ? null : "customers")}>회원정보 <span>⌄</span></button>
-                  <button type="button" className={adminSection === "calendar" ? "active" : ""} onClick={() => setAdminSection(current => current === "calendar" ? null : "calendar")}>예약달력 <span>⌄</span></button>
+                <div className="admin-container">
+                  <div className={`admin-section-card${adminSection === "customers" ? " expanded" : ""}`}>
+                    <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "customers" ? null : "customers")}>
+                      <strong>회원정보</strong>
+                      <span>{adminSection === "customers" ? "⌃" : "⌄"}</span>
+                    </button>
+                    {adminSection === "customers" && (
+                      <div className="admin-section-content">
+                        <p className="admin-section-desc">서비스 완료 기준 누적 이용 내역입니다.</p>
+                        {customerHistory.length === 0 ? (
+                          <div className="admin-empty">아직 완료된 서비스가 없습니다.</div>
+                        ) : (
+                          customerHistory.map(customer => {
+                            const key = `${customer.name}-${customer.phone}`;
+                            const open = Boolean(expandedCustomers[key]);
+                            return (
+                              <div className="admin-customer-history-card" key={key}>
+                                <div className="admin-customer-history-head">
+                                  <span><b>{customer.name}</b><small>{customer.phone}</small><small>{customer.address}</small></span>
+                                  <button type="button" onClick={() => setExpandedCustomers(current => ({ ...current, [key]: !open }))}>
+                                    누적 {customer.visit_count}회 <em>{open ? "⌃" : "⌄"}</em>
+                                  </button>
+                                </div>
+                                {open && (
+                                  <div className="admin-service-dates">
+                                    <strong>서비스 받은 날짜</strong>
+                                    {customer.service_dates.map(date => <span key={date}>{date}</span>)}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={`admin-section-card${adminSection === "calendar" ? " expanded" : ""}`}>
+                    <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "calendar" ? null : "calendar")}>
+                      <strong>예약달력</strong>
+                      <span>{adminSection === "calendar" ? "⌃" : "⌄"}</span>
+                    </button>
+                    {adminSection === "calendar" && (
+                      <div className="admin-section-content">
+                        <div className="admin-calendar-panel">
+                          <div className="calendar-head">
+                            <strong>날짜 선택</strong>
+                            <div>
+                              <select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>
+                                {years.map(y => <option key={y} value={y}>{y}년</option>)}
+                              </select>
+                              <select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>
+                                {Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}
+                              </select>
+                            </div>
+                          </div>
+                          <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
+                          <div className="calendar-days">
+                            {calendarCells.map((day, i) => day ? (
+                              <button type="button" key={i} className={selectedDate === day ? "selected" : ""} aria-label={`${day}일 선택`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}>{day}</button>
+                            ) : <i key={i} />)}
+                          </div>
+                          {selectedDate && <div className="admin-selected-date">선택 날짜: <b>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</b></div>}
+                          <div className="admin-slot-control">
+                            <h3>예약 시간 관리</h3>
+                            <p className="admin-section-desc">시간 버튼을 눌러 예약을 마감하거나 다시 열 수 있습니다.</p>
+                            {[["09:00","오전 9시"],["15:00","오후 3시"],["17:00","오후 5시"]].map(([time,label]) => {
+                              const booked = (bookedSlots[selectedDateKey] ?? []).includes(time);
+                              const closed = (closedSlots[selectedDateKey] ?? []).includes(time);
+                              const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time);
+                              return (
+                                <div className="admin-time-row" key={time}>
+                                  <button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}>
+                                    <span>{label}</span>
+                                    <b>{booked || closed ? "예약 마감" : "예약 가능"}</b>
+                                  </button>
+                                  {booking && (
+                                    <div className="admin-booking-info">
+                                      <span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small><small>{booking.address}</small></span>
+                                      <button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>
+                                        {booking.completed ? "서비스 완료 ✓" : "서비스 완료"}
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                {adminSection === "customers" ? <div className="admin-customer-history"><h3>회원정보</h3><p>서비스 완료 기준 누적 이용 내역입니다.</p>{customerHistory.length === 0 ? <div className="admin-empty">아직 완료된 서비스가 없습니다.</div> : customerHistory.map(customer => { const key = `${customer.name}-${customer.phone}`; const open = Boolean(expandedCustomers[key]); return <div className="admin-customer-history-card" key={key}><div className="admin-customer-history-head"><span><b>{customer.name}</b><small>{customer.phone}</small><small>{customer.address}</small></span><button type="button" onClick={() => setExpandedCustomers(current => ({ ...current, [key]: !open }))}>누적 {customer.visit_count}회 <em>{open ? "⌃" : "⌄"}</em></button></div>{open && <div className="admin-service-dates"><strong>서비스 받은 날짜</strong>{customer.service_dates.map(date => <span key={date}>{date}</span>)}</div>}</div>; })}</div> : <div className="admin-calendar-panel"><div className="calendar-head"><strong>예약달력</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div><div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div><div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} aria-label={`${day}일 선택`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}>{day}</button> : <i key={i} />)}</div>{selectedDate && <div className="admin-selected-date">선택 날짜: <b>{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</b></div>}<div className="admin-slot-control"><h3>예약 시간 관리</h3><p>날짜를 선택한 뒤 시간 버튼을 눌러 예약을 마감하거나 다시 열 수 있습니다.</p>{[["09:00","오전 9시"],["15:00","오후 3시"],["17:00","오후 5시"]].map(([time,label]) => { const booked = (bookedSlots[selectedDateKey] ?? []).includes(time); const closed = (closedSlots[selectedDateKey] ?? []).includes(time); const booking = adminBookings.find(item => item.booking_time.slice(0, 5) === time); return <div className="admin-time-row" key={time}><button type="button" disabled={booked} className={booked || closed ? "closed" : "open"} onClick={() => toggleSlot(time)}><span>{label}</span><b>{booked || closed ? "예약 마감" : "예약 가능"}</b></button>{booking && <div className="admin-booking-info"><span><b>{booking.name}</b> · {booking.phone}<small>{booking.service}</small><small>{booking.address}</small></span><button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div>}</div>; })}</div></div>}
               </> : <>
                 {selectedDate && <fieldset className="time-select"><legend><small>TIME SELECT</small><strong>{calendarMonth + 1}월 {selectedDate}일 ({new Date(calendarYear, calendarMonth, selectedDate).toLocaleDateString("ko-KR", { weekday: "short" })})에 방문 가능한 시간</strong></legend><label><input checked={selectedTimeValue === "09:00"} disabled={(closedSlots[selectedDateKey] ?? []).includes("09:00") || (bookedSlots[selectedDateKey] ?? []).includes("09:00")} type="radio" name="booking-time" value="09:00" onChange={() => { setSelectedTimeValue("09:00"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("09:00") || (closedSlots[selectedDateKey] ?? []).includes("09:00") ? "오전 9시 · 예약 마감" : "오전 9시"}</span><span className="time-select-action">{selectedTimeValue === "09:00" ? "선택됨" : "선택"}</span></label><label><input checked={selectedTimeValue === "15:00"} disabled={(closedSlots[selectedDateKey] ?? []).includes("15:00") || (bookedSlots[selectedDateKey] ?? []).includes("15:00")} type="radio" name="booking-time" value="15:00" onChange={() => { setSelectedTimeValue("15:00"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("15:00") || (closedSlots[selectedDateKey] ?? []).includes("15:00") ? "오후 3시 · 예약 마감" : "오후 3시"}</span><span className="time-select-action">{selectedTimeValue === "15:00" ? "선택됨" : "선택"}</span></label><label><input checked={selectedTimeValue === "17:00"} disabled={(closedSlots[selectedDateKey] ?? []).includes("17:00") || (bookedSlots[selectedDateKey] ?? []).includes("17:00")} type="radio" name="booking-time" value="17:00" onChange={() => { setSelectedTimeValue("17:00"); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {(bookedSlots[selectedDateKey] ?? []).includes("17:00") || (closedSlots[selectedDateKey] ?? []).includes("17:00") ? "오후 5시 · 예약 마감" : "오후 5시"}</span><span className="time-select-action">{selectedTimeValue === "17:00" ? "선택됨" : "선택"}</span></label>{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>}
                 {selectedPlan && selectedDate && selectedTimeValue && <div className="contact-step"><div className="contact-step-head"><small>STEP 3 · CONTACT</small><h3>연락 가능한 정보를 알려 주세요.</h3></div><input type="hidden" name="booking-service" value={selectedPlanService} /><div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" maxLength={19} placeholder="010 - 0000 - 0000" onChange={event => { const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 11); event.currentTarget.value = digits.length <= 3 ? digits : digits.length <= 7 ? `${digits.slice(0, 3)} - ${digits.slice(3)}` : `${digits.slice(0, 3)} - ${digits.slice(3, 7)} - ${digits.slice(7)}`; setBookingErrors(current => ({ ...current, phone: "" })); }} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>

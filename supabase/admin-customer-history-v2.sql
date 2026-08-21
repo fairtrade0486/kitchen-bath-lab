@@ -24,7 +24,7 @@ as $$
       count(*)::bigint as visit_count,
       array_agg(b.booking_date order by b.booking_date desc) as service_dates
     from public.bookings b
-    where p_password = '0486'
+    where p_password = '930707'
       and b.completed = true
       and btrim(coalesce(b.address, '')) <> ''
     group by b.name, b.address

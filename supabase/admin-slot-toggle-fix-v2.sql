@@ -13,7 +13,7 @@ security definer
 set search_path = public
 as $$
 begin
-  if p_password <> '0486' then
+  if p_password <> '930707' then
     raise exception '비밀번호가 올바르지 않습니다.';
   end if;
 

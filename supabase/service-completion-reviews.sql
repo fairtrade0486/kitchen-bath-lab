@@ -33,13 +33,13 @@ create or replace function public.admin_bookings_for_date(p_date date, p_passwor
 returns table(id bigint, booking_time time, name text, phone text, service text, completed boolean)
 language sql security definer set search_path = public as $$
   select b.id, b.booking_time, b.name, b.phone, b.service, b.completed from public.bookings b
-  where p_password = '0486' and b.booking_date = p_date order by b.booking_time;
+  where p_password = '930707' and b.booking_date = p_date order by b.booking_time;
 $$;
 
 create or replace function public.admin_complete_booking(p_booking_id bigint, p_password text)
 returns boolean language plpgsql security definer set search_path = public as $$
 begin
-  if p_password <> '0486' then return false; end if;
+  if p_password <> '930707' then return false; end if;
   update public.bookings set completed = true where id = p_booking_id;
   return found;
 end;
