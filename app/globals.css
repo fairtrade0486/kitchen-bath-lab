@@ -494,3 +494,7 @@
 
 .admin-new-calendar .calendar-week span:first-child{color:#c94b4b!important}
 .admin-new-calendar .calendar-week span:last-child{color:#3f78ad!important}
+
+.admin-new-calendar .calendar-days button.selected{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;outline:none!important;color:inherit!important}
+.admin-new-calendar .calendar-days button.selected>span{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--deep)!important;font-weight:900!important}
+.admin-new-calendar .calendar-days button{border-bottom:0!important}
