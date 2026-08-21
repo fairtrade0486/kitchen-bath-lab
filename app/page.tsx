@@ -240,7 +240,7 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className={adminMode ? "admin-active" : ""}>
       <header className="top-brand shell">
         <a href="#top" aria-label="홈으로"><span>KITCHEN </span><em>&amp;</em><span> BATH_LAB</span></a>
       </header>
