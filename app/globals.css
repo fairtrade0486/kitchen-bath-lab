@@ -491,3 +491,6 @@
 @media(max-width:760px){.admin-active .admin-calendar-menu-row{min-height:52px!important;padding:0 12px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:52px!important;padding:8px 0!important}.admin-active .admin-calendar-menu-selects select{width:78px!important;min-width:78px!important;padding:6px 4px!important}.admin-new-calendar .calendar-week span{font-size:15px!important}}
 
 .admin-active .admin-container.calendar-open>.admin-section-card:first-child{display:none!important}
+
+.admin-new-calendar .calendar-week span:first-child{color:#c94b4b!important}
+.admin-new-calendar .calendar-week span:last-child{color:#3f78ad!important}
