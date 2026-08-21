@@ -58,6 +58,7 @@ export default function Home() {
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
   const years = Array.from({ length: 3 }, (_, i) => today.getFullYear() + i);
   const selectedDateKey = selectedDate ? `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(selectedDate).padStart(2, "0")}` : "";
+  const monthDateKey = (day: number) => `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
   const selectedPlanService = selectedPlan === 2 ? "월 2회 · 욕실 2개" : selectedPlan === 3 ? "월 3회 · 욕실 2개" : selectedPlan === 4 ? "월 4회 · 욕실 2개" : "";
 
   async function refreshSlots() {
@@ -381,7 +382,7 @@ export default function Home() {
                         <div className={`admin-calendar-panel${adminCalendarView === "day" ? " admin-day-hidden" : ""}`}>
                           <div className="calendar-head"><strong>{calendarMonth + 1}월 일정</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); }} >{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
                           <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
-                          <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}>{day}</button> : <i key={i} />)}</div>
+                          <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={`${selectedDate === day ? "selected " : ""}${(bookedSlots[monthDateKey(day)] ?? []).length ? "has-booking" : ""}`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); }}><span>{day}</span>{(bookedSlots[monthDateKey(day)] ?? []).length > 0 && <small>{(bookedSlots[monthDateKey(day)] ?? []).length}</small>}</button> : <i key={i} />)}</div>
                           <p className="admin-calendar-hint">날짜를 선택한 뒤 위로 밀어 올리면 당일 상세내역이 나옵니다.</p>
                         </div>
                         <div className={`admin-day-view${adminCalendarView === "day" ? " visible" : ""}`}>

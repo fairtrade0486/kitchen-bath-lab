@@ -415,3 +415,7 @@
 .admin-status-buttons button{border:1px solid var(--line);border-radius:5px;background:#fff;color:#6e756e;padding:10px 4px;font-size:11px;font-weight:800;cursor:pointer}
 .admin-status-buttons button.selected{background:var(--deep);border-color:var(--deep);color:#fff}
 @media(max-width:760px){.admin-day-booking-card{padding:15px 12px}.admin-status-buttons button{font-size:10px;padding:10px 2px}}
+
+.admin-new-calendar .calendar-days button{position:relative!important;display:grid!important;place-items:center!important}
+.admin-new-calendar .calendar-days button.has-booking:after{content:"";position:absolute;bottom:2px;width:5px;height:5px;border-radius:50%;background:#d58b3d}
+.admin-new-calendar .calendar-days button small{position:absolute;top:1px;right:3px;color:#d58b3d;font-size:8px;font-weight:800}
