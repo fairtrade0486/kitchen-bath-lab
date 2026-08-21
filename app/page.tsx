@@ -173,11 +173,8 @@ export default function Home() {
     }
   }
 
-  function showTodayDetails() {
-    setCalendarYear(today.getFullYear());
-    setCalendarMonth(today.getMonth());
-    setSelectedDate(today.getDate());
-    setAdminCalendarView("day");
+  function showSelectedDateDetails() {
+    if (selectedDate) setAdminCalendarView("day");
   }
 
   function handleCalendarTouchStart(event: TouchEvent<HTMLDivElement>) {
@@ -188,7 +185,7 @@ export default function Home() {
     if (calendarTouchStart === null) return;
     const endY = event.changedTouches[0]?.clientY ?? calendarTouchStart;
     const delta = calendarTouchStart - endY;
-    if (delta > 35) showTodayDetails();
+    if (delta > 35) showSelectedDateDetails();
     if (delta < -35) setAdminCalendarView("month");
     setCalendarTouchStart(null);
   }
@@ -200,7 +197,7 @@ export default function Home() {
   function handleCalendarPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
     if (calendarTouchStart === null) return;
     const delta = calendarTouchStart - event.clientY;
-    if (delta > 35) showTodayDetails();
+    if (delta > 35) showSelectedDateDetails();
     if (delta < -35) setAdminCalendarView("month");
     setCalendarTouchStart(null);
   }
