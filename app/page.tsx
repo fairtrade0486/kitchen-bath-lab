@@ -175,6 +175,11 @@ export default function Home() {
     if (!response.ok || !(await response.json())) {
       window.alert("예약 상태 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
       await refreshAdminBookings();
+      return;
+    }
+    if (status === "예약취소") {
+      setAdminBookings(current => current.filter(booking => booking.id !== id));
+      await refreshSlots();
     }
   }
 
