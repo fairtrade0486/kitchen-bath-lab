@@ -419,3 +419,8 @@
 .admin-new-calendar .calendar-days button{position:relative!important;display:grid!important;place-items:center!important}
 .admin-new-calendar .calendar-days button.has-booking:after{content:"";position:absolute;bottom:2px;width:5px;height:5px;border-radius:50%;background:#d58b3d}
 .admin-new-calendar .calendar-days button small{position:absolute;top:1px;right:3px;color:#d58b3d;font-size:8px;font-weight:800}
+
+/* 캘린더 진입 시 월간 달력 아래에 오늘 상세를 기본 표시 */
+.admin-new-calendar .admin-day-view{display:block!important}
+.admin-new-calendar .admin-month-return{display:none!important}
+.admin-new-calendar .admin-calendar-hint{margin-bottom:18px!important}
