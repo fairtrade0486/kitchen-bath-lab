@@ -553,7 +553,7 @@
 /* PC 히어로를 모바일과 동일한 순서(태그+헤드라인 -> 사진 -> 서브헤드+강조+리드문)로 통일 */
 .hero-banner{display:none!important}
 .hero-overlay-tag,.hero-overlay-text{display:none!important}
-.hero-stage{grid-template-columns:1fr!important;grid-template-areas:"opening" "picture" "message"!important;column-gap:0!important}
+.hero-stage{grid-template-columns:1fr!important;grid-template-areas:"opening" "message" "picture"!important;column-gap:0!important}
 .hero-stage .hero-opening,.hero-stage .hero-message{display:block!important;position:static!important;top:auto!important;left:auto!important;max-width:none!important;width:auto!important}
 .hero-stage .hero-picture{display:block!important}
 
@@ -757,8 +757,8 @@
   .booking-form .booking-plan-stack .monthly-plan{order:1!important;margin-bottom:0!important;background:var(--deep)!important;color:#fff!important;padding:30px 32px!important;border-radius:12px 12px 0 0!important}
   .booking-form .booking-plan-stack .monthly-plan .price-label,
   .booking-form .booking-plan-stack .monthly-plan .monthly-freq,
-  .booking-form .booking-plan-stack .monthly-plan .monthly-price{color:#fff!important;font-size:26px!important;font-weight:800!important;line-height:1.25!important}
-  .booking-form .booking-plan-stack .monthly-plan .monthly-price{font-size:30px!important}
+  .booking-form .booking-plan-stack .monthly-plan .monthly-price{color:#fff!important;font-size:20px!important;font-weight:800!important;line-height:1.25!important}
+  .booking-form .booking-plan-stack .monthly-plan .monthly-price{font-size:24px!important}
   .booking-form .booking-plan-stack .booking-frequency-note{order:2!important;width:100%!important;margin:0 0 24px!important;padding:16px 20px!important;border:1px solid var(--deep)!important;border-top:0!important;border-radius:0 0 8px 8px!important;background:#fff!important;color:var(--deep)!important;font-size:18px!important;font-weight:700!important;line-height:1.5!important;text-align:center!important}
 }
 
@@ -840,3 +840,72 @@
   .booking-form .calendar-week,
   .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
 }
+
+/* 데스크톱 최소 수정: 안내 문구와 예약 날짜 제목만 오른쪽 이동 */
+@media (min-width: 761px) {
+  .booking-form .booking-intro-group {
+    position: relative;
+    left: 8%;
+  }
+
+  .booking-form .calendar-head > strong {
+    position: relative;
+    left: 8%;
+  }
+}
+
+/* 데스크탑: 예약 그리드의 900px 제한을 제거해 달력을 욕실 청소 박스와 동일 폭으로 맞춤 */
+@media(min-width:761px){
+  .booking .booking-grid{
+    width:100%!important;
+    max-width:none!important;
+  }
+  .booking .booking-form{
+    width:100%!important;
+    max-width:none!important;
+  }
+  .booking .booking-form .calendar-head,
+  .booking .booking-form .calendar-week,
+  .booking .booking-form .calendar-days{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    transform:none!important;
+  }
+}
+
+
+/* 데스크탑: 최신 전체폭 확장 취소, 예약 영역 기존 폭 복구 */
+@media(min-width:761px){
+  .booking .booking-grid{
+    width:auto!important;
+    max-width:900px!important;
+  }
+  .booking .booking-form{
+    width:100%!important;
+    max-width:720px!important;
+  }
+}
+
+
+/* 데스크탑: 달력 바깥 박스만 욕실 청소 박스와 같은 1180px 폭으로 맞춤 */
+@media(min-width:761px){
+  .booking-form .desktop-calendar-box{
+    width:1180px!important;
+    max-width:1180px!important;
+    margin-left:-140px!important;
+    margin-right:0!important;
+    box-sizing:border-box!important;
+  }
+  .booking-form .desktop-calendar-box .calendar-head,
+  .booking-form .desktop-calendar-box .calendar-week,
+  .booking-form .desktop-calendar-box .calendar-days{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    transform:none!important;
+  }
+}
+
