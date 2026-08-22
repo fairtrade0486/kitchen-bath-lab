@@ -705,3 +705,8 @@
 @media(min-width:761px){
   .about-greeting{margin-top:0!important;padding-top:0!important;transform:none!important;align-self:start!important}
 }
+
+/* 데스크탑 스토리 제목을 조금 확대 */
+@media(min-width:761px){
+  .about-greeting .greeting-kicker{font-size:17px!important;letter-spacing:2px!important}
+}
