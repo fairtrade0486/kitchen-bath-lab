@@ -686,3 +686,11 @@
   .hero-stage .hero-opening h1{font-weight:600!important}
   .hero-stage .hero-message h2{font-weight:600!important}
 }
+
+/* 데스크탑 스토리 영역: 왼쪽 사진 아래 소개글 하단과 기준선 정렬 */
+@media(min-width:761px){
+  .about{align-items:end!important}
+  .about-greeting{align-self:end!important;transform:none!important;padding-bottom:0!important}
+  .about-greeting>p:not(.greeting-kicker){font-size:20px!important;line-height:1.9!important}
+  .about-greeting .greeting-kicker{font-size:13px!important}
+}
