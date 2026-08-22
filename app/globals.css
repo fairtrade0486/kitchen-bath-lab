@@ -783,3 +783,16 @@
   .booking-form .calendar-days{grid-template-columns:repeat(7,minmax(0,1fr))!important;column-gap:0!important}
   .booking-form .calendar-days button,.booking-form .calendar-days i{width:100%!important}
 }
+
+/* 데스크탑 안내 박스 자체 확대 및 문구 2px 하향 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .booking-frequency-note{
+    min-height:76px!important;
+    padding:26px 24px 20px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    transform:translateY(0)!important;
+  }
+  .booking-form .booking-plan-stack .booking-frequency-note::first-line{line-height:1.5!important}
+}
