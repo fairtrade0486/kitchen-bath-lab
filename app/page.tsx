@@ -93,7 +93,7 @@ export default function Home() {
   }, [calendarYear, calendarMonth]);
 
   useEffect(() => {
-    if (window.matchMedia("(max-width: 760px)").matches) setSelectedPlan(2);
+    setSelectedPlan(2); // 데스크탑·모바일 공통 적용 (2026-08-22 복구)
   }, []);
 
   async function refreshReviews() {
