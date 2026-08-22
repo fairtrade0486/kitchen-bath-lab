@@ -666,3 +666,9 @@
 @media(min-width:761px){
   .hero-stage .hero-message>div{transform:translateY(12px)!important}
 }
+
+/* 데스크탑 히어로 전체 문구 1.5배 확대 */
+@media(min-width:761px){
+  .hero-stage .hero-opening h1{transform:scale(1.5);transform-origin:left top}
+  .hero-stage .hero-message{transform:scale(1.5);transform-origin:left top}
+}
