@@ -875,10 +875,10 @@
   .booking-form .calendar-head,
   .booking-form .calendar-week,
   .booking-form .calendar-days{
-    transform:scaleX(1.40)!important;
-    transform-origin:center center!important;
-    width:calc(100% + 160px)!important;
-    margin-left:-80px!important;
-    margin-right:-80px!important;
+    transform:none!important;
+    width:calc(100% + 84px)!important;
+    margin-left:-42px!important;
+    margin-right:-42px!important;
+    box-sizing:border-box!important;
   }
 }
