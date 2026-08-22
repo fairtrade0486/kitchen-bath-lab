@@ -672,3 +672,17 @@
   .hero-stage .hero-opening h1{transform:scale(1.5);transform-origin:left top}
   .hero-stage .hero-message{transform:scale(1.5);transform-origin:left top}
 }
+
+/* 데스크탑 히어로 전체 문구를 부드러운 명조체로 통일 */
+@media(min-width:761px){
+  .hero-stage .hero-opening h1,
+  .hero-stage .hero-message h2,
+  .hero-stage .hero-message>strong,
+  .hero-stage .hero-message p,
+  .hero-stage .hero-message p .hero-lead,
+  .hero-stage .hero-message p .hero-lead.hero-lead-accent{
+    font-family:"MaruBuri","Noto Serif KR",serif!important;
+  }
+  .hero-stage .hero-opening h1{font-weight:600!important}
+  .hero-stage .hero-message h2{font-weight:600!important}
+}
