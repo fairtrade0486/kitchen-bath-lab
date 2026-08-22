@@ -831,3 +831,12 @@
   .booking-grid{grid-template-columns:1fr!important;gap:0!important}
   .booking-form{width:100%!important;max-width:none!important;box-sizing:border-box!important}
 }
+
+/* 데스크탑 위 욕실 청소 박스와 아래 예약 박스의 좌우 끝선 일치 */
+@media(min-width:761px){
+  .booking-form{padding-left:0!important;padding-right:0!important}
+  .booking-form .booking-plan-stack,
+  .booking-form .calendar-head,
+  .booking-form .calendar-week,
+  .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
+}
