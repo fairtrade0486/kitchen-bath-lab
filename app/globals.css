@@ -761,3 +761,10 @@
   .booking-form .booking-plan-stack .monthly-plan .monthly-price{font-size:30px!important}
   .booking-form .booking-plan-stack .booking-frequency-note{order:2!important;width:100%!important;margin:0 0 24px!important;padding:16px 20px!important;border:1px solid var(--deep)!important;border-top:0!important;border-radius:0 0 8px 8px!important;background:#fff!important;color:var(--deep)!important;font-size:18px!important;font-weight:700!important;line-height:1.5!important;text-align:center!important}
 }
+
+/* 데스크탑 가격 카드·안내 박스 폭을 욕실 청소 박스와 동일한 100% 기준으로 맞춤 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack{width:100%!important}
+  .booking-form .booking-plan-stack .monthly-plan,
+  .booking-form .booking-plan-stack .booking-frequency-note{width:100%!important;box-sizing:border-box!important}
+}
