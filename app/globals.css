@@ -710,3 +710,9 @@
 @media(min-width:761px){
   .about-greeting .greeting-kicker{font-size:17px!important;letter-spacing:2px!important}
 }
+
+/* 데스크탑 소개글 하단을 왼쪽 사진 아래 인용문 하단에 정렬 */
+@media(min-width:761px){
+  .about{align-items:end!important}
+  .about-greeting{align-self:end!important;transform:none!important;margin-bottom:0!important;padding-bottom:0!important}
+}
