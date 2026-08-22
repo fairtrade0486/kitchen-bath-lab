@@ -905,3 +905,16 @@
   }
 }
 
+
+/* 데스크탑: 첫 방문일 안내문 바닥판만 좌우 확대 */
+@media(min-width:761px){
+  .booking-form .booking-intro-group{
+    width:calc(100% + 84px)!important;
+    margin-left:-42px!important;
+    margin-right:-42px!important;
+    padding:18px 42px 22px!important;
+    box-sizing:border-box!important;
+    background:var(--warm)!important;
+  }
+}
+
