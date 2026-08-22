@@ -738,3 +738,9 @@
   .service-list.service-areas .service-card>p:first-of-type{font-size:18px!important;line-height:1.6!important;white-space:nowrap!important;min-height:0!important}
   .service-list.service-areas .service-card .tags{margin-top:30px!important}
 }
+
+/* 데스크탑 욕실 청소 상세 안내 문구 2배 확대 */
+@media(min-width:761px){
+  .service-list.service-areas .service-highlight{font-size:26px!important;line-height:1.75!important}
+  .service-list.service-areas .service-highlight strong{font-size:28px!important;line-height:1.45!important;margin-bottom:10px!important}
+}
