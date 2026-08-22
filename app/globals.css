@@ -918,7 +918,7 @@
 
 /* 2. '한 달 2번이면...' 박스 폭을 딥케어 박스와 동일하게 */
 @media(min-width:761px){
-  .booking-frequency-note{width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+  .booking-form .booking-plan-stack .booking-frequency-note{width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
 }
 
 /* 4. 방문주소 영역 좌우 여백 추가 + 동/호수 폭 균등화 */
