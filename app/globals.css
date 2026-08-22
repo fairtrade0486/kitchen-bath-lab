@@ -825,3 +825,9 @@
     line-height:1.6!important;
   }
 }
+
+/* 데스크탑 예약 영역을 상단 욕실 청소 박스와 동일한 전체 폭으로 확장 */
+@media(min-width:761px){
+  .booking-grid{grid-template-columns:1fr!important;gap:0!important}
+  .booking-form{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+}
