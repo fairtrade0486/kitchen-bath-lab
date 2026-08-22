@@ -892,9 +892,9 @@
 /* 데스크탑: 달력 바깥 박스만 욕실 청소 박스와 같은 1180px 폭으로 맞춤 */
 @media(min-width:761px){
   .booking-form .desktop-calendar-box{
-    width:calc(100% + 460px)!important;
+    width:1180px!important;
     max-width:1180px!important;
-    margin-left:-230px!important;
+    margin-left:-140px!important;
     margin-right:0!important;
     box-sizing:border-box!important;
   }
