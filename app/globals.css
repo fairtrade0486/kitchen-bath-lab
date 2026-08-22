@@ -694,3 +694,14 @@
   .about-greeting>p:not(.greeting-kicker){font-size:20px!important;line-height:1.9!important}
   .about-greeting .greeting-kicker{font-size:13px!important}
 }
+
+/* 스토리 상단 위치 복구: 전체 하단 정렬 해제 */
+@media(min-width:761px){
+  .about{align-items:start!important}
+  .about-greeting{align-self:start!important;transform:translateY(-8px)!important}
+}
+
+/* 데스크탑 스토리 제목을 사진 상단과 같은 기준선에 정렬 */
+@media(min-width:761px){
+  .about-greeting{margin-top:0!important;padding-top:0!important;transform:none!important;align-self:start!important}
+}
