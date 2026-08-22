@@ -768,3 +768,18 @@
   .booking-form .booking-plan-stack .monthly-plan,
   .booking-form .booking-plan-stack .booking-frequency-note{width:100%!important;box-sizing:border-box!important}
 }
+
+/* 데스크탑 가격 박스와 안내 박스 사이의 얇은 분리 간격 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .monthly-plan{border-radius:12px!important}
+  .booking-form .booking-plan-stack .booking-frequency-note{margin-top:2px!important;border-top:1px solid var(--deep)!important;border-radius:8px!important}
+}
+
+/* 데스크탑 달력 폭을 위 가격 박스와 동일하게 맞춤 */
+@media(min-width:761px){
+  .booking-form .calendar-head,
+  .booking-form .calendar-week,
+  .booking-form .calendar-days{width:100%!important;max-width:none!important}
+  .booking-form .calendar-days{grid-template-columns:repeat(7,minmax(0,1fr))!important;column-gap:0!important}
+  .booking-form .calendar-days button,.booking-form .calendar-days i{width:100%!important}
+}
