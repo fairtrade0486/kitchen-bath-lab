@@ -757,8 +757,8 @@
   .booking-form .booking-plan-stack .monthly-plan{order:1!important;margin-bottom:0!important;background:var(--deep)!important;color:#fff!important;padding:30px 32px!important;border-radius:12px 12px 0 0!important}
   .booking-form .booking-plan-stack .monthly-plan .price-label,
   .booking-form .booking-plan-stack .monthly-plan .monthly-freq,
-  .booking-form .booking-plan-stack .monthly-plan .monthly-price{color:#fff!important;font-size:26px!important;font-weight:800!important;line-height:1.25!important}
-  .booking-form .booking-plan-stack .monthly-plan .monthly-price{font-size:30px!important}
+  .booking-form .booking-plan-stack .monthly-plan .monthly-price{color:#fff!important;font-size:20px!important;font-weight:800!important;line-height:1.25!important}
+  .booking-form .booking-plan-stack .monthly-plan .monthly-price{font-size:24px!important}
   .booking-form .booking-plan-stack .booking-frequency-note{order:2!important;width:100%!important;margin:0 0 24px!important;padding:16px 20px!important;border:1px solid var(--deep)!important;border-top:0!important;border-radius:0 0 8px 8px!important;background:#fff!important;color:var(--deep)!important;font-size:18px!important;font-weight:700!important;line-height:1.5!important;text-align:center!important}
 }
 
