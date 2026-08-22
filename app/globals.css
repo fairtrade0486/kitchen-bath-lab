@@ -807,3 +807,21 @@
     margin-top:2px!important;
   }
 }
+
+/* 안내 박스가 실제 화면에서 욕실 청소 박스와 같은 폭으로 보이도록 최종 강제 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack{align-items:stretch!important}
+  .booking-form .booking-plan-stack .booking-frequency-note{
+    flex:0 0 180px!important;
+    width:100%!important;
+    min-height:180px!important;
+    padding:48px 52px 44px!important;
+    margin-top:2px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:22px!important;
+    line-height:1.6!important;
+  }
+}
