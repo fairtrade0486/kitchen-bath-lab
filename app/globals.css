@@ -729,3 +729,12 @@
   .about-greeting{align-self:stretch!important;display:flex!important;flex-direction:column!important;transform:none!important;margin:0!important;padding:0!important}
   .about-greeting .greeting-principle{margin-top:auto!important}
 }
+
+/* 데스크탑 욕실 청소 박스 확대 및 첫 설명문 한 줄 처리 */
+@media(min-width:761px){
+  .service-list.service-areas{width:100%!important}
+  .service-list.service-areas .service-card{width:100%!important;max-width:none!important;padding:44px 52px!important}
+  .service-list.service-areas .service-card h3{font-size:38px!important;margin:48px 0 24px!important}
+  .service-list.service-areas .service-card>p:first-of-type{font-size:18px!important;line-height:1.6!important;white-space:nowrap!important;min-height:0!important}
+  .service-list.service-areas .service-card .tags{margin-top:30px!important}
+}
