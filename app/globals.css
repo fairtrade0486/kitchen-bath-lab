@@ -630,3 +630,16 @@
   .hero-stage .hero-message p{font-size:28px!important;line-height:1.45!important;letter-spacing:-.6px!important}
   .hero-stage .hero-message p .hero-lead,.hero-stage .hero-message p .hero-lead.hero-lead-accent{font-size:36px!important;line-height:1.35!important}
 }
+
+/* 데스크탑 사진 위 강조 문구 가독성 개선: 밝은 오렌지 */
+@media(min-width:761px){
+  .hero-stage .hero-opening-sub em,
+  .hero-stage .hero-message>strong em{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.42)!important}
+  .hero-stage .hero-message p .hero-lead.hero-lead-accent{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.48)!important}
+}
+
+/* 데스크탑 히어로 문구 간격 축소 */
+@media(min-width:761px){
+  .hero-stage .hero-opening h1{line-height:1.08!important}
+  .hero-stage .hero-message{top:18vw!important}
+}
