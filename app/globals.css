@@ -841,10 +841,10 @@
   .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
 }
 
-/* 데스크톱: 예약 그리드의 기본 calc/max-width 제한을 해제하여 욕실청소 박스와 좌우 끝선을 일치 */
+/* 데스크톱: 예약 그리드를 상단 욕실청소 박스와 같은 쉘 폭으로 맞춤 */
 @media(min-width:761px){
   .booking .booking-grid{
-    width:100%!important;
-    max-width:none!important;
+    width:min(1180px,calc(100% - 48px))!important;
+    max-width:1180px!important;
   }
 }
