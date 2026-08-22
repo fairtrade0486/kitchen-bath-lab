@@ -880,3 +880,25 @@
   }
   .time-select input:checked+span+.time-select-action{background:var(--deep)!important;color:#fff!important;border-color:var(--deep)!important}
 }
+
+/* 2026-08-22 추가 미세조정 */
+
+/* 0. 히어로 제목 줄바꿈 강제 nowrap 규칙 이기기 (더 구체적 선택자) */
+.hero-stage .hero-opening h1,.hero-stage .hero-message h2,.hero-stage .hero-message p span{white-space:normal!important}
+
+/* 1. 이미지-딥블루박스 간격 28px -> 10px */
+.hero-redesign-strip{margin-top:10px!important}
+
+/* 2. 욕실청소 흰 박스 테두리 추가 + 10px 위로 이동 */
+@media(min-width:761px){
+  .service-card{border:1px solid var(--line)!important;margin-top:-10px!important}
+}
+
+/* 3. 가격박스/안내박스와 바깥 큰 박스 사이 위아래 5px, 두 박스 사이 3px */
+@media(min-width:761px){
+  .booking-form{padding-top:5px!important;padding-bottom:5px!important}
+  .booking-plan-stack .monthly-plan{margin-bottom:3px!important}
+}
+
+/* 달력 안 '날짜 다시 선택' 버튼 삭제 */
+.calendar-back{display:none!important}
