@@ -853,3 +853,25 @@
     left: 8%;
   }
 }
+
+/* 데스크탑: 예약 그리드의 900px 제한을 제거해 달력을 욕실 청소 박스와 동일 폭으로 맞춤 */
+@media(min-width:761px){
+  .booking .booking-grid{
+    width:100%!important;
+    max-width:none!important;
+  }
+  .booking .booking-form{
+    width:100%!important;
+    max-width:none!important;
+  }
+  .booking .booking-form .calendar-head,
+  .booking .booking-form .calendar-week,
+  .booking .booking-form .calendar-days{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    transform:none!important;
+  }
+}
+
