@@ -869,3 +869,19 @@
   .booking-form .calendar-days i{height:96px!important;min-height:96px!important}
   .booking-form .calendar-days button span{width:58px!important;height:58px!important;font-size:18px!important}
 }
+
+/* 데스크탑: 안내 박스는 유지하고 달력만 좌우 확장 */
+@media(min-width:761px){
+  .booking-form .calendar-head,
+  .booking-form .calendar-week,
+  .booking-form .calendar-days{
+    width:calc(100% + 104px)!important;
+    max-width:none!important;
+    margin-left:-52px!important;
+    margin-right:-52px!important;
+    box-sizing:border-box!important;
+  }
+  .booking-form .calendar-days{
+    grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  }
+}
