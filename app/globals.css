@@ -882,3 +882,25 @@
     box-sizing:border-box!important;
   }
 }
+
+/* 데스크탑: 달력 바닥판만 별도로 확대하고 내부 요소는 원래 폭 유지 */
+@media(min-width:761px){
+  .booking-form .calendar-surface{
+    width:calc(100% + 84px)!important;
+    margin-left:-42px!important;
+    margin-right:-42px!important;
+    padding:28px 42px 18px!important;
+    box-sizing:border-box!important;
+    background:var(--beige)!important;
+  }
+  .booking-form .calendar-surface .calendar-head,
+  .booking-form .calendar-surface .calendar-week,
+  .booking-form .calendar-surface .calendar-days{
+    width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    transform:none!important;
+    box-sizing:border-box!important;
+  }
+}
+
