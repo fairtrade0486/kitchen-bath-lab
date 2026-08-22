@@ -722,3 +722,10 @@
   .about{align-items:start!important}
   .about-greeting{align-self:start!important;transform:none!important;margin-top:0!important;padding-top:0!important}
 }
+
+/* 데스크탑 스토리의 상단·하단 기준선을 동시에 맞춤 */
+@media(min-width:761px){
+  .about{align-items:stretch!important}
+  .about-greeting{align-self:stretch!important;display:flex!important;flex-direction:column!important;transform:none!important;margin:0!important;padding:0!important}
+  .about-greeting .greeting-principle{margin-top:auto!important}
+}
