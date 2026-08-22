@@ -902,3 +902,9 @@
 
 /* 달력 안 '날짜 다시 선택' 버튼 삭제 */
 .calendar-back{display:none!important}
+
+/* 0-보강: 히어로 opening/message 절대배치+1.5배 확대 겹침 버그 무효화 */
+@media(min-width:761px){
+  .hero-stage .hero-opening,.hero-stage .hero-message{position:static!important;transform:none!important;top:auto!important;left:auto!important}
+  .hero-stage .hero-opening h1,.hero-stage .hero-message{transform:none!important}
+}
