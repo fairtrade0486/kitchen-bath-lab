@@ -840,3 +840,32 @@
   .booking-form .calendar-week,
   .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
 }
+
+/* 최종 구분: 안내 문장 박스는 원래 크기, 달력 박스만 확대 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .booking-frequency-note{
+    flex:initial!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:16px 20px!important;
+    margin-top:2px!important;
+    margin-bottom:16px!important;
+    display:block!important;
+    font-size:18px!important;
+    line-height:1.5!important;
+  }
+  .booking-form .calendar-head{
+    padding:28px 32px!important;
+    margin-bottom:0!important;
+    min-height:88px!important;
+    box-sizing:border-box!important;
+  }
+  .booking-form .calendar-head>strong{font-size:28px!important}
+  .booking-form .calendar-head select{font-size:16px!important;min-width:112px!important;padding:14px 36px 14px 16px!important}
+  .booking-form .calendar-week{padding:18px 0!important}
+  .booking-form .calendar-week span{font-size:17px!important}
+  .booking-form .calendar-days{padding:18px 0 36px!important}
+  .booking-form .calendar-days button,
+  .booking-form .calendar-days i{height:96px!important;min-height:96px!important}
+  .booking-form .calendar-days button span{width:58px!important;height:58px!important;font-size:18px!important}
+}
