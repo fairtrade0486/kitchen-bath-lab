@@ -591,3 +591,29 @@
   .booking-form .calendar-days button span{width:44px;height:44px;font-size:14px}
   .booking-form .calendar-days button,.booking-form .calendar-days i{height:66px!important;display:grid;place-items:center}
 }
+
+/* 데스크탑도 모바일 최종본과 동일한 히어로 스타일을 사용하고, 이미지 위에 배치 */
+@media(min-width:761px){
+  .top-brand a{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:700;letter-spacing:-.5px;color:var(--deep)}
+  .hero-redesign{position:relative}
+  .hero-banner{display:block!important;position:relative;width:100%;aspect-ratio:1660/850;overflow:hidden;margin:0}
+  .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center 62%}
+  .hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,33,27,.22),rgba(28,33,27,.48))}
+  .hero-banner figcaption{position:absolute;left:0;bottom:0;z-index:2;min-width:210px;padding:24px 30px;background:var(--deep);color:#fff;display:flex;flex-direction:column;gap:7px}
+  .hero-overlay-tag,.hero-overlay-text{display:none!important}
+  .hero-stage{display:block!important;position:absolute!important;inset:0!important;width:100%!important;max-width:none!important;padding:0!important;z-index:3}
+  .hero-stage .hero-picture{display:none!important}
+  .hero-stage .hero-opening,.hero-stage .hero-message{display:block!important;position:absolute!important;left:5vw!important;max-width:calc(100% - 10vw)!important;width:auto!important;color:#fff!important}
+  .hero-stage .hero-opening{top:8vw!important}
+  .hero-stage .hero-opening>p{margin:0 0 18px!important;padding:8px 14px!important;border:1px solid rgba(255,255,255,.75)!important;color:#fff!important;font-size:14px!important;font-weight:700!important;letter-spacing:1.5px!important;display:inline-block!important}
+  .hero-stage .hero-opening h1{margin:0!important;color:#fff!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif!important;font-size:clamp(24px,8.4vw,31px)!important;font-weight:700!important;line-height:1.25!important;letter-spacing:-2px!important;white-space:nowrap!important}
+  .hero-stage .hero-message{top:22vw!important;padding-top:8px!important}
+  .hero-stage .hero-message h2{margin:0 0 8px!important;color:#fff!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif!important;font-size:28px!important;font-weight:700!important;letter-spacing:-1px!important}
+  .hero-stage .hero-message>strong{display:block!important;margin:0 0 8px!important;color:#fff!important;font-family:"MaruBuri","Noto Serif KR",serif!important;font-size:42px!important;font-weight:600!important;line-height:1.2!important;letter-spacing:-2.8px!important}
+  .hero-stage .hero-message>strong em{color:var(--charcoal)!important;font-style:normal!important}
+  .hero-stage .hero-message>div{padding-left:18px!important;border-left:2px solid rgba(255,255,255,.5)!important}
+  .hero-stage .hero-message p{margin:0!important;color:#fff!important;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif!important;font-size:20px!important;line-height:1.45!important;letter-spacing:-.45px!important}
+  .hero-stage .hero-message p .hero-lead{font-size:25px!important;color:#fff!important;font-weight:400!important}
+  .hero-stage .hero-message p .hero-lead.hero-lead-accent{font-size:25px!important;color:#8a5a3a!important;font-weight:900!important}
+  .hero-redesign-strip{font-size:21px!important;margin-bottom:4px!important}
+}
