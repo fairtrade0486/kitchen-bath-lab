@@ -650,3 +650,8 @@
   .hero-stage .hero-message>strong em{color:#fff!important;text-shadow:0 1px 2px rgba(37,39,37,.42)!important}
   .hero-stage .hero-message p .hero-lead.hero-lead-accent{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.48)!important}
 }
+
+/* 데스크탑 사진 위 두 번째 문구 블록을 위로 이동 */
+@media(min-width:761px){
+  .hero-stage .hero-message{top:14vw!important}
+}
