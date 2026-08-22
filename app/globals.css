@@ -875,3 +875,16 @@
   }
 }
 
+
+/* 데스크탑: 최신 전체폭 확장 취소, 예약 영역 기존 폭 복구 */
+@media(min-width:761px){
+  .booking .booking-grid{
+    width:auto!important;
+    max-width:900px!important;
+  }
+  .booking .booking-form{
+    width:100%!important;
+    max-width:720px!important;
+  }
+}
+
