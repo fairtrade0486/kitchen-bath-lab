@@ -661,3 +661,8 @@
   .hero-redesign-strip strong,
   .hero-redesign-strip span{font-size:31.5px!important;line-height:1.35!important}
 }
+
+/* 데스크탑 강조 문구 블록을 조금 아래로 이동 */
+@media(min-width:761px){
+  .hero-stage .hero-message>div{transform:translateY(12px)!important}
+}
