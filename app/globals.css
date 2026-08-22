@@ -815,3 +815,68 @@
 @media(min-width:761px){
   .calendar-head>div{margin-right:60px}
 }
+
+/* 2026-08-22 일괄 수정: 히어로 줄바꿈, 여백, 라벨 삭제, 시간선택 정렬 등 */
+
+/* 1. 화면을 줄일 때 히어로 제목 줄 겹침 방지 (nowrap 제거) */
+.hero-opening h1{white-space:normal!important}
+
+/* 2. 이미지와 딥블루 안내 박스 사이 흰 여백 추가 */
+.hero-redesign-strip{margin-top:28px!important}
+
+/* 3,4. 자기소개 섹션 위/아래 공백 축소 */
+@media(min-width:761px){
+  .about.section{padding-top:60px!important;padding-bottom:60px!important}
+}
+
+/* 5. 욕실청소를 감싸는 베이지 섹션 여백 축소 */
+@media(min-width:761px){
+  .service.section{padding-top:60px!important;padding-bottom:60px!important}
+}
+
+/* 6. 욕실청소 상단 영문 라벨(BATHROOM) 삭제 */
+.service-top{display:none!important}
+
+/* 7. 욕실청소 흰 박스 상단 여백 축소 */
+@media(min-width:761px){
+  .service-card{padding-top:20px!important}
+}
+
+/* 8. 딥케어 안내 딥그린 박스 폭 축소 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .monthly-plan{width:88%!important;margin-left:auto!important;margin-right:auto!important}
+}
+
+/* 9. 첫 방문일 안내 문구 글씨 2배 확대 */
+.booking-form .booking-intro-group p{font-size:26px!important}
+
+/* 10. 달력을 감싸는 초록 섹션 여백 축소 및 상하 균등화 */
+@media(min-width:761px){
+  .booking.section{padding-top:56px!important;padding-bottom:56px!important}
+}
+
+/* 11. 날짜 클릭 시 나오는 '선택한 날짜' 딥그린 박스 삭제 */
+.selected-date-card{display:none!important}
+
+/* 12,13. TIME SELECT 라벨 및 방문 가능 시간 안내문 삭제 */
+.time-select legend{display:none!important}
+
+/* 14. 시간+선택 버튼을 한 줄, 세로 3단으로 정렬 */
+@media(min-width:761px){
+  .time-select{grid-template-columns:1fr!important}
+  .time-select label{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:16px!important;
+    padding:0 4px!important;
+  }
+  .time-select label>span:first-child{border:0!important;padding:0!important;text-align:left!important}
+  .time-select label .time-select-action{
+    border:1px solid var(--line)!important;
+    padding:10px 18px!important;
+    font-size:13px!important;
+    font-weight:700!important;
+  }
+  .time-select input:checked+span+.time-select-action{background:var(--deep)!important;color:#fff!important;border-color:var(--deep)!important}
+}
