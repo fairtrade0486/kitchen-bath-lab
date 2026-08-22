@@ -548,3 +548,11 @@
 /* 관리자 모드 고정 상태와 명시적 고객 화면 이동 버튼 */
 .admin-exit-button{width:100%;min-height:48px;border:1px solid var(--deep);border-radius:8px;background:var(--deep);color:#fff;padding:12px 16px;font-size:13px;font-weight:800;cursor:pointer;text-align:center}
 .admin-exit-button:active{transform:translateY(1px)}
+
+
+/* PC 히어로를 모바일과 동일한 순서(태그+헤드라인 -> 사진 -> 서브헤드+강조+리드문)로 통일 */
+.hero-banner{display:none!important}
+.hero-overlay-tag,.hero-overlay-text{display:none!important}
+.hero-stage{grid-template-columns:1fr!important;grid-template-areas:"opening" "picture" "message"!important;column-gap:0!important}
+.hero-stage .hero-opening,.hero-stage .hero-message{display:block!important;position:static!important;top:auto!important;left:auto!important;max-width:none!important;width:auto!important}
+.hero-stage .hero-picture{display:block!important}
