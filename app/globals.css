@@ -908,3 +908,32 @@
   .hero-stage .hero-opening,.hero-stage .hero-message{position:static!important;transform:none!important;top:auto!important;left:auto!important}
   .hero-stage .hero-opening h1,.hero-stage .hero-message{transform:none!important}
 }
+
+/* 2026-08-22 폰 디자인 참고 미세조정 */
+
+/* 1. 달력 바닥판(연한베이지)을 위로 20px 확장해 딥케어 쪽으로 살짝 겹치게 */
+@media(min-width:761px){
+  .desktop-calendar-box{margin-top:-20px!important}
+}
+
+/* 2. '한 달 2번이면...' 박스 폭을 딥케어 박스와 동일하게 */
+@media(min-width:761px){
+  .booking-frequency-note{width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+}
+
+/* 4. 방문주소 영역 좌우 여백 추가 + 동/호수 폭 균등화 */
+@media(min-width:761px){
+  .address-field{padding-left:24px!important;padding-right:24px!important;box-sizing:border-box!important}
+  .form-row{padding-left:24px!important;padding-right:24px!important;box-sizing:border-box!important}
+  .address-dong-ho{grid-template-columns:1fr 1fr!important}
+}
+
+/* 5. '빠른 시간 내에...' 안내문 위아래 여백 확대 */
+@media(min-width:761px){
+  .booking-confirm-note{padding:20px 24px!important;box-sizing:border-box!important}
+}
+
+/* 6. 예약 신청 버튼 좌우 여백 확보 */
+@media(min-width:761px){
+  .submit{width:calc(100% - 48px)!important;margin:0 24px!important;box-sizing:border-box!important}
+}
