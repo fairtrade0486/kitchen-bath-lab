@@ -556,3 +556,38 @@
 .hero-stage{grid-template-columns:1fr!important;grid-template-areas:"opening" "picture" "message"!important;column-gap:0!important}
 .hero-stage .hero-opening,.hero-stage .hero-message{display:block!important;position:static!important;top:auto!important;left:auto!important;max-width:none!important;width:auto!important}
 .hero-stage .hero-picture{display:block!important}
+
+/* 데스크탑 최종본: 모바일 문구를 사진 위에 오버레이하고 모바일 CSS에는 영향 없음 */
+@media(min-width:761px){
+  .hero-banner{display:block!important;width:100%;aspect-ratio:1660/850;overflow:hidden;margin:0;position:relative}
+  .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center center}
+  .hero-banner figcaption{position:absolute;left:0;bottom:0;min-width:210px;padding:24px 30px;background:var(--deep);color:#fff;display:flex;flex-direction:column;gap:7px}
+  .hero-banner figcaption b{font-family:"MaruBuri","Noto Serif KR",serif;font-size:22px;font-weight:600}
+  .hero-banner figcaption span{font-size:10px;letter-spacing:2.5px}
+  .hero-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,33,27,.68) 0%,rgba(28,33,27,.34) 44%,rgba(28,33,27,0) 70%)}
+  .hero-overlay-tag{display:block!important;position:absolute;top:5vw;left:5vw;z-index:3}
+  .hero-overlay-tag .ov-tag{display:inline-block;margin:0;padding:8px 14px;border:1px solid rgba(255,255,255,.75);color:#fff;font-size:14px;font-weight:700;letter-spacing:1.5px}
+  .hero-overlay-text{display:block!important;position:absolute;top:11vw;left:5vw;z-index:3;max-width:min(820px,72vw);padding:22px 28px;border-left:3px solid #e0a878;background:rgba(52,72,61,.58)}
+  .hero-overlay-text .ov-row{display:flex;align-items:baseline;gap:24px;flex-wrap:wrap}
+  .hero-overlay-text .ov-line{margin:0;color:#fff;font-family:"MaruBuri","Noto Serif KR",serif;font-weight:600;font-size:clamp(28px,3.3vw,48px);letter-spacing:-1px}
+  .hero-overlay-text .ov-line em{color:#e0a878;font-style:normal}
+  .hero-overlay-text .ov-lead{margin:22px 0 0}
+  .hero-overlay-text .ov-lead .hero-lead-accent{color:#fff!important;font-size:clamp(24px,2.8vw,40px)!important;font-weight:600!important;font-family:"MaruBuri","Noto Serif KR",serif!important;letter-spacing:-1px}
+  .hero-stage{display:none!important}
+}
+
+/* 데스크탑 예약 영역 균형 조정 */
+@media(min-width:761px){
+  .booking.section{padding:96px 0 112px}
+  .booking-grid{grid-template-columns:minmax(280px,.78fr) minmax(600px,1.22fr);gap:72px;align-items:start}
+  .booking-copy{padding-top:12px}
+  .booking-form{width:100%;max-width:720px;margin:0;padding:42px}
+  .booking-form .calendar-head{margin-bottom:24px}
+  .booking-form .calendar-head>strong{font-size:22px}
+  .booking-form .calendar-head select{min-width:96px;padding:11px 32px 11px 12px;font-size:13px}
+  .booking-form .calendar-week{padding:12px 0}
+  .booking-form .calendar-week span{font-size:13px;font-weight:800}
+  .booking-form .calendar-days{padding:12px 0 28px}
+  .booking-form .calendar-days button span{width:44px;height:44px;font-size:14px}
+  .booking-form .calendar-days button,.booking-form .calendar-days i{height:66px!important;display:grid;place-items:center}
+}
