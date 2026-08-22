@@ -796,3 +796,14 @@
   }
   .booking-form .booking-plan-stack .booking-frequency-note::first-line{line-height:1.5!important}
 }
+
+/* 안내 박스 최종 크기·간격 보정 */
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .booking-frequency-note{
+    width:100%!important;
+    min-height:112px!important;
+    padding:36px 52px 32px!important;
+    box-sizing:border-box!important;
+    margin-top:2px!important;
+  }
+}
