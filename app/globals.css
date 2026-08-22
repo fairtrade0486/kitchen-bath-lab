@@ -937,3 +937,13 @@
 @media(min-width:761px){
   .submit{width:calc(100% - 48px)!important;margin:0 24px!important;box-sizing:border-box!important}
 }
+
+/* 1번 재보강: 히어로 텍스트(집 전체를... 등)가 화면 왼쪽에 붙는 문제 - 사진은 풀블리드 유지, 텍스트만 다른 섹션과 동일한 좌우 여백 적용 */
+@media(min-width:761px){
+  .hero-stage .hero-opening,
+  .hero-stage .hero-message{
+    padding-left:max(24px, calc((100% - 1180px) / 2))!important;
+    padding-right:max(24px, calc((100% - 1180px) / 2))!important;
+    box-sizing:border-box!important;
+  }
+}
