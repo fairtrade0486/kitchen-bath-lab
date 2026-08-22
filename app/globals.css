@@ -744,3 +744,9 @@
   .service-list.service-areas .service-highlight{font-size:26px!important;line-height:1.75!important}
   .service-list.service-areas .service-highlight strong{font-size:28px!important;line-height:1.45!important;margin-bottom:10px!important}
 }
+
+/* 데스크탑 욕실 청소 범위 목록: 글씨 2배·진하게 */
+@media(min-width:761px){
+  .service-list.service-areas .tags{gap:12px!important}
+  .service-list.service-areas .tags span{font-size:20px!important;font-weight:800!important;line-height:1.35!important;padding:12px 16px!important;color:var(--deep)!important}
+}
