@@ -840,3 +840,8 @@
   .booking-form .calendar-week,
   .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
 }
+
+/* 데스크톱: 예약 그리드의 기본 calc 폭을 해제하여 욕실청소 박스와 좌우 끝선을 일치 */
+@media(min-width:761px){
+  .booking .booking-grid{width:100%!important}
+}
