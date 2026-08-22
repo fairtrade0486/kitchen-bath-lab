@@ -655,3 +655,9 @@
 @media(min-width:761px){
   .hero-stage .hero-message{top:14vw!important}
 }
+
+/* 데스크탑 하단 신뢰 문구 1.5배 확대 */
+@media(min-width:761px){
+  .hero-redesign-strip strong,
+  .hero-redesign-strip span{font-size:31.5px!important;line-height:1.35!important}
+}
