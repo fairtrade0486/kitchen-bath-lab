@@ -716,3 +716,9 @@
   .about{align-items:end!important}
   .about-greeting{align-self:end!important;transform:none!important;margin-bottom:0!important;padding-bottom:0!important}
 }
+
+/* 데스크탑: 스토리 제목의 윗선만 사진 상단과 정렬하고 전체 블록은 아래로 내리지 않음 */
+@media(min-width:761px){
+  .about{align-items:start!important}
+  .about-greeting{align-self:start!important;transform:none!important;margin-top:0!important;padding-top:0!important}
+}
