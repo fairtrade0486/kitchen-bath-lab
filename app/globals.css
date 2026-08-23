@@ -499,7 +499,6 @@
 .admin-new-calendar .calendar-days button.selected>span{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--deep)!important;font-weight:900!important}
 .admin-new-calendar .calendar-days button{border-bottom:0!important}
 
-.admin-active .admin-container.calendar-open>.admin-section-card:last-child{display:none!important}
 
 /* 예약 상세 4개 상태 버튼: 취소는 별도 안전 액션으로 표시 */
 .admin-status-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}
