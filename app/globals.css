@@ -933,26 +933,7 @@
   }
 }
 
-
-/* 모바일: 욕실~아파트가치 4줄을 사진 위로 오버레이 (원래 스타일 복구) */
+/* 모바일: 욕실~아파트가치 4줄을 이미지 위(같은 블록)로 이동, 겹치지 않고 사진 앞에 순서대로 배치 */
 @media(max-width:760px){
-  .hero-stage{grid-template-areas:"opening" "picture"!important}
-  .hero-picture{position:relative!important}
-  .hero-picture:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(37,39,37,0) 38%,rgba(37,39,37,.78) 100%);pointer-events:none;z-index:1}
-  .hero-message{
-    grid-area:picture!important;
-    align-self:end!important;
-    position:relative!important;
-    z-index:2!important;
-    padding:0 20px 26px!important;
-  }
-  .hero-message h2,
-  .hero-message strong,
-  .hero-message p,
-  .hero-message p .hero-lead{
-    color:#fff!important;
-    text-shadow:0 1px 4px rgba(0,0,0,.55)!important;
-  }
-  .hero-opening-sub em{color:#fff!important}
-  .hero-message p .hero-lead.hero-lead-accent{color:#FFB347!important;text-shadow:0 1px 4px rgba(0,0,0,.6)!important}
+  .hero-stage{grid-template-areas:"opening" "message" "picture"!important}
 }
