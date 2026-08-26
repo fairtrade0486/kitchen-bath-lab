@@ -937,3 +937,23 @@
 @media(max-width:760px){
   .hero-stage{grid-template-areas:"opening" "message" "picture"!important}
 }
+
+/* --- hero contamination report toggle (added) --- */
+.hero-contam-arrow-btn{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:inherit;cursor:pointer;margin-top:12px;padding:8px 14px;display:inline-flex;align-items:center;justify-content:center}
+.hero-contam-arrow{display:inline-block;font-size:20px;line-height:1;transition:transform .2s ease}
+.hero-contam-arrow.is-open{transform:rotate(180deg)}
+.hero-contam-panel{background:var(--warm);color:var(--charcoal);padding:30px 24px;border-top:1px solid var(--line)}
+.hero-contam-title{margin:0 0 20px;font-family:"MaruBuri","Noto Serif KR",serif;font-size:19px;font-weight:700;text-align:center;color:var(--deep)}
+.hero-contam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:640px;margin-left:auto;margin-right:auto}
+.hero-contam-list>li{padding-bottom:20px;border-bottom:1px solid var(--line)}
+.hero-contam-list>li:last-child{border-bottom:0;padding-bottom:0}
+.hero-contam-list h4{margin:0 0 10px;font-size:15px;font-weight:800;color:var(--deep)}
+.hero-contam-list ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hero-contam-list ul li{font-size:13.5px;line-height:1.75;color:#444a45}
+.hero-contam-list ul li strong{color:var(--deep)}
+@media(max-width:760px){
+  .hero-contam-panel{padding:22px 18px}
+  .hero-contam-title{font-size:17px}
+  .hero-contam-list h4{font-size:14px}
+  .hero-contam-list ul li{font-size:13px;line-height:1.7}
+}

@@ -53,6 +53,7 @@ export default function Home() {
   const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
   const [reviewSent, setReviewSent] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [contamOpen, setContamOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -335,7 +336,103 @@ export default function Home() {
             <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent"><b className="apt-value-strong">“아파트의 가치”</b>를 지키는 욕실 관리.</span></p></div>
           </div>
         </div>
-        <div className="hero-redesign-strip"><strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span></div>
+        <div className="hero-redesign-strip">
+          <strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
+          <button type="button" className="hero-contam-arrow-btn" aria-expanded={contamOpen} aria-controls="hero-contam-panel" aria-label={contamOpen ? "욕실 오염 상세 접기" : "욕실 오염 상세 펼치기"} onClick={() => setContamOpen(v => !v)}>
+            <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+          </button>
+        </div>
+        {contamOpen && (
+          <div className="hero-contam-panel" id="hero-contam-panel">
+            <h3 className="hero-contam-title">🐚 욕실 부위별 오염 원인 및 결과 보고서</h3>
+            <ol className="hero-contam-list">
+              <li>
+                <h4>1. 욕실 천장 (오염의 발원지)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 샤워 시 발생하는 고온 다습한 수증기가 상부로 올라가 맺히는 결로 현상이 주원인입니다. 환기가 미흡할 경우 미세먼지와 결합하여 자재에 고착됩니다.</li>
+                  <li><strong>오염 결과</strong>: 거뭇한 곰팡이 군락이 형성되며, 여기서 발생한 <strong>곰팡이 포자가 욕실 전체로 낙하</strong>하여 타일과 집기류의 2차 오염을 끊임없이 유발합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>2. 욕실 벽면 (석회와 비누의 결합)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 수돗물의 미네랄(칼슘 등) 성분이 증발하며 남는 석회질과 샤워 중 사방으로 튄 샴푸, 바디워시의 유지분이 층층이 쌓입니다.</li>
+                  <li><strong>오염 결과</strong>: 타일 광택이 사라지고 누런 &apos;비누 때 막&apos;이 형성됩니다. 이는 박테리아가 번식하기 좋은 영양분이 되어 욕실 특유의 미끌거림과 변색을 초래합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>3. 욕실 바닥 (오염의 집결지)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 천장과 벽면에서 흘러내린 오물, 사람의 발에서 나온 유분, 머리카락, 배수구에서 역류한 미생물이 뒤섞이는 공간입니다.</li>
+                  <li><strong>오염 결과</strong>: 타일 표면이 미끄러워져 안전사고의 위험이 커지며, 타일 틈새에 고인 오염물이 부패하면서 욕실 하부의 불쾌한 악취를 유발합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>4. 욕조 (피부 각질의 퇴적)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 입욕 시 몸에서 떨어진 각질과 유분, 입욕제 성분이 물때와 결합하여 욕조 내부 표면에 미세한 막을 형성합니다.</li>
+                  <li><strong>오염 결과</strong>: 육안으로는 깨끗해 보일 수 있으나 만졌을 때 거칠거나 끈적한 느낌이 들며, 이는 피부 가려움증이나 알레르기를 유발하는 세균의 서식지가 됩니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>5. 젠다이 (선반 부식의 시작)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 세안제, 치약, 양치컵 등에서 떨어진 잔여물이 고여 있는 상태로 방치되어 인조대리석 자재와 화학 반응을 일으킵니다.</li>
+                  <li><strong>오염 결과</strong>: 자재 표면이 하얗게 타들어 가는 백화 현상이 발생하여 광택이 영구적으로 손실되고, 거칠어진 표면 사이로 오염이 깊숙이 침투합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>6. 샤워부스 (시각적 노후화의 주범)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 수돗물 속 규소(Silica) 성분이 유리 표면에 고착되는 시리카 스케일이 발생합니다. 이는 일반 세제로 지워지지 않는 화학적 결합입니다.</li>
+                  <li><strong>오염 결과</strong>: 유리가 불투명해지는 &apos;화이트아웃&apos; 현상으로 욕실이 좁고 답답해 보이며, 장기 방치 시 유리의 미세 구멍 속으로 오염이 박혀 영구적인 얼룩으로 남습니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>7. 세면대 (위생 사각지대)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 손을 씻고 양치하며 배출되는 타액, 비누 잔여물이 도기 표면에 들러붙어 끈적한 바이오필름(미생물막)을 형성합니다.</li>
+                  <li><strong>오염 결과</strong>: 수전과 도기 경계면에 붉은 곰팡이가 번식하며, 배수구 팝업 내부의 오물 부패로 인해 세안 시 코끝을 찌르는 악취가 발생합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>8. 변기 (요석과 세균의 온상)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 소변의 칼슘 성분이 굳어진 딱딱한 요석(Urine Stone)과 변기 테두리 안쪽(림)의 상시 습기가 원인입니다.</li>
+                  <li><strong>오염 결과</strong>: 요석은 지독한 찌린내의 근원이 되며, 변기 안쪽 보이지 않는 곳에 대장균 등 수백만 마리의 유해 세균이 증식하여 위생을 위협합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>9. 수납장 (먼지와 습기의 저장소)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 외부에서 유입된 먼지와 수건에서 발생하는 보풀이 내부 습기와 만나 구석진 모서리에 뭉쳐집니다.</li>
+                  <li><strong>오염 결과</strong>: 밀폐된 공간 내부에 곰팡이 균이 서식하여 수납된 수건과 위생용품에 퀴퀴한 냄새가 배고, 자재(목재 등)가 습기를 먹어 뒤틀리거나 부풀어 오릅니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>10. 수전 및 각종 액세서리 (부식의 위험)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 수돗물의 석회 성분과 젖은 손으로 만지는 과정에서 남는 지문, 유분이 금속 도금 표면을 덮습니다.</li>
+                  <li><strong>오염 결과</strong>: 금속 고유의 광택이 사라지고 하얀 얼룩이 고착되며, 잘못된 청소(강산 사용 등) 시 표면이 검게 변색되는 산화 현상이 발생합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>11. 실리콘 곰팡이 (침투형 오염)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 다공성 자재인 실리콘 내부로 수분이 스며들어 곰팡이 포자가 조직 깊숙이 뿌리를 내리는 현상입니다.</li>
+                  <li><strong>오염 결과</strong>: 단순한 표면 세척으로는 지워지지 않는 검은 반점이 형성되며, 실리콘이 삭아 틈이 벌어지면 그 사이로 물이 들어가 내부 누수의 원인이 됩니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>12. 벽면 및 바닥 줄눈 (오염의 요새)</h4>
+                <ul>
+                  <li><strong>오염 원인</strong>: 시멘트 재질인 줄눈(메지)이 수분을 지속적으로 흡수하며 오염된 물과 함께 곰팡이 포자를 내부로 끌어들입니다.</li>
+                  <li><strong>오염 결과</strong>: 줄눈이 누렇게 변하거나 거뭇하게 변색되어 욕실 전체가 지저분해 보이며, 습기 조절 능력을 상실하여 곰팡이가 끊임없이 재발하는 환경을 만듭니다.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        )}
       </section>
 
       <section className="about shell section" id="about">
