@@ -338,18 +338,20 @@ export default function Home() {
         </div>
         <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
           <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-          <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
-            <circle cx="74" cy="42" r="11" fill="#34483D" />
-            <g stroke="#4E8FBF" strokeWidth="4.5" strokeLinecap="round">
-              <line x1="64" y1="56" x2="60" y2="65" />
-              <line x1="74" y1="58" x2="74" y2="68" />
-              <line x1="84" y1="56" x2="88" y2="65" />
-            </g>
-            <path d="M10 76 H90 a4 4 0 0 1 -4 10 H14 a4 4 0 0 1 -4 -10 Z" fill="none" stroke="#34483D" strokeWidth="7" />
-            <line x1="16" y1="76" x2="16" y2="66" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
-          </svg>
-          <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
+          <span className="hero-contam-badge">
+            <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
+              <circle cx="74" cy="42" r="11" fill="#34483D" />
+              <g stroke="#4E8FBF" strokeWidth="4.5" strokeLinecap="round">
+                <line x1="64" y1="56" x2="60" y2="65" />
+                <line x1="74" y1="58" x2="74" y2="68" />
+                <line x1="84" y1="56" x2="88" y2="65" />
+              </g>
+              <path d="M10 76 H90 a4 4 0 0 1 -4 10 H14 a4 4 0 0 1 -4 -10 Z" fill="none" stroke="#34483D" strokeWidth="7" />
+              <line x1="16" y1="76" x2="16" y2="66" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
+            </svg>
+            <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
+          </span>
         </button>
         {contamOpen && (
           <div className="hero-contam-panel" id="hero-contam-panel">
