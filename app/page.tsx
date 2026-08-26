@@ -336,15 +336,12 @@ export default function Home() {
             <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent"><b className="apt-value-strong">“아파트의 가치”</b>를 지키는 욕실 관리.</span></p></div>
           </div>
         </div>
-        <div className="hero-redesign-strip">
-          <strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
-          <button type="button" className="hero-contam-arrow-btn" aria-expanded={contamOpen} aria-controls="hero-contam-panel" aria-label={contamOpen ? "욕실 오염 상세 접기" : "욕실 오염 상세 펼치기"} onClick={() => setContamOpen(v => !v)}>
-            <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-          </button>
-        </div>
+        <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
+          <span className="hero-contam-toggle-title">🐚 욕실 부위별 오염 원인 및 결과 보고서</span>
+          <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+        </button>
         {contamOpen && (
           <div className="hero-contam-panel" id="hero-contam-panel">
-            <h3 className="hero-contam-title">🐚 욕실 부위별 오염 원인 및 결과 보고서</h3>
             <ol className="hero-contam-list">
               <li>
                 <h4>1. 욕실 천장 (오염의 발원지)</h4>
@@ -433,6 +430,9 @@ export default function Home() {
             </ol>
           </div>
         )}
+        <div className="hero-redesign-strip">
+          <strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
+        </div>
       </section>
 
       <section className="about shell section" id="about">
