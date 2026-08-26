@@ -349,7 +349,7 @@ export default function Home() {
             <path d="M10 76 H90 a4 4 0 0 1 -4 10 H14 a4 4 0 0 1 -4 -10 Z" fill="none" stroke="#34483D" strokeWidth="7" />
             <line x1="16" y1="76" x2="16" y2="66" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
           </svg>
-          <span className="hero-contam-toggle-title">욕실 부위별 오염 원인 및 결과</span>
+          <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
         </button>
         {contamOpen && (
           <div className="hero-contam-panel" id="hero-contam-panel">
