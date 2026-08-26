@@ -337,8 +337,12 @@ export default function Home() {
           </div>
         </div>
         <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
-          <span className="hero-contam-toggle-title">🐚 욕실 부위별 오염 원인 및 결과 보고서</span>
           <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+          <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M50,2 A48,48 0 0,1 50,98 A24,24 0 0,1 50,50 A24,24 0 0,0 50,2 Z" fill="#C60C30" />
+            <path d="M50,98 A48,48 0 0,1 50,2 A24,24 0 0,1 50,50 A24,24 0 0,0 50,98 Z" fill="#003478" />
+          </svg>
+          <span className="hero-contam-toggle-title">욕실 부위별 오염 원인 및 결과</span>
         </button>
         {contamOpen && (
           <div className="hero-contam-panel" id="hero-contam-panel">
