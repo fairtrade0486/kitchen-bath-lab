@@ -944,7 +944,7 @@
 .hero-contam-arrow{display:inline-block;font-size:28px;line-height:1;transform:scale(2.2);transition:transform .2s ease}
 .hero-contam-arrow.is-open{transform:scale(2.2) rotate(180deg)}
 .hero-contam-taegeuk{width:30px;height:30px;flex-shrink:0}
-.hero-contam-badge{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:6px;padding:8px 14px}
+.hero-contam-badge{display:inline-flex;align-items:center;gap:12px;border:1.5px solid var(--sage);border-radius:8px;padding:8px 14px;background:#fff;box-shadow:0 2px 6px rgba(37,39,37,.1)}
 .hero-contam-panel{background:var(--warm);color:var(--charcoal);padding:30px 24px;border-top:1px solid var(--line)}
 .hero-contam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:640px;margin-left:auto;margin-right:auto}
 .hero-contam-list>li{padding-bottom:20px;border-bottom:1px solid var(--line)}
