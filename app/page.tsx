@@ -42,16 +42,12 @@ export default function Home() {
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
   const [adminBookings, setAdminBookings] = useState<Array<{ id: number; booking_time: string; name: string; phone: string; service: string; address: string; completed: boolean; booking_status: "예약접수" | "통화필요" | "예약확정" | "예약취소" }>>([]);
   const [bookingStatuses, setBookingStatuses] = useState<Record<number, "예약접수" | "통화필요" | "예약확정" | "예약취소">>({});
-  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | "blacklist" | null>(null);
+  const [adminSection, setAdminSection] = useState<"customers" | "calendar" | "adjust" | null>(null);
   const [adminCalendarView, setAdminCalendarView] = useState<"month" | "day">("month");
   const [calendarTouchStart, setCalendarTouchStart] = useState<number | null>(null);
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
-  const [isBlacklistedAddress, setIsBlacklistedAddress] = useState(false);
-  const [blacklist, setBlacklist] = useState<Array<{ address: string; created_at: string }>>([]);
-  const [blacklistDong, setBlacklistDong] = useState("");
-  const [blacklistHo, setBlacklistHo] = useState("");
   const [reviewToken, setReviewToken] = useState<string | null>(null);
   const [canWriteReview, setCanWriteReview] = useState(false);
   const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
@@ -154,54 +150,6 @@ export default function Home() {
   }
 
   useEffect(() => { refreshCustomerHistory(); }, [adminMode]);
-
-  useEffect(() => {
-    if (adminMode || !addressDong || !addressHo.trim()) { setIsBlacklistedAddress(false); return; }
-    const address = `${addressDong} ${addressHo.trim()}`.trim();
-    let cancelled = false;
-    fetch(`${SUPABASE_URL}/rest/v1/rpc/is_blacklisted_address`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_address: address }),
-    })
-      .then(response => response.ok ? response.json() : false)
-      .then(result => { if (!cancelled) setIsBlacklistedAddress(Boolean(result)); })
-      .catch(() => { if (!cancelled) setIsBlacklistedAddress(false); });
-    return () => { cancelled = true; };
-  }, [addressDong, addressHo, adminMode]);
-
-  async function refreshBlacklist() {
-    if (!adminMode) return;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_list_blacklist`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_password: "930707" }),
-    });
-    if (response.ok) setBlacklist(await response.json());
-  }
-
-  useEffect(() => { refreshBlacklist(); }, [adminMode]);
-
-  async function addBlacklist() {
-    const address = `${blacklistDong} ${blacklistHo.trim()}`.trim();
-    if (!blacklistDong || !blacklistHo.trim()) { window.alert("동·호수를 입력해 주세요."); return; }
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_add_blacklist`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_address: address, p_password: "930707" }),
-    });
-    if (!response.ok || !(await response.json())) {
-      window.alert("블랙리스트 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-      return;
-    }
-    setBlacklistDong(""); setBlacklistHo("");
-    await refreshBlacklist();
-  }
-
-  async function removeBlacklist(address: string) {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_remove_blacklist`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_address: address, p_password: "930707" }),
-    });
-    if (!response.ok || !(await response.json())) {
-      window.alert("블랙리스트 삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-      return;
-    }
-    await refreshBlacklist();
-  }
 
   async function completeBooking(id: number) {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
@@ -576,38 +524,6 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className={`admin-section-card${adminSection === "blacklist" ? " expanded" : ""}`}>
-                    <button type="button" className="admin-section-trigger" onClick={() => setAdminSection(current => current === "blacklist" ? null : "blacklist")}>
-                      <strong>블랙리스트 관리</strong>
-                      <span>{adminSection === "blacklist" ? "▲" : "▼"}</span>
-                    </button>
-                    {adminSection === "blacklist" && (
-                      <div className="admin-section-content">
-                        <p className="admin-section-desc">등록된 동·호수는 예약 시도 시 자동으로 예약 마감으로 표시됩니다.</p>
-                        <div className="admin-calendar-menu-selects">
-                          <select aria-label="블랙리스트 동" value={blacklistDong} onChange={e => setBlacklistDong(e.currentTarget.value)}>
-                            <option value="">동 선택</option>
-                            {Array.from({ length: 13 }, (_, i) => `${521 + i}동`).map(dong => <option key={dong} value={dong}>{dong}</option>)}
-                          </select>
-                          <input aria-label="블랙리스트 호수" value={blacklistHo} onChange={e => setBlacklistHo(e.currentTarget.value)} placeholder="호수 (예: 1204호)" />
-                          <button type="button" onClick={addBlacklist}>등록</button>
-                        </div>
-                        {blacklist.length === 0 ? (
-                          <div className="admin-empty">등록된 블랙리스트가 없습니다.</div>
-                        ) : (
-                          blacklist.map(item => (
-                            <div className="admin-time-row" key={item.address}>
-                              <button type="button" className="closed">
-                                <span>{item.address}</span>
-                                <b onClick={(e) => { e.stopPropagation(); if (window.confirm(`${item.address} 블랙리스트에서 삭제할까요?`)) removeBlacklist(item.address); }}>삭제</b>
-                              </button>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    )}
-                  </div>
-
                   <div className={`admin-section-card${adminSection === "calendar" ? " expanded" : ""}`}>
                     <div className="admin-calendar-menu-row">
                       <button type="button" className="admin-section-trigger" onClick={() => { if (adminSection === "calendar") { setAdminSection(null); return; } setCalendarYear(today.getFullYear()); setCalendarMonth(today.getMonth()); setSelectedDate(today.getDate()); setSelectedTimeValue(""); setAdminCalendarView("month"); setAdminSection("calendar"); }}>
@@ -650,7 +566,7 @@ export default function Home() {
                   </div>
                 </div>
               </> : <>
-                {selectedDate && <fieldset className="time-select"><legend><small>TIME SELECT</small><strong>{calendarMonth + 1}월 {selectedDate}일 ({new Date(calendarYear, calendarMonth, selectedDate).toLocaleDateString("ko-KR", { weekday: "short" })})에 방문 가능한 시간</strong></legend>{timeSlots.map(([time, label]) => { const unavailable = isBlacklistedAddress || (bookedSlots[selectedDateKey] ?? []).includes(time) || (closedSlots[selectedDateKey] ?? []).includes(time); return <label key={time}><input checked={selectedTimeValue === time} disabled={unavailable} type="radio" name="booking-time" value={time} onChange={() => { setSelectedTimeValue(time); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {unavailable ? `${label} · 예약 마감` : label}</span><span className="time-select-action">{selectedTimeValue === time ? "선택됨" : "선택"}</span></label>; })}{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>}
+                {selectedDate && <fieldset className="time-select"><legend><small>TIME SELECT</small><strong>{calendarMonth + 1}월 {selectedDate}일 ({new Date(calendarYear, calendarMonth, selectedDate).toLocaleDateString("ko-KR", { weekday: "short" })})에 방문 가능한 시간</strong></legend>{timeSlots.map(([time, label]) => { const unavailable = (bookedSlots[selectedDateKey] ?? []).includes(time) || (closedSlots[selectedDateKey] ?? []).includes(time); return <label key={time}><input checked={selectedTimeValue === time} disabled={unavailable} type="radio" name="booking-time" value={time} onChange={() => { setSelectedTimeValue(time); setBookingErrors(current => ({ ...current, datetime: "" })); }} /><span>◷ {unavailable ? `${label} · 예약 마감` : label}</span><span className="time-select-action">{selectedTimeValue === time ? "선택됨" : "선택"}</span></label>; })}{bookingErrors.datetime && <small className="field-error">{bookingErrors.datetime}</small>}</fieldset>}
                 {selectedPlan && selectedDate && selectedTimeValue && <div className="contact-step"><div className="contact-step-head"><small>STEP 3 · CONTACT</small><h3>연락 가능한 정보를 알려 주세요.</h3></div><input type="hidden" name="booking-service" value={selectedPlanService} /><div className="form-row"><label>이름<input name="booking-name" placeholder="성함을 입력해 주세요" onChange={() => setBookingErrors(current => ({ ...current, name: "" }))} />{bookingErrors.name && <small className="field-error">{bookingErrors.name}</small>}</label><label>연락처<input name="booking-phone" inputMode="tel" maxLength={19} placeholder="010 - 0000 - 0000" onChange={event => { const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 11); event.currentTarget.value = digits.length <= 3 ? digits : digits.length <= 7 ? `${digits.slice(0, 3)} - ${digits.slice(3)}` : `${digits.slice(0, 3)} - ${digits.slice(3, 7)} - ${digits.slice(7)}`; setBookingErrors(current => ({ ...current, phone: "" })); }} />{bookingErrors.phone && <small className="field-error">{bookingErrors.phone}</small>}</label></div>
                 <div className="address-field">
                   <span>방문 주소</span>
