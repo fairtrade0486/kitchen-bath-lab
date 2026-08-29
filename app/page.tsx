@@ -54,6 +54,7 @@ export default function Home() {
   const [reviewSent, setReviewSent] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [contamOpen, setContamOpen] = useState(false);
+  const [bleachOpen, setBleachOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -340,23 +341,36 @@ export default function Home() {
             <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent"><b className="apt-value-strong">“아파트의 가치”</b>를 지키는 욕실 관리.</span></p></div>
           </div>
         </div>
-        <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
-          <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-          <span className="hero-contam-badge">
-            <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
-              <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
-              <circle cx="74" cy="42" r="11" fill="#34483D" />
-              <g stroke="#4E8FBF" strokeWidth="4.5" strokeLinecap="round">
-                <line x1="64" y1="56" x2="60" y2="65" />
-                <line x1="74" y1="58" x2="74" y2="68" />
-                <line x1="84" y1="56" x2="88" y2="65" />
-              </g>
-              <path d="M10 76 H90 a4 4 0 0 1 -4 10 H14 a4 4 0 0 1 -4 -10 Z" fill="none" stroke="#34483D" strokeWidth="7" />
-              <line x1="16" y1="76" x2="16" y2="66" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
-            </svg>
-            <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
-          </span>
-        </button>
+        <div className="hero-contam-toggle-group">
+          <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
+            <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+            <span className="hero-contam-badge">
+              <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
+                <circle cx="74" cy="42" r="11" fill="#34483D" />
+                <g stroke="#4E8FBF" strokeWidth="4.5" strokeLinecap="round">
+                  <line x1="64" y1="56" x2="60" y2="65" />
+                  <line x1="74" y1="58" x2="74" y2="68" />
+                  <line x1="84" y1="56" x2="88" y2="65" />
+                </g>
+                <path d="M10 76 H90 a4 4 0 0 1 -4 10 H14 a4 4 0 0 1 -4 -10 Z" fill="none" stroke="#34483D" strokeWidth="7" />
+                <line x1="16" y1="76" x2="16" y2="66" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
+              </svg>
+              <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
+            </span>
+          </button>
+          <button type="button" className="hero-contam-toggle-row" aria-expanded={bleachOpen} aria-controls="hero-bleach-panel" onClick={() => setBleachOpen(v => !v)}>
+            <span className={`hero-contam-arrow${bleachOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+            <span className="hero-contam-badge">
+              <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M50 12 L92 82 A5 5 0 0 1 87.5 90 H12.5 A5 5 0 0 1 8 82 Z" fill="none" stroke="#34483D" strokeWidth="7" strokeLinejoin="round" />
+                <line x1="50" y1="38" x2="50" y2="60" stroke="#4E8FBF" strokeWidth="7" strokeLinecap="round" />
+                <circle cx="50" cy="74" r="4.5" fill="#4E8FBF" />
+              </svg>
+              <span className="hero-contam-toggle-title">락스의 오해와 진실</span>
+            </span>
+          </button>
+        </div>
         {contamOpen && (
           <div className="hero-contam-panel" id="hero-contam-panel">
             <ol className="hero-contam-list">
@@ -447,6 +461,49 @@ export default function Home() {
             </ol>
           </div>
         )}
+        {bleachOpen && (
+          <div className="hero-contam-panel" id="hero-bleach-panel">
+            <p className="admin-section-desc">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다. 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
+            <ol className="hero-contam-list">
+              <li>
+                <h4>오염 은폐 착시</h4>
+                <ul>
+                  <li>세정력이 부족함에도 불구하고 표백 기능이 워낙 강력하다 보니, 오염물이 씻겨 나가지 않고 그대로 남아 있는 상태에서 색상만 하얗게 변해 사용자가 완벽히 청소된 것으로 오해하기 쉽습니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>타일 줄눈 손상</h4>
+                <ul>
+                  <li>락스는 강알칼리성 물질로, 반복적으로 사용하면 백시멘트 줄눈의 코팅층을 미세하게 부식시키고 표면을 깎아냅니다. 이로 인해 줄눈에 미세한 구멍과 틈새가 생기면, 나중에는 곰팡이 포자가 더 깊숙이 침투하여 곰팡이가 이전보다 훨씬 더 빨리 재발하는 부작용이 생깁니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>백화 현상 유발</h4>
+                <ul>
+                  <li>줄눈 성분이 락스에 의해 녹아내렸다가 타일 표면으로 올라와 마르면서 하얀 얼룩을 남기는 &apos;백화 현상&apos;이 발생할 수 있습니다. 이 자국은 일반 물청소로는 쉽게 지워지지 않습니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>금속 부식</h4>
+                <ul>
+                  <li>수전, 샤워기 헤드, 수건걸이, 배수구 유가 등 욕실 내 금속 자재(특히 스테인리스나 도금 제품)에 락스 원액이나 고농도 희석액이 장시간 닿으면 변색되거나 부식이 진행되어 광택을 잃고 망가집니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>독성 염소 가스 방출</h4>
+                <ul>
+                  <li>락스가 욕실 내부의 유기물(곰팡이, 세균 등)을 태우며 소독하는 과정에서 특유의 수영장 냄새(클로라민 가스)가 발생하며, 이는 눈과 호흡기를 자극합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>치명적인 화학적 손상 가능성</h4>
+                <ul>
+                  <li>환기가 불량한 밀폐된 욕실에서 장시간 사용하거나, 사용법을 어겨 뜨거운 물과 함께 사용할 경우, 혹은 산성 세제(구연산, 식초, 변기용 염산 세제 등)와 반응할 경우 인체에 치명적인 독성 염소 가스가 다량 분출됩니다. 이는 급성 기침, 두통, 어지러움은 물론 심각한 화학적 폐 손상(폐부종 등)을 유발할 수 있어 대단히 위험합니다.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        )}
         <div className="hero-redesign-strip">
           <strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
         </div>
@@ -480,7 +537,7 @@ export default function Home() {
             <div className="desktop-calendar-box">
               <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
               <div className="calendar-week">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}</div>
-              <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={selectedDate === day ? "selected" : ""} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
+              <div className="calendar-days">{calendarCells.map((day, i) => day ? <button type="button" key={i} className={`${selectedDate === day ? "selected " : ""}fully-booked`} aria-label={`${day}일 예약 마감`} onClick={() => { setSelectedDate(day); setSelectedTimeValue(""); setSent(false); }}><span>{day}</span></button> : <i key={i} />)}</div>
             </div>
             <div className="selected-booking always-visible">
               {selectedDate && <><button type="button" className="calendar-back" onClick={() => { setSelectedDate(null); setSelectedTimeValue(""); setSent(false); }}>← 날짜 다시 선택</button><div className="price-group monthly-plan booking-plan selected selected-date-card" aria-label={`선택한 날짜 ${calendarYear}년 ${calendarMonth + 1}월 ${selectedDate}일`}><span className="price-label">선택한 날짜</span><span className="monthly-freq">방문일</span><b className="monthly-price">{calendarYear}년 {calendarMonth + 1}월 {selectedDate}일</b></div></>}
