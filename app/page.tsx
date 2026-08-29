@@ -4,8 +4,6 @@ import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, us
 
 const services = [
   { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장 및 벽면 전체", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
-  { no: "02", name: "주방 청소", en: "KITCHEN", time: "약 2–3시간", price: "가격 미정", desc: "주방에는 눈에 잘 보이지 않는 기름때가 공간 전체에 넓게 쌓입니다. 친환경 약품으로 오염 제거 후, 고화력 스팀청소기로 주방 전체를 멸균·소독 처리합니다.\n깨끗하고 위생적인 주방을 만들어 드리겠습니다.", tags: ["후드및 필터", "가스레인지, 인덕션", "싱크대", "주방 조리 상판", "상·하부장 겉면", "수전", "아일랜드 식탁"] },
-  { no: "03", name: "욕실 + 주방", en: "BATH + KITCHEN", time: "약 4시간", price: "패키지 가격 미정", desc: "가장 부담스러운 두 공간을 하루에. 따로 예약하는 번거로움 없이 한 번에 집중합니다.", tags: ["욕실 전체", "주방 전체", "묶음 구성", "한 번에 방문"] },
 ];
 
 const serviceAreas = [services[0]];
@@ -48,11 +46,6 @@ export default function Home() {
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
-  const [reviewToken, setReviewToken] = useState<string | null>(null);
-  const [canWriteReview, setCanWriteReview] = useState(false);
-  const [reviews, setReviews] = useState<Array<{ id: number; name: string; region: string; service: string; content: string; created_at: string }>>([]);
-  const [reviewSent, setReviewSent] = useState(false);
-  const [reviewsOpen, setReviewsOpen] = useState(false);
   const [contamOpen, setContamOpen] = useState(false);
   const [bleachOpen, setBleachOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
@@ -101,31 +94,6 @@ export default function Home() {
   useEffect(() => {
     setSelectedPlan(2); // 데스크탑·모바일 공통 적용 (2026-08-22 복구)
   }, []);
-
-  async function refreshReviews() {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=id,name,region,service,content,created_at&order=created_at.desc`, {
-      headers: supabaseHeaders,
-      cache: "no-store",
-    });
-    if (!response.ok) return;
-    setReviews(await response.json());
-  }
-
-  useEffect(() => {
-    refreshReviews();
-    const savedToken = window.localStorage.getItem("review-booking-token");
-    if (savedToken) {
-      setReviewToken(savedToken);
-      checkReviewPermission(savedToken);
-    }
-  }, []);
-
-  async function checkReviewPermission(token: string) {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/can_write_review`, {
-      method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_token: token }),
-    });
-    if (response.ok) setCanWriteReview(Boolean(await response.json()));
-  }
 
   async function refreshAdminBookings() {
     if (!selectedDateKey || !adminMode) return;
@@ -271,9 +239,6 @@ export default function Home() {
         await refreshSlots();
         return;
       }
-      window.localStorage.setItem("review-booking-token", token);
-      setReviewToken(token);
-      setCanWriteReview(false);
       form.reset();
       setAddressDong("");
       setAddressHo("");
@@ -286,32 +251,6 @@ export default function Home() {
       await refreshSlots();
     }
     setSent(true);
-  }
-
-  async function submitReview(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const rawName = data.get("review-name")?.toString().trim() ?? "";
-    const region = data.get("review-region")?.toString().trim() ?? "";
-    const service = data.get("review-service")?.toString().trim() ?? "";
-    const content = data.get("review-content")?.toString().trim() ?? "";
-    if (!rawName || !region || !service || !content) return;
-    if (!reviewToken || !canWriteReview) return;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_completed_review`, {
-      method: "POST",
-      headers: supabaseHeaders,
-      body: JSON.stringify({ p_token: reviewToken, p_name: rawName, p_region: region, p_service: service, p_content: content }),
-    });
-    const submitted = response.ok ? Boolean(await response.json()) : false;
-    if (!submitted) {
-      window.alert("후기 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-      return;
-    }
-    form.reset();
-    setReviewSent(true);
-    setCanWriteReview(false);
-    await refreshReviews();
   }
 
   return (
@@ -530,7 +469,7 @@ export default function Home() {
 
       <section className="service section" id="service">
         <div className="shell">
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "KITCHEN" && <p className="service-note"><strong>※</strong> 상·하부장 내부 청소를 원하실 경우, 모든 집기를 미리 꺼내 주셔야 합니다. (별도 요금 없습니다)</p>}{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
 
         </div>
       </section>
