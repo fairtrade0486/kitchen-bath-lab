@@ -46,8 +46,7 @@ export default function Home() {
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
-  const [contamOpen, setContamOpen] = useState(false);
-  const [bleachOpen, setBleachOpen] = useState(false);
+  const [activeContamPanel, setActiveContamPanel] = useState<"contam" | "bleach" | null>(null);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -281,8 +280,8 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-contam-toggle-group">
-          <button type="button" className="hero-contam-toggle-row" aria-expanded={contamOpen} aria-controls="hero-contam-panel" onClick={() => setContamOpen(v => !v)}>
-            <span className={`hero-contam-arrow${contamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+          <button type="button" className="hero-contam-toggle-row" aria-expanded={activeContamPanel === "contam"} aria-controls="hero-contam-panel" onClick={() => setActiveContamPanel(current => current === "contam" ? null : "contam")}>
+            <span className={`hero-contam-arrow${activeContamPanel === "contam" ? " is-open" : ""}`} aria-hidden="true">▾</span>
             <span className="hero-contam-badge">
               <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
                 <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
@@ -298,8 +297,8 @@ export default function Home() {
               <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
             </span>
           </button>
-          <button type="button" className="hero-contam-toggle-row" aria-expanded={bleachOpen} aria-controls="hero-bleach-panel" onClick={() => setBleachOpen(v => !v)}>
-            <span className={`hero-contam-arrow${bleachOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+          <button type="button" className="hero-contam-toggle-row" aria-expanded={activeContamPanel === "bleach"} aria-controls="hero-bleach-panel" onClick={() => setActiveContamPanel(current => current === "bleach" ? null : "bleach")}>
+            <span className={`hero-contam-arrow${activeContamPanel === "bleach" ? " is-open" : ""}`} aria-hidden="true">▾</span>
             <span className="hero-contam-badge">
               <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
                 <path d="M50 12 L92 82 A5 5 0 0 1 87.5 90 H12.5 A5 5 0 0 1 8 82 Z" fill="none" stroke="#34483D" strokeWidth="7" strokeLinejoin="round" />
@@ -310,7 +309,7 @@ export default function Home() {
             </span>
           </button>
         </div>
-        {contamOpen && (
+        {activeContamPanel === "contam" && (
           <div className="hero-contam-panel" id="hero-contam-panel">
             <ol className="hero-contam-list">
               <li>
@@ -407,7 +406,7 @@ export default function Home() {
             </ol>
           </div>
         )}
-        {bleachOpen && (
+        {activeContamPanel === "bleach" && (
           <div className="hero-contam-panel" id="hero-bleach-panel">
             <p className="admin-section-desc">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다. 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
             <ol className="hero-contam-list">
