@@ -968,7 +968,7 @@
   .hero-contam-toggle-group .hero-contam-badge{gap:6px;padding:8px 8px}
   .hero-contam-toggle-row{padding:1px 16px;gap:18px}
   .hero-contam-toggle-title{font-size:22px}
-  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:13px;white-space:nowrap}
+  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:16px;white-space:nowrap}
   .hero-contam-arrow{font-size:26px}
   .hero-contam-toggle-group .hero-contam-arrow{transform:scale(1.4)}
   .hero-contam-toggle-group .hero-contam-arrow.is-open{transform:scale(1.4) rotate(180deg)}
