@@ -305,7 +305,7 @@ export default function Home() {
                 <line x1="50" y1="38" x2="50" y2="60" stroke="#4E8FBF" strokeWidth="7" strokeLinecap="round" />
                 <circle cx="50" cy="74" r="4.5" fill="#4E8FBF" />
               </svg>
-              <span className="hero-contam-toggle-title">락스의 오해와 진실</span>
+              <span className="hero-contam-toggle-title">잘못된 락스·수세미 사용의 위험</span>
             </span>
           </button>
         </div>
@@ -444,6 +444,27 @@ export default function Home() {
                 <h4>치명적인 화학적 손상 가능성</h4>
                 <ul>
                   <li>환기가 불량한 밀폐된 욕실에서 장시간 사용하거나, 사용법을 어겨 뜨거운 물과 함께 사용할 경우, 혹은 산성 세제(구연산, 식초, 변기용 염산 세제 등)와 반응할 경우 인체에 치명적인 독성 염소 가스가 다량 분출됩니다. 이는 급성 기침, 두통, 어지러움은 물론 심각한 화학적 폐 손상(폐부종 등)을 유발할 수 있어 대단히 위험합니다.</li>
+                </ul>
+              </li>
+            </ol>
+            <p className="admin-section-desc" style={{ marginTop: "28px" }}>잘못된 도구 사용은 락스만큼이나 표면 손상과 오염 고착의 큰 원인이 됩니다.</p>
+            <ol className="hero-contam-list">
+              <li>
+                <h4>일시적 세정 착시</h4>
+                <ul>
+                  <li>거친 수세미로 표면을 강하게 문지르면 오염물과 함께 표면 자체가 갈려 나가면서 순간적으로 매끈하고 깨끗해 보이는 착시가 생깁니다. 하지만 이는 오염이 제거된 것이 아니라 <strong>표면에 무수한 미세 스크래치를 남기며 오염물을 억지로 밀어낸 것일 뿐</strong>이며, 얼마 지나지 않아 그 흠집을 따라 오염이 더 빠르게 재발합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>스크래치로 인한 고착 오염</h4>
+                <ul>
+                  <li>청소 시 수세미를 잘못 사용하면 도기, 플라스틱, 인조대리석 등의 표면에 미세한 스크래치를 내어 광택을 잃게 만들고, 그 미세한 흠집(크랙) 내부로 물때, 기름때, 곰팡이 균사 등이 더 깊숙이 파고들어 <strong>일상적인 청소로는 쉽게 제거되지 않는 고착 오염</strong>을 유발합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <h4>올바른 수세미 선택</h4>
+                <ul>
+                  <li>대리석, 유리, 도기 등 기스에 취약한 표면에는 <strong>연마재가 없는 아크릴 망사나 &apos;노스크래치(No-Scratch)&apos; 전용 부드러운 패드</strong>를 사용해야 하며, <strong>거친 녹색 수세미나 철 수세미는 사용을 하면 안 됩니다.</strong></li>
                 </ul>
               </li>
             </ol>
