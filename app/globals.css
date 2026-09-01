@@ -942,6 +942,7 @@
 .hero-contam-toggle-group{display:flex;align-items:stretch;gap:0}
 .hero-contam-toggle-group .hero-contam-toggle-row{flex:1 1 50%;width:auto;justify-content:center;padding:1px 10px}
 .hero-contam-toggle-group .hero-contam-badge{width:100%;justify-content:center}
+.hero-contam-toggle-group .hero-contam-toggle-title{font-size:17px;white-space:nowrap}
 .hero-contam-toggle-row{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:var(--deep);cursor:pointer;width:100%;display:flex;align-items:center;justify-content:flex-start;gap:22px;padding:1px 20px;text-align:left}
 .hero-contam-toggle-title{font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1.3;color:#b87846}
 .hero-contam-arrow{display:inline-block;font-size:28px;line-height:1;transform:scale(2.2);transition:transform .2s ease}
@@ -949,6 +950,7 @@
 .hero-contam-taegeuk{width:30px;height:30px;flex-shrink:0}
 .hero-contam-badge{display:inline-flex;align-items:center;gap:12px;border:1.5px solid var(--sage);border-radius:8px;padding:8px 14px;background:#fff;box-shadow:0 2px 6px rgba(37,39,37,.1)}
 .hero-contam-panel{background:var(--warm);color:var(--charcoal);padding:30px 24px;border-top:1px solid var(--line)}
+.hero-contam-lead{color:#b3651f;font-weight:800}
 .hero-contam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:640px;margin-left:auto;margin-right:auto}
 .hero-contam-list>li{padding-bottom:20px;border-bottom:1px solid var(--line)}
 .hero-contam-list>li:last-child{border-bottom:0;padding-bottom:0}
@@ -962,7 +964,7 @@
   .hero-contam-toggle-group .hero-contam-badge{gap:6px;padding:8px 8px}
   .hero-contam-toggle-row{padding:1px 16px;gap:18px}
   .hero-contam-toggle-title{font-size:22px}
-  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:15px}
+  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:12px;white-space:nowrap}
   .hero-contam-arrow{font-size:26px}
   .hero-contam-toggle-group .hero-contam-arrow{transform:scale(1.4)}
   .hero-contam-toggle-group .hero-contam-arrow.is-open{transform:scale(1.4) rotate(180deg)}
