@@ -940,7 +940,9 @@
 
 /* --- hero contamination report toggle (added) --- */
 .hero-contam-toggle-group{display:flex;align-items:stretch;gap:0}
-.hero-contam-toggle-group .hero-contam-toggle-row{flex:1 1 50%;width:auto;justify-content:center;padding:1px 10px}
+.hero-contam-toggle-group .hero-contam-toggle-row{width:auto;justify-content:center;padding:1px 10px}
+.hero-contam-toggle-group .hero-contam-toggle-row:first-child{flex:0.72 1 0%}
+.hero-contam-toggle-group .hero-contam-toggle-row:last-child{flex:1 1 0%}
 .hero-contam-toggle-group .hero-contam-badge{width:100%;justify-content:center}
 .hero-contam-toggle-group .hero-contam-toggle-title{font-size:17px;white-space:nowrap}
 .hero-contam-toggle-row{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:var(--deep);cursor:pointer;width:100%;display:flex;align-items:center;justify-content:flex-start;gap:22px;padding:1px 20px;text-align:left}
@@ -961,10 +963,12 @@
 @media(max-width:760px){
   .hero-contam-toggle-group{gap:0}
   .hero-contam-toggle-group .hero-contam-toggle-row{padding:1px 6px;gap:8px}
+  .hero-contam-toggle-group .hero-contam-toggle-row:first-child{flex:0.72 1 0%}
+  .hero-contam-toggle-group .hero-contam-toggle-row:last-child{flex:1 1 0%}
   .hero-contam-toggle-group .hero-contam-badge{gap:6px;padding:8px 8px}
   .hero-contam-toggle-row{padding:1px 16px;gap:18px}
   .hero-contam-toggle-title{font-size:22px}
-  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:12px;white-space:nowrap}
+  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:13px;white-space:nowrap}
   .hero-contam-arrow{font-size:26px}
   .hero-contam-toggle-group .hero-contam-arrow{transform:scale(1.4)}
   .hero-contam-toggle-group .hero-contam-arrow.is-open{transform:scale(1.4) rotate(180deg)}
