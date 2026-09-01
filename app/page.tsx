@@ -305,7 +305,7 @@ export default function Home() {
                 <line x1="50" y1="38" x2="50" y2="60" stroke="#4E8FBF" strokeWidth="7" strokeLinecap="round" />
                 <circle cx="50" cy="74" r="4.5" fill="#4E8FBF" />
               </svg>
-              <span className="hero-contam-toggle-title">잘못된 락스·수세미 사용의 위험</span>
+              <span className="hero-contam-toggle-title">락스와 수세미의 불편한 진실</span>
             </span>
           </button>
         </div>
@@ -408,7 +408,7 @@ export default function Home() {
         )}
         {activeContamPanel === "bleach" && (
           <div className="hero-contam-panel" id="hero-bleach-panel">
-            <p className="admin-section-desc">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다. 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
+            <p className="admin-section-desc"><strong className="hero-contam-lead">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다.</strong> 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
             <ol className="hero-contam-list">
               <li>
                 <h4>오염 은폐 착시</h4>
@@ -447,7 +447,7 @@ export default function Home() {
                 </ul>
               </li>
             </ol>
-            <p className="admin-section-desc" style={{ marginTop: "28px" }}>잘못된 도구 사용은 락스만큼이나 표면 손상과 오염 고착의 큰 원인이 됩니다.</p>
+            <p className="admin-section-desc" style={{ marginTop: "28px" }}><strong className="hero-contam-lead">잘못된 도구 사용은 락스만큼이나 표면 손상과 오염 고착의 큰 원인이 됩니다.</strong></p>
             <ol className="hero-contam-list">
               <li>
                 <h4>일시적 세정 착시</h4>
