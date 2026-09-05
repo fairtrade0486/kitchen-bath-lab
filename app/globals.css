@@ -97,7 +97,7 @@
 @media(max-width:760px){footer{padding-bottom:35px}.copyright{justify-content:center;text-align:center}}
 @media(max-width:760px){footer .footer-grid{gap:18px}footer .footer-grid p,footer .footer-grid a{line-height:1.4}footer .footer-grid>div>span{margin-bottom:10px}.copyright{margin-top:25px}}
 .footer-grid .footer-brand{font-size:28px}.footer-grid>div>span{font-size:12px}.footer-grid p,.footer-grid a{font-size:14px}.footer-grid b{font-size:17px}.footer-grid .business-number{font-size:14px}.footer-grid .phone-button{font-size:19px}.phone-caption{display:block;margin-top:11px;color:#aeb2ae;font-size:12px;letter-spacing:.4px}.copyright{font-size:12px}
-.business-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.business-title .footer-brand{color:#fff;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:28px;font-weight:700;line-height:1.2}.business-title .business-number{display:inline;margin:0;color:#aeb2ae;font-size:14px;letter-spacing:0}
+.business-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.business-title .footer-brand{color:#fff;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:33px;font-weight:700;line-height:1.2}.business-title .business-number{display:inline;margin:0;color:#aeb2ae;font-size:14px;letter-spacing:0}
 .footer-grid p,.footer-grid>div>span,.phone-caption,.secret-admin-trigger{font-size:17px}
 .footer-grid .phone-button,.footer-grid>div>b{font-size:28px}
 .footer-grid .phone-button{position:relative;min-width:225px;padding:33px 19px 13px}.footer-grid .phone-button .phone-caption{position:absolute;top:8px;left:11px;margin:0;color:#FFD76A;font-size:14px;font-weight:400;line-height:1;letter-spacing:.3px}.footer-grid .phone-button strong{color:#fff;font-size:28px;font-weight:700;line-height:1}
@@ -338,7 +338,7 @@
 @media(max-width:760px){.booking-form .calendar-days{padding-bottom:2px}}
 @media(max-width:760px){.booking.section{padding-top:20px;padding-bottom:20px}.booking .booking-grid{width:calc(100% - 12px);gap:10px}.booking-form{padding:12px}}
 
-.business-title .footer-brand{color:#3f6654!important}.business-title .footer-amp{color:#b87846!important}
+.business-title .footer-brand{color:#758476!important}.business-title .footer-amp{color:#b87846!important}
 
 @media(max-width:760px){.time-select label{display:flex!important;align-items:center;justify-content:space-between;gap:10px}.time-select label>span:first-of-type{flex:1;text-align:left}.time-select .time-select-action{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;min-width:62px;padding:8px 10px;border:1px solid var(--sage);border-radius:4px;background:transparent;color:var(--deep);font-size:12px;font-weight:800;line-height:1}.time-select input:checked~.time-select-action{background:var(--deep);border-color:var(--deep);color:#fff}}
 
