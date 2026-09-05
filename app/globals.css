@@ -63,7 +63,7 @@
 .consult-btn:active{transform:translateY(1px)}
 @media(max-width:420px){
   .consult-buttons{flex-direction:column}
-  .consult-btn{width:100%;padding:13px 16px;font-size:15px}
+  .consult-btn{width:100%;padding:13px 26px;font-size:15px}
 }
 .nav{justify-content:center}.brand{font-family:Consolas,"Courier New",monospace;font-size:30px;letter-spacing:-.6px}.footer-brand{font-size:25px}.brand span{font-weight:700}.brand b{font-weight:900}@media(max-width:760px){.brand{font-size:24px}}
 .hero{position:relative}@media(max-width:760px){.hero-subtitle{position:static;transform:none;width:calc(100% - 36px);margin:0 auto;padding-top:12px;font-size:22px;line-height:1.35}.hero-grid{padding-top:24px}}
