@@ -52,6 +52,19 @@
 
 .booking-confirm-note{margin:10px 0 0;text-align:center;color:#6f766f;font-size:15px;font-weight:700;line-height:1.5}
 .phone-link{display:block;margin-bottom:10px}.phone-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border:1px solid #527362;border-radius:4px;background:linear-gradient(180deg,#3f6654 0%,#294a3b 100%);box-shadow:0 4px 0 #172d24,0 7px 14px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.25);color:#fff!important;font-size:16px;font-weight:700;line-height:1;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}.phone-button:hover{transform:translateY(-1px);box-shadow:0 5px 0 #172d24,0 9px 16px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.3)}.phone-button:active{transform:translateY(3px);box-shadow:0 1px 0 #172d24,0 3px 7px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.2)}
+.consult-buttons{display:flex;gap:10px;margin-top:10px}
+.consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 22px;border-radius:10px;font-size:17px;font-weight:800;text-decoration:none;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
+.consult-btn svg{width:19px;height:19px;flex-shrink:0}
+.consult-call{background:#4478f5;color:#fff!important;box-shadow:0 4px 12px rgba(68,120,245,.35)}
+.consult-call svg{fill:#fff}
+.consult-kakao{background:#FEE500;color:#1a1a1a!important;box-shadow:0 4px 12px rgba(254,229,0,.3)}
+.consult-kakao svg{fill:#1a1a1a}
+.consult-btn:hover{transform:translateY(-2px)}
+.consult-btn:active{transform:translateY(1px)}
+@media(max-width:600px){
+  .consult-buttons{flex-direction:column}
+  .consult-btn{width:100%}
+}
 .nav{justify-content:center}.brand{font-family:Consolas,"Courier New",monospace;font-size:30px;letter-spacing:-.6px}.footer-brand{font-size:25px}.brand span{font-weight:700}.brand b{font-weight:900}@media(max-width:760px){.brand{font-size:24px}}
 .hero{position:relative}@media(max-width:760px){.hero-subtitle{position:static;transform:none;width:calc(100% - 36px);margin:0 auto;padding-top:12px;font-size:22px;line-height:1.35}.hero-grid{padding-top:24px}}
 .company-name{font-weight:700;color:var(--charcoal)}
@@ -962,13 +975,13 @@
 .hero-contam-list ul li strong{color:var(--deep)}
 @media(max-width:760px){
   .hero-contam-toggle-group{gap:0}
-  .hero-contam-toggle-group .hero-contam-toggle-row{padding:1px 6px;gap:8px}
+  .hero-contam-toggle-group .hero-contam-toggle-row{padding:1px 4px;gap:8px}
   .hero-contam-toggle-group .hero-contam-toggle-row:first-child{flex:0.72 1 0%}
   .hero-contam-toggle-group .hero-contam-toggle-row:last-child{flex:1 1 0%}
-  .hero-contam-toggle-group .hero-contam-badge{gap:6px;padding:8px 8px}
+  .hero-contam-toggle-group .hero-contam-badge{gap:5px;padding:8px 4px;justify-content:flex-start}
   .hero-contam-toggle-row{padding:1px 16px;gap:18px}
   .hero-contam-toggle-title{font-size:22px}
-  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:16px;white-space:nowrap}
+  .hero-contam-toggle-group .hero-contam-toggle-title{font-size:17px;white-space:nowrap}
   .hero-contam-arrow{font-size:26px}
   .hero-contam-toggle-group .hero-contam-arrow{transform:scale(1.4)}
   .hero-contam-toggle-group .hero-contam-arrow.is-open{transform:scale(1.4) rotate(180deg)}
