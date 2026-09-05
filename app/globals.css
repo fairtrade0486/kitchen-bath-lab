@@ -71,7 +71,7 @@
 .booking-form select{font-size:16px}
 .footer-grid .business-number{display:inline-block;margin:5px 0 12px;color:#aeb2ae;font-size:11px;letter-spacing:0}
 
-/* 첫 화면 재구성 */
+/* ì²« íë©´ ì¬êµ¬ì± */
 .top-brand{height:88px;display:flex;align-items:center;justify-content:center}.top-brand a{font-family:Consolas,"Courier New",monospace;font-size:30px;font-weight:800;letter-spacing:-.8px}.hero-redesign{border-top:1px solid var(--line)}.hero-stage{display:grid;grid-template-columns:minmax(0,.86fr) minmax(500px,1.14fr);grid-template-areas:"opening picture" "message picture";column-gap:72px;align-items:center;padding:58px 0 64px}.hero-opening{grid-area:opening;align-self:end}.hero-opening>p{display:inline-block;margin:0 0 28px;padding:8px 12px;border:1px solid var(--sage);color:var(--deep);font-size:13px;font-weight:700;letter-spacing:.2px}.hero-opening h1{margin:0;font-family:"MaruBuri","Noto Serif KR",serif;font-size:clamp(48px,5vw,68px);font-weight:600;line-height:1.18;letter-spacing:-4px}.hero-picture{grid-area:picture;position:relative;height:650px;margin:0;overflow:hidden;border-radius:310px 310px 0 0;background:var(--beige)}.hero-picture img{width:100%;height:100%;object-fit:cover;display:block}.hero-picture figcaption{position:absolute;left:0;bottom:0;min-width:210px;padding:24px 30px;background:var(--deep);color:#fff;display:flex;flex-direction:column;gap:7px}.hero-picture figcaption b{font-family:"MaruBuri","Noto Serif KR",serif;font-size:22px;font-weight:600}.hero-picture figcaption span{font-size:10px;letter-spacing:2.5px}.hero-message{grid-area:message;align-self:start;padding-top:42px}.hero-message h2{margin:0 0 28px;font-size:23px;font-weight:500;line-height:1.55;letter-spacing:-1px;font-family:"MaruBuri","Noto Serif KR",serif;color:var(--charcoal)}.hero-message>div{padding-left:0;border-left:0}.hero-message p{margin:0;color:#555b56;font-size:15px;line-height:1.9;font-family:"MaruBuri","Noto Serif KR",serif}.hero-message p .hero-lead{font-size:17px;font-weight:700;color:var(--charcoal)}.hero-message strong{display:block;margin-top:17px;font-family:"MaruBuri","Noto Serif KR",serif;font-size:25px;font-weight:600;letter-spacing:-1px;color:var(--charcoal)}.hero-redesign-strip{min-height:94px;padding:24px;background:var(--deep);color:#fff;display:block;text-align:center;font-family:"MaruBuri","Noto Serif KR",serif;font-size:20px}.hero-redesign-strip span{color:#d8dfd9}.hero-redesign-strip strong{margin-right:10px}
 @media(max-width:760px){.top-brand{height:70px}.top-brand a{font-size:23px}.hero-stage{grid-template-columns:1fr;grid-template-areas:"opening" "picture" "message";gap:0;padding:26px 0 3px}.hero-opening>p{margin-bottom:18px;font-size:15px}.hero-opening h1{font-size:42px;line-height:1.2;letter-spacing:-2.8px}.hero-picture{height:auto;aspect-ratio:1 / 1.17;margin-top:32px;border-radius:180px 180px 0 0}.hero-picture figcaption{min-width:155px;padding:18px 22px}.hero-picture figcaption b{font-size:18px}.hero-message{padding-top:34px}.hero-message h2{font-size:21px;line-height:1.55;margin-bottom:5px}.hero-message p{font-size:15px}.hero-message strong{font-size:25px}.hero-redesign-strip{min-height:0;padding:18px 20px;display:block;text-align:center;font-family:"MaruBuri","Noto Serif KR",serif;font-size:15px;font-weight:700;line-height:1.5}.hero-redesign-strip strong,.hero-redesign-strip span{display:block}}
 .secret-admin-trigger{display:block;border:0;background:transparent;color:#aeb2ae;padding:0;font-size:11px;line-height:1.7;cursor:default;text-align:left}
@@ -97,7 +97,7 @@
 @media(max-width:760px){footer{padding-bottom:35px}.copyright{justify-content:center;text-align:center}}
 @media(max-width:760px){footer .footer-grid{gap:18px}footer .footer-grid p,footer .footer-grid a{line-height:1.4}footer .footer-grid>div>span{margin-bottom:10px}.copyright{margin-top:25px}}
 .footer-grid .footer-brand{font-size:28px}.footer-grid>div>span{font-size:12px}.footer-grid p,.footer-grid a{font-size:14px}.footer-grid b{font-size:17px}.footer-grid .business-number{font-size:14px}.footer-grid .phone-button{font-size:19px}.phone-caption{display:block;margin-top:11px;color:#aeb2ae;font-size:12px;letter-spacing:.4px}.copyright{font-size:12px}
-.business-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:43px}.business-title .footer-brand{color:#fff;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:33px;font-weight:700;line-height:1.2}.business-title .business-number{display:inline;margin:0;color:#aeb2ae;font-size:14px;letter-spacing:0}
+.business-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:51px}.business-title .footer-brand{color:#fff;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;font-size:33px;font-weight:700;line-height:1.2}.business-title .business-number{display:inline;margin:0;color:#aeb2ae;font-size:14px;letter-spacing:0}
 .footer-grid p,.footer-grid>div>span,.phone-caption,.secret-admin-trigger{font-size:17px}
 .footer-grid .phone-button,.footer-grid>div>b{font-size:28px}
 .footer-grid .phone-button{position:relative;min-width:225px;padding:33px 19px 13px}.footer-grid .phone-button .phone-caption{position:absolute;top:8px;left:11px;margin:0;color:#FFD76A;font-size:14px;font-weight:400;line-height:1;letter-spacing:.3px}.footer-grid .phone-button strong{color:#fff;font-size:28px;font-weight:700;line-height:1}
@@ -106,7 +106,7 @@
 @media(max-width:760px){.footer-grid{grid-template-columns:1fr}.footer-grid>div{align-items:center;text-align:center}}
 .admin-time-row>button{width:100%;border:1px solid var(--line);padding:16px 18px;margin-bottom:10px;display:flex;justify-content:space-between;background:white}.admin-time-row>button.open b{color:#39714f}.admin-time-row>button.closed{background:#eee;color:#888}.admin-time-row>button.closed b{color:#b34b43}.admin-booking-info{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:-2px 0 14px;padding:14px 16px;background:var(--beige);font-size:12px}.admin-booking-info span small{display:block;margin-top:5px;color:#6d746d}.admin-booking-info>button{flex:0 0 auto;border:0;background:var(--deep);color:white;padding:10px 13px;font-size:11px;font-weight:800;cursor:pointer}.admin-booking-info>button:disabled{background:#879188;cursor:default}.field-error{display:block;margin-top:7px;color:#b34b43;font-size:11px;font-weight:700}.time-select>.field-error{margin-top:10px}.footer-grid .business-number{display:inline-block;margin:5px 0 12px;color:#aeb2ae;font-size:11px;letter-spacing:0}
 
-/* 상단 상호명: 짙은 녹색 명조체와 황동색 앰퍼샌드 */
+/* ìë¨ ìí¸ëª: ì§ì ë¹ì ëªì¡°ì²´ì í©ëì ì°í¼ìë */
 .top-brand a{font-family:Georgia,"Times New Roman",serif;font-size:54px;font-weight:700;letter-spacing:-.5px;color:var(--deep)}
 .top-brand a em{color:#b87846;font-style:normal}
 .hero-opening h1,.hero-message h2,.hero-message p span{white-space:nowrap}
@@ -115,7 +115,7 @@
 @media(max-width:760px){.hero-opening h1{font-size:clamp(24px,8.4vw,31px);letter-spacing:-2px}.hero-message h2{font-size:28px}.hero-message strong{margin-top:0px;margin-bottom:4px}.hero-opening-sub em{color:var(--charcoal)}.hero-message p{font-size:clamp(16px,3.5vw,20px);letter-spacing:-.45px}.hero-message p .hero-lead{font-size:25px}.hero-message p .hero-lead.hero-lead-accent{font-size:25px;font-weight:400}.hero-message p .apt-value-strong{font-weight:900!important;-webkit-text-stroke:.45px currentColor;text-shadow:.15px 0 currentColor}}
 @media(max-width:760px){.hero-stage{grid-template-areas:"opening" "message" "picture"}.hero-message{padding-top:8px}.hero-picture{margin-top:32px}}
 
-/* 담당자 사진: 둥근 사진과 왼쪽 아래 작은 명찰 */
+/* ë´ë¹ì ì¬ì§: ë¥ê·¼ ì¬ì§ê³¼ ì¼ìª½ ìë ìì ëªì°° */
 .about .portrait{background:transparent;overflow:visible;border-radius:28px}
 .about .profile-photo{width:100%;height:100%;margin:0;border-radius:28px;object-fit:cover;object-position:center 22%}
 .about .nameplate{left:22px;right:auto;bottom:-18px;min-width:152px;padding:13px 19px;border-radius:12px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;box-shadow:0 7px 16px rgba(37,39,37,.12)}
@@ -128,7 +128,7 @@
 .booking-form:has(.selected-booking)>.calendar-week,.booking-form:has(.selected-booking)>.calendar-days{display:grid}
 .selected-booking{display:none}
 
-/* 선택한 날짜는 날짜 칸 전체를 채워 표시 */
+/* ì íí ë ì§ë ë ì§ ì¹¸ ì ì²´ë¥¼ ì±ì íì */
 .calendar-days button.selected{
   background:var(--deep);
   color:#fff;
@@ -143,7 +143,7 @@
   border-radius:inherit;
 }
 
-/* 정기 구독 패키지 3개를 각각 선택 가능한 박스로 표시 */
+/* ì ê¸° êµ¬ë í¨í¤ì§ 3ê°ë¥¼ ê°ê° ì í ê°ë¥í ë°ì¤ë¡ íì */
 .monthly-pricing{gap:16px}
 .monthly-plan{
   width:100%;
@@ -163,13 +163,13 @@
 .monthly-plan.selected .monthly-price{color:#fff}
 .monthly-plan:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
 
-/* 패키지 제목 주변의 작은 안쪽 선 제거 */
+/* í¨í¤ì§ ì ëª© ì£¼ë³ì ìì ììª½ ì  ì ê±° */
 .pricing .monthly-plan .price-label{
   border:0;
   padding:0;
 }
 
-/* 패키지 글씨를 위 제목과 같은 부드러운 명조체로 통일 */
+/* í¨í¤ì§ ê¸ì¨ë¥¼ ì ì ëª©ê³¼ ê°ì ë¶ëë¬ì´ ëªì¡°ì²´ë¡ íµì¼ */
 .monthly-plan,
 .monthly-plan .price-label,
 .monthly-plan .monthly-service,
@@ -177,14 +177,14 @@
   font-family:"MaruBuri","Noto Serif KR",serif;
 }
 
-/* 패키지 제목을 박스의 왼쪽 위로 조금 이동 */
+/* í¨í¤ì§ ì ëª©ì ë°ì¤ì ì¼ìª½ ìë¡ ì¡°ê¸ ì´ë */
 .monthly-plan .price-label{
   justify-self:start;
   align-self:start;
   transform:translate(-7px,-5px);
 }
 
-/* 첫 방문 안내를 위로 당기고 보조 문장 추가 */
+/* ì²« ë°©ë¬¸ ìë´ë¥¼ ìë¡ ë¹ê¸°ê³  ë³´ì¡° ë¬¸ì¥ ì¶ê° */
 .booking.section{padding-top:88px}
 .booking-intro-group{align-self:start}
 .booking .booking-intro{margin-bottom:10px}
@@ -193,10 +193,10 @@
 
 .plan-click-guide{margin:12px 0 0;color:var(--sage);font-size:13px;letter-spacing:.2px}
 
-/* 예약 입력란은 날짜 선택 전에도 달력 아래에 항상 노출 */
+/* ìì½ ìë ¥ëì ë ì§ ì í ì ìë ë¬ë ¥ ìëì í­ì ë¸ì¶ */
 .selected-booking.always-visible{display:block}
 
-/* 단계형 시간 선택 */
+/* ë¨ê³í ìê° ì í */
 .time-select{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -221,9 +221,9 @@
 .hero-redesign-strip{font-size:25px}
 @media(max-width:760px){.hero-redesign-strip{font-size:21px;margin-bottom:4px}}
 .service.section{margin-top:-40px}
-/* ===== 데스크톱 정렬 수정(추가) ===== */
+/* ===== ë°ì¤í¬í± ì ë ¬ ìì (ì¶ê°) ===== */
 @media (min-width: 761px) {
-  /* 1. 제목 잘림 fix */
+  /* 1. ì ëª© ìë¦¼ fix */
   .hero-opening h1 {
     white-space: normal !important;
     font-size: clamp(36px, 3.6vw, 54px) !important;
@@ -231,7 +231,7 @@
     letter-spacing: -1px;
   }
 
-  /* 2. 달력 간격 fix */
+  /* 2. ë¬ë ¥ ê°ê²© fix */
   .calendar-week,
   .calendar-days {
     display: grid !important;
@@ -246,7 +246,7 @@
     padding: 8px 0 !important;
   }
 
-  /* 3. 이용후기를 달력 라인에 맞춤 */
+  /* 3. ì´ì©íê¸°ë¥¼ ë¬ë ¥ ë¼ì¸ì ë§ì¶¤ */
   .reviews-shell { max-width: 900px; }
 }
 
@@ -254,7 +254,7 @@
 .hero-picture img{object-position:center 62%}
 @media(max-width:760px){.hero-picture{aspect-ratio:4 / 3}.hero-picture img{object-position:center 62%}}
 
-/* 요금 카드 한 줄 정렬 + 중복 선택 버튼(빈 박스) 제거 */
+/* ìê¸ ì¹´ë í ì¤ ì ë ¬ + ì¤ë³µ ì í ë²í¼(ë¹ ë°ì¤) ì ê±° */
 .monthly-plan::after{content:none!important}
 .booking-plan{display:grid!important;grid-template-columns:auto 1fr auto auto!important;align-items:center!important;justify-content:space-between!important;column-gap:12px!important;row-gap:0!important}
 .booking-plan .price-label{grid-column:1;grid-row:1;white-space:nowrap;border:0;padding:0;margin:0;transform:none;font-family:"MaruBuri","Noto Serif KR",serif;font-size:16px;font-weight:800;color:var(--deep)}
@@ -267,7 +267,7 @@
 .booking-form .booking-intro-group .booking-intro{color:var(--deep)}
 .booking-form .booking-intro-group p{margin:0;color:#5f645f;font-size:13px;line-height:1.6}
 
-/* 전체 디자인 다듬기: 문단 여백, 데스크톱 정렬/여백 개선 (구성·문안은 변경 없음) */
+/* ì ì²´ ëìì¸ ë¤ë¬ê¸°: ë¬¸ë¨ ì¬ë°±, ë°ì¤í¬í± ì ë ¬/ì¬ë°± ê°ì  (êµ¬ì±Â·ë¬¸ìì ë³ê²½ ìì) */
 .about-greeting>p:not(.greeting-kicker){margin:0 0 16px}
 .about-greeting>p:not(.greeting-kicker):last-of-type{margin-bottom:0}
 @media(min-width:761px){
@@ -367,13 +367,13 @@
 
 .admin-menu{display:flex;flex-direction:column;gap:8px;margin:0 0 22px}.admin-menu button{width:100%;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--deep);padding:14px 16px;font-weight:800;cursor:pointer;text-align:left}.admin-menu button.active{background:var(--beige);border-color:var(--sage)}.admin-menu button span{color:var(--sage);font-size:12px}.admin-customer-history h3{font-family:Georgia,"Noto Serif KR",serif;font-size:22px;margin:28px 0 5px}.admin-customer-history>p{font-size:12px;color:#777;margin:0 0 18px}.admin-customer-history-card{border:1px solid var(--line);background:#fff;margin-bottom:10px}.admin-customer-history-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px}.admin-customer-history-head>span{display:flex;flex-direction:column;gap:4px}.admin-customer-history-head b{color:var(--deep)}.admin-customer-history-head small{font-size:12px;color:#777}.admin-customer-history-head>button{border:0;background:transparent;color:#b34b43;font-weight:800;cursor:pointer;white-space:nowrap}.admin-customer-history-head em{font-style:normal;margin-left:5px}.admin-service-dates{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);padding:12px 16px;background:#fffaf5;font-size:12px}.admin-service-dates strong{width:100%;color:var(--deep)}.admin-service-dates span{padding:5px 8px;background:#fff;border:1px solid var(--line)}
 
-/* 관리자 모드: 고객용 예약 안내는 숨기고 관리자 메뉴만 표시 */
+/* ê´ë¦¬ì ëª¨ë: ê³ ê°ì© ìì½ ìë´ë ì¨ê¸°ê³  ê´ë¦¬ì ë©ë´ë§ íì */
 .booking-form.admin-mode>.booking-plan-stack,.booking-form.admin-mode>.booking-intro-group,.booking-form.admin-mode>.calendar-head,.booking-form.admin-mode>.calendar-week,.booking-form.admin-mode>.calendar-days,.booking-form.admin-mode .desktop-calendar-box{display:none!important}.booking-form.admin-mode .selected-booking{border-top:0;padding-top:0}.admin-calendar-panel{margin-top:8px}.admin-calendar-panel .calendar-days button span{width:36px;height:36px;font-size:12px}.admin-calendar-panel .calendar-days button.selected{background:var(--deep);color:#fff;border-radius:50%}.admin-calendar-panel .calendar-days button{border:0;background:transparent;cursor:pointer}.admin-selected-date{margin:0 0 18px;padding:12px 14px;background:var(--beige);font-size:13px;color:var(--deep)}
 
-/* 관리자 모드에서는 고객용 홈페이지 콘텐츠를 숨기고 관리자 패널만 표시 */
+/* ê´ë¦¬ì ëª¨ëììë ê³ ê°ì© ííì´ì§ ì½íì¸ ë¥¼ ì¨ê¸°ê³  ê´ë¦¬ì í¨ëë§ íì */
 .admin-active>.top-brand,.admin-active>.hero-redesign,.admin-active>.about,.admin-active>.service,.admin-active>footer{display:none!important}.admin-active>.booking{min-height:100vh;padding-top:24px}.admin-active .booking-form{max-width:720px;margin:0 auto}.admin-active .selected-booking{margin-top:0}
 
-/* Kitchen & Bath 관리자 화면: One Clean과 동일한 모바일 전체폭 카드형 레이아웃 */
+/* Kitchen & Bath ê´ë¦¬ì íë©´: One Cleanê³¼ ëì¼í ëª¨ë°ì¼ ì ì²´í­ ì¹´ëí ë ì´ìì */
 .admin-active{background:var(--sage)!important;min-height:100dvh}
 .admin-active>.booking{min-height:100dvh!important;padding:24px 0 48px!important;background:var(--sage)!important}
 .admin-active .booking-grid{display:block!important;width:100%!important}
@@ -398,7 +398,7 @@
 .admin-active .admin-slot-control h3{margin:0 0 6px!important;font-size:18px!important;color:var(--deep)!important}
 @media(max-width:760px){.admin-active .booking-form{width:calc(100% - 24px)!important;padding:14px!important}.admin-active .admin-section-trigger{min-height:72px!important;font-size:20px!important}.admin-active .admin-section-content{padding:0 14px 18px!important}.admin-active .calendar-days button span,.admin-active .calendar-days button{width:36px!important;height:36px!important}.admin-active .admin-customer-history-head{gap:8px!important;padding:14px 12px!important}.admin-active .admin-customer-history-head>button{font-size:12px!important}}
 
-/* 새 관리자 캘린더: 월간 화면에서 위로 밀어 당일 상세로 전환 */
+/* ì ê´ë¦¬ì ìºë¦°ë: ìê° íë©´ìì ìë¡ ë°ì´ ë¹ì¼ ìì¸ë¡ ì í */
 .admin-new-calendar{touch-action:pan-y!important}
 .admin-day-hidden{display:none!important}
 .admin-day-view{display:none!important}
@@ -419,7 +419,7 @@
 .admin-new-calendar .calendar-days button.has-booking:after{display:none!important}
 .admin-new-calendar .calendar-days button small{position:static!important;display:block!important;width:100%!important;padding:3px 2px!important;border:1px solid #70a9cf!important;border-radius:3px!important;color:#3e83b5!important;background:#fff!important;font-size:9px!important;font-weight:800!important;line-height:1.1!important}
 
-/* 캘린더 진입 시 월간 달력 아래에 오늘 상세를 기본 표시 */
+/* ìºë¦°ë ì§ì ì ìê° ë¬ë ¥ ìëì ì¤ë ìì¸ë¥¼ ê¸°ë³¸ íì */
 .admin-new-calendar .admin-day-view{display:block!important}
 .admin-new-calendar .admin-month-return{display:none!important}
 .admin-new-calendar .admin-calendar-hint{margin-bottom:18px!important}
@@ -427,7 +427,7 @@
 .admin-day-booking-info{display:flex!important;align-items:center!important;gap:8px!important;white-space:nowrap!important;overflow-x:auto!important;margin-bottom:14px!important}
 .admin-day-booking-info strong{flex:0 0 auto!important}
 .admin-day-booking-info span{flex:0 0 auto!important}
-.admin-day-booking-info span:not(:last-child)::after{content:" ·";color:#a7aea7;margin-left:8px}
+.admin-day-booking-info span:not(:last-child)::after{content:" Â·";color:#a7aea7;margin-left:8px}
 
 .admin-day-booking-info span:nth-child(2),.admin-day-booking-info span:nth-child(3){font-weight:800!important;color:var(--deep)!important}
 
@@ -499,17 +499,17 @@
 .admin-new-calendar .calendar-days button{border-bottom:0!important}
 
 
-/* 예약 상세 4개 상태 버튼: 취소는 별도 안전 액션으로 표시 */
+/* ìì½ ìì¸ 4ê° ìí ë²í¼: ì·¨ìë ë³ë ìì  ì¡ìì¼ë¡ íì */
 .admin-status-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}
 .admin-status-buttons button{min-width:0!important;padding:9px 2px!important;font-size:10px!important;white-space:nowrap!important}
 .admin-status-buttons button:last-child{color:#b34b43!important;border-color:#e2c4c0!important;background:#fff8f7!important}
 .admin-status-buttons button:last-child.selected{color:#fff!important;border-color:#b34b43!important;background:#b34b43!important}
 @media(max-width:380px){.admin-status-buttons{gap:3px!important}.admin-status-buttons button{font-size:9px!important;padding-left:1px!important;padding-right:1px!important}}
 
-/* 예약취소 완료 후에는 빨간 강조를 해제하고 일반 선택 버튼 색상으로 표시 */
+/* ìì½ì·¨ì ìë£ íìë ë¹¨ê° ê°ì¡°ë¥¼ í´ì íê³  ì¼ë° ì í ë²í¼ ììì¼ë¡ íì */
 .admin-status-buttons button:last-child.selected{color:#fff!important;border-color:var(--deep)!important;background:var(--deep)!important}
 
-/* 관리자 3개 메뉴 접힘 상태 공통 정렬 */
+/* ê´ë¦¬ì 3ê° ë©ë´ ì í ìí ê³µíµ ì ë ¬ */
 .admin-active .admin-section-card>.admin-section-trigger,
 .admin-active .admin-calendar-menu-row{min-height:76px!important}
 .admin-active .admin-section-trigger{line-height:1!important}
@@ -518,7 +518,7 @@
 .admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:76px!important;padding-top:20px!important;padding-bottom:20px!important}
 @media(max-width:760px){.admin-active .admin-section-card>.admin-section-trigger,.admin-active .admin-calendar-menu-row{min-height:72px!important}.admin-active .admin-calendar-menu-row .admin-section-trigger{min-height:72px!important}}
 
-/* 관리자 메뉴 3개를 캘린더와 동일한 베이지색으로 통일 */
+/* ê´ë¦¬ì ë©ë´ 3ê°ë¥¼ ìºë¦°ëì ëì¼í ë² ì´ì§ìì¼ë¡ íµì¼ */
 .admin-active .admin-section-card>.admin-section-trigger,
 .admin-active .admin-calendar-menu-row,
 .admin-active .admin-calendar-menu-row .admin-section-trigger{background:var(--beige)!important;color:var(--deep)!important}
@@ -532,30 +532,30 @@
   .admin-active .admin-calendar-menu-row{padding-left:14px!important;padding-right:14px!important}
 }
 
-/* 관리자 메뉴 제목·화살표 기준선 고정 */
+/* ê´ë¦¬ì ë©ë´ ì ëª©Â·íì´í ê¸°ì¤ì  ê³ ì  */
 .admin-active .admin-section-trigger{justify-content:flex-start!important;text-align:left!important}
 .admin-active .admin-section-trigger>strong{flex:1 1 auto!important;text-align:left!important}
 .admin-active .admin-section-trigger>span{margin-left:auto!important;align-self:center!important}
 .admin-active .admin-calendar-menu-row .admin-section-trigger{justify-content:flex-start!important}
 
-/* 예약조정은 날짜·시간 마감 관리용이므로 캘린더 화면을 항상 펼침 */
+/* ìì½ì¡°ì ì ë ì§Â·ìê° ë§ê° ê´ë¦¬ì©ì´ë¯ë¡ ìºë¦°ë íë©´ì í­ì í¼ì¹¨ */
 .admin-adjust-card .admin-calendar-panel{display:block!important}
 .admin-adjust-card .admin-day-view{display:none!important}
 .admin-adjust-card .admin-month-return{display:none!important}
 
-/* 관리자 모드 고정 상태와 명시적 고객 화면 이동 버튼 */
+/* ê´ë¦¬ì ëª¨ë ê³ ì  ìíì ëªìì  ê³ ê° íë©´ ì´ë ë²í¼ */
 .admin-exit-button{width:100%;min-height:48px;border:1px solid var(--deep);border-radius:8px;background:var(--deep);color:#fff;padding:12px 16px;font-size:13px;font-weight:800;cursor:pointer;text-align:center}
 .admin-exit-button:active{transform:translateY(1px)}
 
 
-/* PC 히어로를 모바일과 동일한 순서(태그+헤드라인 -> 사진 -> 서브헤드+강조+리드문)로 통일 */
+/* PC íì´ë¡ë¥¼ ëª¨ë°ì¼ê³¼ ëì¼í ìì(íê·¸+í¤ëë¼ì¸ -> ì¬ì§ -> ìë¸í¤ë+ê°ì¡°+ë¦¬ëë¬¸)ë¡ íµì¼ */
 .hero-banner{display:none!important}
 .hero-overlay-tag,.hero-overlay-text{display:none!important}
 .hero-stage{grid-template-columns:1fr!important;grid-template-areas:"opening" "picture" "message"!important;column-gap:0!important}
 .hero-stage .hero-opening,.hero-stage .hero-message{display:block!important;position:static!important;top:auto!important;left:auto!important;max-width:none!important;width:auto!important}
 .hero-stage .hero-picture{display:block!important}
 
-/* 데스크탑 최종본: 모바일 문구를 사진 위에 오버레이하고 모바일 CSS에는 영향 없음 */
+/* ë°ì¤í¬í ìµì¢ë³¸: ëª¨ë°ì¼ ë¬¸êµ¬ë¥¼ ì¬ì§ ìì ì¤ë²ë ì´íê³  ëª¨ë°ì¼ CSSìë ìí¥ ìì */
 @media(min-width:761px){
   .hero-banner{display:block!important;width:100%;aspect-ratio:1660/850;overflow:hidden;margin:0;position:relative}
   .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center center}
@@ -574,7 +574,7 @@
   .hero-stage{display:none!important}
 }
 
-/* 데스크탑 예약 영역 균형 조정 */
+/* ë°ì¤í¬í ìì½ ìì­ ê· í ì¡°ì  */
 @media(min-width:761px){
   .booking.section{padding:96px 0 112px}
   .booking-grid{grid-template-columns:minmax(280px,.78fr) minmax(600px,1.22fr);gap:72px;align-items:start}
@@ -590,7 +590,7 @@
   .booking-form .calendar-days button,.booking-form .calendar-days i{height:66px!important;display:grid;place-items:center}
 }
 
-/* 데스크탑도 모바일 최종본과 동일한 히어로 스타일을 사용하고, 이미지 위에 배치 */
+/* ë°ì¤í¬íë ëª¨ë°ì¼ ìµì¢ë³¸ê³¼ ëì¼í íì´ë¡ ì¤íì¼ì ì¬ì©íê³ , ì´ë¯¸ì§ ìì ë°°ì¹ */
 @media(min-width:761px){
   .top-brand a{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:700;letter-spacing:-.5px;color:var(--deep)}
   .hero-redesign{position:relative}
@@ -616,7 +616,7 @@
   .hero-redesign-strip{font-size:21px!important;margin-bottom:4px!important}
 }
 
-/* 데스크탑 확대값: 모바일 최종본의 글자 비율·줄 간격·간격을 유지한 스케일업 */
+/* ë°ì¤í¬í íëê°: ëª¨ë°ì¼ ìµì¢ë³¸ì ê¸ì ë¹ì¨Â·ì¤ ê°ê²©Â·ê°ê²©ì ì ì§í ì¤ì¼ì¼ì */
 @media(min-width:761px){
   .hero-stage .hero-opening{top:7vw!important}
   .hero-stage .hero-opening>p{margin-bottom:24px!important;padding:10px 18px!important;font-size:20px!important;letter-spacing:1.5px!important}
@@ -629,49 +629,49 @@
   .hero-stage .hero-message p .hero-lead,.hero-stage .hero-message p .hero-lead.hero-lead-accent{font-size:36px!important;line-height:1.35!important}
 }
 
-/* 데스크탑 사진 위 강조 문구 가독성 개선: 밝은 오렌지 */
+/* ë°ì¤í¬í ì¬ì§ ì ê°ì¡° ë¬¸êµ¬ ê°ëì± ê°ì : ë°ì ì¤ë ì§ */
 @media(min-width:761px){
   .hero-stage .hero-opening-sub em,
   .hero-stage .hero-message>strong em{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.42)!important}
   .hero-stage .hero-message p .hero-lead.hero-lead-accent{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.48)!important}
 }
 
-/* 데스크탑 히어로 문구 간격 축소 */
+/* ë°ì¤í¬í íì´ë¡ ë¬¸êµ¬ ê°ê²© ì¶ì */
 @media(min-width:761px){
   .hero-stage .hero-opening h1{line-height:1.08!important}
   .hero-stage .hero-message{top:18vw!important}
 }
 
-/* 데스크탑 색상 최종 정리: ‘제대로.’는 흰색 */
+/* ë°ì¤í¬í ìì ìµì¢ ì ë¦¬: âì ëë¡.âë í°ì */
 @media(min-width:761px){
   .hero-stage .hero-opening-sub em,
   .hero-stage .hero-message>strong em{color:#fff!important;text-shadow:0 1px 2px rgba(37,39,37,.42)!important}
   .hero-stage .hero-message p .hero-lead.hero-lead-accent{color:#FFB347!important;text-shadow:0 1px 2px rgba(37,39,37,.48)!important}
 }
 
-/* 데스크탑 사진 위 두 번째 문구 블록을 위로 이동 */
+/* ë°ì¤í¬í ì¬ì§ ì ë ë²ì§¸ ë¬¸êµ¬ ë¸ë¡ì ìë¡ ì´ë */
 @media(min-width:761px){
   .hero-stage .hero-message{top:14vw!important}
 }
 
-/* 데스크탑 하단 신뢰 문구 1.5배 확대 */
+/* ë°ì¤í¬í íë¨ ì ë¢° ë¬¸êµ¬ 1.5ë°° íë */
 @media(min-width:761px){
   .hero-redesign-strip strong,
   .hero-redesign-strip span{font-size:31.5px!important;line-height:1.35!important}
 }
 
-/* 데스크탑 강조 문구 블록을 조금 아래로 이동 */
+/* ë°ì¤í¬í ê°ì¡° ë¬¸êµ¬ ë¸ë¡ì ì¡°ê¸ ìëë¡ ì´ë */
 @media(min-width:761px){
   .hero-stage .hero-message>div{transform:translateY(12px)!important}
 }
 
-/* 데스크탑 히어로 전체 문구 1.5배 확대 */
+/* ë°ì¤í¬í íì´ë¡ ì ì²´ ë¬¸êµ¬ 1.5ë°° íë */
 @media(min-width:761px){
   .hero-stage .hero-opening h1{transform:scale(1.5);transform-origin:left top}
   .hero-stage .hero-message{transform:scale(1.5);transform-origin:left top}
 }
 
-/* 데스크탑 히어로 전체 문구를 부드러운 명조체로 통일 */
+/* ë°ì¤í¬í íì´ë¡ ì ì²´ ë¬¸êµ¬ë¥¼ ë¶ëë¬ì´ ëªì¡°ì²´ë¡ íµì¼ */
 @media(min-width:761px){
   .hero-stage .hero-opening h1,
   .hero-stage .hero-message h2,
@@ -685,7 +685,7 @@
   .hero-stage .hero-message h2{font-weight:600!important}
 }
 
-/* 데스크탑 스토리 영역: 왼쪽 사진 아래 소개글 하단과 기준선 정렬 */
+/* ë°ì¤í¬í ì¤í ë¦¬ ìì­: ì¼ìª½ ì¬ì§ ìë ìê°ê¸ íë¨ê³¼ ê¸°ì¤ì  ì ë ¬ */
 @media(min-width:761px){
   .about{align-items:end!important}
   .about-greeting{align-self:end!important;transform:none!important;padding-bottom:0!important}
@@ -693,42 +693,42 @@
   .about-greeting .greeting-kicker{font-size:13px!important}
 }
 
-/* 스토리 상단 위치 복구: 전체 하단 정렬 해제 */
+/* ì¤í ë¦¬ ìë¨ ìì¹ ë³µêµ¬: ì ì²´ íë¨ ì ë ¬ í´ì  */
 @media(min-width:761px){
   .about{align-items:start!important}
   .about-greeting{align-self:start!important;transform:translateY(-8px)!important}
 }
 
-/* 데스크탑 스토리 제목을 사진 상단과 같은 기준선에 정렬 */
+/* ë°ì¤í¬í ì¤í ë¦¬ ì ëª©ì ì¬ì§ ìë¨ê³¼ ê°ì ê¸°ì¤ì ì ì ë ¬ */
 @media(min-width:761px){
   .about-greeting{margin-top:0!important;padding-top:0!important;transform:none!important;align-self:start!important}
 }
 
-/* 데스크탑 스토리 제목을 조금 확대 */
+/* ë°ì¤í¬í ì¤í ë¦¬ ì ëª©ì ì¡°ê¸ íë */
 @media(min-width:761px){
   .about-greeting .greeting-kicker{font-size:17px!important;letter-spacing:2px!important}
 }
 
-/* 데스크탑 소개글 하단을 왼쪽 사진 아래 인용문 하단에 정렬 */
+/* ë°ì¤í¬í ìê°ê¸ íë¨ì ì¼ìª½ ì¬ì§ ìë ì¸ì©ë¬¸ íë¨ì ì ë ¬ */
 @media(min-width:761px){
   .about{align-items:end!important}
   .about-greeting{align-self:end!important;transform:none!important;margin-bottom:0!important;padding-bottom:0!important}
 }
 
-/* 데스크탑: 스토리 제목의 윗선만 사진 상단과 정렬하고 전체 블록은 아래로 내리지 않음 */
+/* ë°ì¤í¬í: ì¤í ë¦¬ ì ëª©ì ìì ë§ ì¬ì§ ìë¨ê³¼ ì ë ¬íê³  ì ì²´ ë¸ë¡ì ìëë¡ ë´ë¦¬ì§ ìì */
 @media(min-width:761px){
   .about{align-items:start!important}
   .about-greeting{align-self:start!important;transform:none!important;margin-top:0!important;padding-top:0!important}
 }
 
-/* 데스크탑 스토리의 상단·하단 기준선을 동시에 맞춤 */
+/* ë°ì¤í¬í ì¤í ë¦¬ì ìë¨Â·íë¨ ê¸°ì¤ì ì ëìì ë§ì¶¤ */
 @media(min-width:761px){
   .about{align-items:stretch!important}
   .about-greeting{align-self:stretch!important;display:flex!important;flex-direction:column!important;transform:none!important;margin:0!important;padding:0!important}
   .about-greeting .greeting-principle{margin-top:auto!important}
 }
 
-/* 데스크탑 욕실 청소 박스 확대 및 첫 설명문 한 줄 처리 */
+/* ë°ì¤í¬í ìì¤ ì²­ì ë°ì¤ íë ë° ì²« ì¤ëªë¬¸ í ì¤ ì²ë¦¬ */
 @media(min-width:761px){
   .service-list.service-areas{width:100%!important}
   .service-list.service-areas .service-card{width:100%!important;max-width:none!important;padding:44px 52px!important}
@@ -737,19 +737,19 @@
   .service-list.service-areas .service-card .tags{margin-top:30px!important}
 }
 
-/* 데스크탑 욕실 청소 상세 안내 문구 2배 확대 */
+/* ë°ì¤í¬í ìì¤ ì²­ì ìì¸ ìë´ ë¬¸êµ¬ 2ë°° íë */
 @media(min-width:761px){
   .service-list.service-areas .service-highlight{font-size:26px!important;line-height:1.75!important}
   .service-list.service-areas .service-highlight strong{font-size:28px!important;line-height:1.45!important;margin-bottom:10px!important}
 }
 
-/* 데스크탑 욕실 청소 범위 목록: 글씨 2배·진하게 */
+/* ë°ì¤í¬í ìì¤ ì²­ì ë²ì ëª©ë¡: ê¸ì¨ 2ë°°Â·ì§íê² */
 @media(min-width:761px){
   .service-list.service-areas .tags{gap:12px!important}
   .service-list.service-areas .tags span{font-size:20px!important;font-weight:800!important;line-height:1.35!important;padding:12px 16px!important;color:var(--deep)!important}
 }
 
-/* 데스크탑 예약 가격 카드 확대 및 안내 박스 부착 */
+/* ë°ì¤í¬í ìì½ ê°ê²© ì¹´ë íë ë° ìë´ ë°ì¤ ë¶ì°© */
 @media(min-width:761px){
   .booking-form .booking-plan-stack{display:flex!important;flex-direction:column!important;gap:0!important}
   .booking-form .booking-plan-stack .monthly-plan{order:1!important;margin-bottom:0!important;background:var(--deep)!important;color:#fff!important;padding:30px 32px!important;border-radius:12px 12px 0 0!important}
@@ -760,20 +760,20 @@
   .booking-form .booking-plan-stack .booking-frequency-note{order:2!important;width:100%!important;margin:0 0 24px!important;padding:16px 20px!important;border:1px solid var(--deep)!important;border-top:0!important;border-radius:0 0 8px 8px!important;background:#fff!important;color:var(--deep)!important;font-size:18px!important;font-weight:700!important;line-height:1.5!important;text-align:center!important}
 }
 
-/* 데스크탑 가격 카드·안내 박스 폭을 욕실 청소 박스와 동일한 100% 기준으로 맞춤 */
+/* ë°ì¤í¬í ê°ê²© ì¹´ëÂ·ìë´ ë°ì¤ í­ì ìì¤ ì²­ì ë°ì¤ì ëì¼í 100% ê¸°ì¤ì¼ë¡ ë§ì¶¤ */
 @media(min-width:761px){
   .booking-form .booking-plan-stack{width:100%!important}
   .booking-form .booking-plan-stack .monthly-plan,
   .booking-form .booking-plan-stack .booking-frequency-note{width:100%!important;box-sizing:border-box!important}
 }
 
-/* 데스크탑 가격 박스와 안내 박스 사이의 얇은 분리 간격 */
+/* ë°ì¤í¬í ê°ê²© ë°ì¤ì ìë´ ë°ì¤ ì¬ì´ì ìì ë¶ë¦¬ ê°ê²© */
 @media(min-width:761px){
   .booking-form .booking-plan-stack .monthly-plan{border-radius:12px!important}
   .booking-form .booking-plan-stack .booking-frequency-note{margin-top:2px!important;border-top:1px solid var(--deep)!important;border-radius:8px!important}
 }
 
-/* 데스크탑 달력 폭을 위 가격 박스와 동일하게 맞춤 */
+/* ë°ì¤í¬í ë¬ë ¥ í­ì ì ê°ê²© ë°ì¤ì ëì¼íê² ë§ì¶¤ */
 @media(min-width:761px){
   .booking-form .calendar-head,
   .booking-form .calendar-week,
@@ -782,13 +782,13 @@
   .booking-form .calendar-days button,.booking-form .calendar-days i{width:100%!important}
 }
 
-/* 데스크탑 예약 영역을 상단 욕실 청소 박스와 동일한 전체 폭으로 확장 */
+/* ë°ì¤í¬í ìì½ ìì­ì ìë¨ ìì¤ ì²­ì ë°ì¤ì ëì¼í ì ì²´ í­ì¼ë¡ íì¥ */
 @media(min-width:761px){
   .booking-grid{grid-template-columns:1fr!important;gap:0!important}
   .booking-form{width:100%!important;max-width:none!important;box-sizing:border-box!important}
 }
 
-/* 데스크탑 위 욕실 청소 박스와 아래 예약 박스의 좌우 끝선 일치 */
+/* ë°ì¤í¬í ì ìì¤ ì²­ì ë°ì¤ì ìë ìì½ ë°ì¤ì ì¢ì° ëì  ì¼ì¹ */
 @media(min-width:761px){
   .booking-form{padding-left:0!important;padding-right:0!important}
   .booking-form .booking-plan-stack,
@@ -797,7 +797,7 @@
   .booking-form .calendar-days{margin-left:0!important;margin-right:0!important}
 }
 
-/* 데스크톱 최소 수정: 안내 문구와 예약 날짜 제목만 오른쪽 이동 */
+/* ë°ì¤í¬í± ìµì ìì : ìë´ ë¬¸êµ¬ì ìì½ ë ì§ ì ëª©ë§ ì¤ë¥¸ìª½ ì´ë */
 @media (min-width: 761px) {
   .booking-form .booking-intro-group {
     position: relative;
@@ -814,52 +814,52 @@
   .calendar-head>div{margin-right:60px}
 }
 
-/* 2026-08-22 일괄 수정: 히어로 줄바꿈, 여백, 라벨 삭제, 시간선택 정렬 등 */
+/* 2026-08-22 ì¼ê´ ìì : íì´ë¡ ì¤ë°ê¿, ì¬ë°±, ë¼ë²¨ ì­ì , ìê°ì í ì ë ¬ ë± */
 
-/* 1. 화면을 줄일 때 히어로 제목 줄 겹침 방지 (nowrap 제거) */
+/* 1. íë©´ì ì¤ì¼ ë íì´ë¡ ì ëª© ì¤ ê²¹ì¹¨ ë°©ì§ (nowrap ì ê±°) */
 .hero-opening h1{white-space:normal!important}
 
-/* 2. 이미지와 딥블루 안내 박스 사이 흰 여백 추가 */
+/* 2. ì´ë¯¸ì§ì ë¥ë¸ë£¨ ìë´ ë°ì¤ ì¬ì´ í° ì¬ë°± ì¶ê° */
 .hero-redesign-strip{margin-top:28px!important}
 
-/* 3,4. 자기소개 섹션 위/아래 공백 축소 */
+/* 3,4. ìê¸°ìê° ì¹ì ì/ìë ê³µë°± ì¶ì */
 @media(min-width:761px){
   .about.section{padding-top:60px!important;padding-bottom:60px!important}
 }
 
-/* 5. 욕실청소를 감싸는 베이지 섹션 여백 축소 */
+/* 5. ìì¤ì²­ìë¥¼ ê°ì¸ë ë² ì´ì§ ì¹ì ì¬ë°± ì¶ì */
 @media(min-width:761px){
   .service.section{padding-top:60px!important;padding-bottom:60px!important}
 }
 
-/* 6. 욕실청소 상단 영문 라벨(BATHROOM) 삭제 */
+/* 6. ìì¤ì²­ì ìë¨ ìë¬¸ ë¼ë²¨(BATHROOM) ì­ì  */
 .service-top{display:none!important}
 
-/* 7. 욕실청소 흰 박스 상단 여백 축소 */
+/* 7. ìì¤ì²­ì í° ë°ì¤ ìë¨ ì¬ë°± ì¶ì */
 @media(min-width:761px){
   .service-card{padding-top:20px!important}
 }
 
-/* 8. 딥케어 안내 딥그린 박스 폭 축소 */
+/* 8. ë¥ì¼ì´ ìë´ ë¥ê·¸ë¦° ë°ì¤ í­ ì¶ì */
 @media(min-width:761px){
   .booking-form .booking-plan-stack .monthly-plan{width:88%!important;margin-left:auto!important;margin-right:auto!important}
 }
 
-/* 9. 첫 방문일 안내 문구 글씨 2배 확대 */
+/* 9. ì²« ë°©ë¬¸ì¼ ìë´ ë¬¸êµ¬ ê¸ì¨ 2ë°° íë */
 .booking-form .booking-intro-group p{font-size:26px!important}
 
-/* 10. 달력을 감싸는 초록 섹션 여백 축소 및 상하 균등화 */
+/* 10. ë¬ë ¥ì ê°ì¸ë ì´ë¡ ì¹ì ì¬ë°± ì¶ì ë° ìí ê· ë±í */
 @media(min-width:761px){
   .booking.section{padding-top:56px!important;padding-bottom:56px!important}
 }
 
-/* 11. 날짜 클릭 시 나오는 '선택한 날짜' 딥그린 박스 삭제 */
+/* 11. ë ì§ í´ë¦­ ì ëì¤ë 'ì íí ë ì§' ë¥ê·¸ë¦° ë°ì¤ ì­ì  */
 .selected-date-card{display:none!important}
 
-/* 12,13. TIME SELECT 라벨 및 방문 가능 시간 안내문 삭제 */
+/* 12,13. TIME SELECT ë¼ë²¨ ë° ë°©ë¬¸ ê°ë¥ ìê° ìë´ë¬¸ ì­ì  */
 .time-select legend{display:none!important}
 
-/* 14. 시간+선택 버튼을 한 줄, 세로 3단으로 정렬 */
+/* 14. ìê°+ì í ë²í¼ì í ì¤, ì¸ë¡ 3ë¨ì¼ë¡ ì ë ¬ */
 @media(min-width:761px){
   .time-select{grid-template-columns:1fr!important}
   .time-select label{
@@ -879,64 +879,64 @@
   .time-select input:checked+span+.time-select-action{background:var(--deep)!important;color:#fff!important;border-color:var(--deep)!important}
 }
 
-/* 2026-08-22 추가 미세조정 */
+/* 2026-08-22 ì¶ê° ë¯¸ì¸ì¡°ì  */
 
-/* 0. 히어로 제목 줄바꿈 강제 nowrap 규칙 이기기 (더 구체적 선택자) */
+/* 0. íì´ë¡ ì ëª© ì¤ë°ê¿ ê°ì  nowrap ê·ì¹ ì´ê¸°ê¸° (ë êµ¬ì²´ì  ì íì) */
 .hero-stage .hero-opening h1,.hero-stage .hero-message h2,.hero-stage .hero-message p span{white-space:normal!important}
 
-/* 1. 이미지-딥블루박스 간격 28px -> 10px -> 3px (토글 행 추가 후 재조정) */
+/* 1. ì´ë¯¸ì§-ë¥ë¸ë£¨ë°ì¤ ê°ê²© 28px -> 10px -> 3px (í ê¸ í ì¶ê° í ì¬ì¡°ì ) */
 .hero-redesign-strip{margin-top:3px!important}
 
-/* 2. 욕실청소 흰 박스 테두리 추가 + 10px 위로 이동 */
+/* 2. ìì¤ì²­ì í° ë°ì¤ íëë¦¬ ì¶ê° + 10px ìë¡ ì´ë */
 @media(min-width:761px){
   .service-card{border:1px solid var(--line)!important;margin-top:-10px!important}
 }
 
-/* 3. 가격박스/안내박스와 바깥 큰 박스 사이 위아래 5px, 두 박스 사이 3px */
+/* 3. ê°ê²©ë°ì¤/ìë´ë°ì¤ì ë°ê¹¥ í° ë°ì¤ ì¬ì´ ììë 5px, ë ë°ì¤ ì¬ì´ 3px */
 @media(min-width:761px){
   .booking-form{padding-top:5px!important;padding-bottom:5px!important}
   .booking-plan-stack .monthly-plan{margin-bottom:3px!important}
 }
 
-/* 달력 안 '날짜 다시 선택' 버튼 삭제 */
+/* ë¬ë ¥ ì 'ë ì§ ë¤ì ì í' ë²í¼ ì­ì  */
 .calendar-back{display:none!important}
 
-/* 0-보강: 히어로 opening/message 절대배치+1.5배 확대 겹침 버그 무효화 */
+/* 0-ë³´ê°: íì´ë¡ opening/message ì ëë°°ì¹+1.5ë°° íë ê²¹ì¹¨ ë²ê·¸ ë¬´í¨í */
 @media(min-width:761px){
   .hero-stage .hero-opening,.hero-stage .hero-message{position:static!important;transform:none!important;top:auto!important;left:auto!important}
   .hero-stage .hero-opening h1,.hero-stage .hero-message{transform:none!important}
 }
 
-/* 2026-08-22 폰 디자인 참고 미세조정 */
+/* 2026-08-22 í° ëìì¸ ì°¸ê³  ë¯¸ì¸ì¡°ì  */
 
-/* 1. 달력 바닥판(연한베이지)을 위로 20px 확장해 딥케어 쪽으로 살짝 겹치게 */
+/* 1. ë¬ë ¥ ë°ë¥í(ì°íë² ì´ì§)ì ìë¡ 20px íì¥í´ ë¥ì¼ì´ ìª½ì¼ë¡ ì´ì§ ê²¹ì¹ê² */
 @media(min-width:761px){
   .desktop-calendar-box{margin-top:-20px!important}
 }
 
-/* 2. '한 달 2번이면...' 박스 폭을 딥케어 박스와 동일하게 */
+/* 2. 'í ë¬ 2ë²ì´ë©´...' ë°ì¤ í­ì ë¥ì¼ì´ ë°ì¤ì ëì¼íê² */
 @media(min-width:761px){
   .booking-form .booking-plan-stack .booking-frequency-note{width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
 }
 
-/* 4. 방문주소 영역 좌우 여백 추가 + 동/호수 폭 균등화 */
+/* 4. ë°©ë¬¸ì£¼ì ìì­ ì¢ì° ì¬ë°± ì¶ê° + ë/í¸ì í­ ê· ë±í */
 @media(min-width:761px){
   .address-field{padding-left:24px!important;padding-right:24px!important;box-sizing:border-box!important}
   .form-row{padding-left:24px!important;padding-right:24px!important;box-sizing:border-box!important}
   .address-dong-ho{grid-template-columns:1fr 1fr!important}
 }
 
-/* 5. '빠른 시간 내에...' 안내문 위아래 여백 확대 */
+/* 5. 'ë¹ ë¥¸ ìê° ë´ì...' ìë´ë¬¸ ììë ì¬ë°± íë */
 @media(min-width:761px){
   .booking-confirm-note{padding:20px 24px!important;box-sizing:border-box!important}
 }
 
-/* 6. 예약 신청 버튼 좌우 여백 확보 */
+/* 6. ìì½ ì ì²­ ë²í¼ ì¢ì° ì¬ë°± íë³´ */
 @media(min-width:761px){
   .submit{width:calc(100% - 48px)!important;margin:0 24px!important;box-sizing:border-box!important}
 }
 
-/* 1번 재보강: 히어로 텍스트(집 전체를... 등)가 화면 왼쪽에 붙는 문제 - 사진은 풀블리드 유지, 텍스트만 다른 섹션과 동일한 좌우 여백 적용 */
+/* 1ë² ì¬ë³´ê°: íì´ë¡ íì¤í¸(ì§ ì ì²´ë¥¼... ë±)ê° íë©´ ì¼ìª½ì ë¶ë ë¬¸ì  - ì¬ì§ì íë¸ë¦¬ë ì ì§, íì¤í¸ë§ ë¤ë¥¸ ì¹ìê³¼ ëì¼í ì¢ì° ì¬ë°± ì ì© */
 @media(min-width:761px){
   .hero-stage .hero-opening,
   .hero-stage .hero-message{
@@ -946,7 +946,7 @@
   }
 }
 
-/* 모바일: 욕실~아파트가치 4줄을 이미지 위(같은 블록)로 이동, 겹치지 않고 사진 앞에 순서대로 배치 */
+/* ëª¨ë°ì¼: ìì¤~ìíí¸ê°ì¹ 4ì¤ì ì´ë¯¸ì§ ì(ê°ì ë¸ë¡)ë¡ ì´ë, ê²¹ì¹ì§ ìê³  ì¬ì§ ìì ììëë¡ ë°°ì¹ */
 @media(max-width:760px){
   .hero-stage{grid-template-areas:"opening" "message" "picture"!important}
 }
