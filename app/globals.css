@@ -344,7 +344,7 @@
 
 @media(max-width:760px){.calendar-days button.fully-booked{opacity:1;cursor:not-allowed;text-decoration:none}.calendar-days button.fully-booked span{background:transparent!important}}
 
-@media(max-width:760px){.business-title{flex-direction:column;align-items:center;gap:0}.business-title .business-number{margin-top:5px}}
+@media(max-width:760px){.business-title{flex-direction:column;align-items:center;gap:0;margin-top:-20px}.business-title .business-number{margin-top:5px}}
 
 @media(max-width:760px){.hero-message p .apt-value-strong{color:#8a5a3a!important;font-weight:900!important;text-shadow:.3px 0 #8a5a3a,-.3px 0 #8a5a3a}}
 
