@@ -745,8 +745,8 @@
 
 /* ë°ì¤í¬í ìì¤ ì²­ì ë²ì ëª©ë¡: ê¸ì¨ 2ë°°Â·ì§íê² */
 @media(min-width:761px){
-  .service-list.service-areas .tags{gap:12px!important}
-  .service-list.service-areas .tags span{font-size:20px!important;font-weight:800!important;line-height:1.35!important;padding:12px 16px!important;color:var(--deep)!important}
+  .service-list.service-areas .tags{gap:6px!important}
+  .service-list.service-areas .tags span{font-size:20px!important;font-weight:800!important;line-height:1.35!important;padding:8px 12px!important;color:var(--deep)!important}
 }
 
 /* ë°ì¤í¬í ìì½ ê°ê²© ì¹´ë íë ë° ìë´ ë°ì¤ ë¶ì°© */
