@@ -277,7 +277,7 @@ export default function Home() {
           <div className="hero-message">
             <h2>욕실, 한 곳에 집중합니다.</h2>
             <strong className="hero-opening-sub">필요한 곳만, <em>제대로.</em></strong>
-            <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent"><b className="apt-value-strong">“아파트의 가치”</b>를 지키는 욕실 관리.</span></p></div>
+            <div><p><span className="hero-lead">단순청소, 깨끗함을 넘어,</span><span className="hero-lead hero-lead-accent">공간의 수명과 가치를 복원하는 <b className="apt-value-strong">프리미엄 홈 케어 솔루션</b>.</span></p></div>
           </div>
         </div>
         <div className="hero-contam-toggle-group">
