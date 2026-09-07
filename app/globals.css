@@ -973,7 +973,7 @@
 .bonus-badge .hero-contam-toggle-title{font-weight:800}
 .bonus-panel{border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px}
 .bonus-video{display:block;width:100%;height:auto}
-@media(max-width:760px){.bonus-service{padding:20px 0;margin-top:-20px}.bonus-badge .hero-contam-toggle-title{font-size:15px}}
+@media(max-width:760px){.bonus-service{padding:20px 0;margin-top:-20px}.bonus-badge .hero-contam-toggle-title{font-size:20px}}
 .hero-contam-lead{color:#b3651f;font-weight:800}
 .hero-contam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:640px;margin-left:auto;margin-right:auto}
 .hero-contam-list>li{padding-bottom:20px;border-bottom:1px solid var(--line)}
