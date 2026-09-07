@@ -3,7 +3,7 @@
 import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
 
 const services = [
-  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장 및 벽면 전체", "환풍구", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
+  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
 ];
 
 const serviceAreas = [services[0]];
@@ -490,7 +490,7 @@ export default function Home() {
 
       <section className="service section" id="service">
         <div className="shell">
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />현장 노하우와 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p>}</article>})}</div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}{s.en === "BATHROOM" && <p className="service-warning">⚠️ "욕실은 매일 오염이 누적되는 공간입니다"<br />온 가족이 매일 뜨거운 물과 세제를 사용하는 욕실은, 집안에서 가장 혹독한 환경입니다.<br />1~2회의 집중 케어로 눈에 보이는 곰팡이와 물때는 걷어낼 수 있지만, 매일 반복되는 습기와 미네랄 성분은 타일 줄눈과 도기 내부를 서서히 부식시킵니다.<br />치과 스케일링을 미루면 결국 치아를 뽑게 되듯, 욕실 자재도 오염이 고착되어 영구 손상되기 전에 주기적인 '품질 유지 솔루션'으로 수명과 가치를 지켜야 합니다.<br />그래서 저희는 아래 항목을 매번 하나도 빠뜨리지 않습니다.</p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />현장 노하우와 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p>}</article>})}</div>
 
         </div>
       </section>
