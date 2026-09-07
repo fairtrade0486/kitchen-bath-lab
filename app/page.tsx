@@ -264,7 +264,7 @@ export default function Home() {
         <div className="hero-overlay-tag"><p className="ov-tag">부분청소 관리 서비스</p></div>
         <div className="hero-overlay-text">
           <div className="ov-row"><h2 className="ov-line">집 전체를 청소하지 않습니다.</h2><strong className="ov-line">필요한 곳만, <em>제대로.</em></strong></div>
-          <p className="ov-line ov-lead"><span className="hero-lead-accent">단순청소, 깨끗함을 넘어,</span><br /><span className="hero-lead-accent">아파트의 가치를 지키는 욕실 관리.</span></p>
+          <p className="ov-line ov-lead"><span className="hero-lead-accent">단순청소, 깨끗함을 넘어,</span><br /><span className="hero-lead-accent">공간의 수명과 가치를 복원하는 프리미엄 홈 케어 솔루션.</span></p>
         </div>
         <div className="shell hero-stage">
           <div className="hero-opening">
@@ -477,10 +477,10 @@ export default function Home() {
       </section>
 
       <section className="about shell section" id="about">
-    <div className="about-left"><div className="portrait"><img className="profile-photo" src="/profile-navy.png" alt="직접 방문하는 담당자" /><div className="nameplate"><small>YOUR CLEANER</small><b>홈크린마스터</b></div></div><div className="about-copy"><h2 className="visitor-title"><span>누가 방문하는지,</span><em>미리 확인하세요.</em></h2><blockquote>“낯선 작업자가 오는 불안 없이,<br /><span className="quote-indent">사진 속 제가 항상 방문합니다.”</span></blockquote></div></div>
+    <div className="about-left"><div className="portrait"><img className="profile-photo" src="/profile-navy.png" alt="직접 방문하는 담당자" /><div className="nameplate"><small>YOUR CLEANER</small><b>크린프로마스터</b></div></div><div className="about-copy"><h2 className="visitor-title"><span>누가 방문하는지,</span><em>미리 확인하세요.</em></h2><blockquote>“낯선 작업자가 오는 불안 없이,<br /><span className="quote-indent">사진 속 제가 항상 방문합니다.”</span></blockquote></div></div>
         <div className="about-greeting" aria-label="인사말 영역">
           <p className="greeting-kicker">HOME CLEAN MASTER’S STORY</p>
-          <p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 홈크린마스터입니다.</p>
+          <p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 크린프로마스터입니다.</p>
           <p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
           <p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
           <p className="greeting-principle">오랜 현장 경험과 축적된 노하우를 바탕으로, 지금까지 경험하지 못한 새로운 청소의 기준을 제시하겠습니다. 섬세함과 전문성을 더해, 공간이 달라지는 진정한 변화를 경험하게 해드리겠습니다.</p>
@@ -490,7 +490,7 @@ export default function Home() {
 
       <section className="service section" id="service">
         <div className="shell">
-          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
+          <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />현장 노하우와 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p>}</article>})}</div>
 
         </div>
       </section>
