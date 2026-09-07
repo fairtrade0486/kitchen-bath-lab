@@ -47,6 +47,7 @@ export default function Home() {
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
   const [activeContamPanel, setActiveContamPanel] = useState<"contam" | "bleach" | null>(null);
+  const [bonusOpen, setBonusOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -491,6 +492,22 @@ export default function Home() {
         <div className="shell">
           <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3>{s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}{s.en === "BATHROOM" && <span className="mobile-only-scope-tag">곰팡이 제거 및 예방 조치</span>}</div>{s.en === "BATHROOM" && <p className="service-highlight"><strong>독일 키엘(kiehl's)의 친환경 약품 + 100℃ 고화력 스팀청소</strong><br />오염 제거 후 욕실 전체를 멸균·소독 처리합니다.<br />서두르지 않고 충분한 시간을 들여, 만족스러운 결과를 보여드리겠습니다.</p>}</article>})}</div>
 
+        </div>
+      </section>
+
+      <section className="bonus-service section" id="bonus-service">
+        <div className="shell">
+          <button type="button" className="hero-contam-toggle-row bonus-toggle-row" aria-expanded={bonusOpen} aria-controls="bonus-service-panel" onClick={() => setBonusOpen(current => !current)}>
+            <span className={`hero-contam-arrow${bonusOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+            <span className="hero-contam-badge bonus-badge">
+              <span className="hero-contam-toggle-title">숨은 보너스 혜택: 연무소독</span>
+            </span>
+          </button>
+          {bonusOpen && (
+            <div className="hero-contam-panel bonus-panel" id="bonus-service-panel">
+              <video className="bonus-video" src="/mist-disinfection.mp4" autoPlay muted loop playsInline />
+            </div>
+          )}
         </div>
       </section>
 
