@@ -965,12 +965,12 @@
 .hero-contam-taegeuk{width:30px;height:30px;flex-shrink:0}
 .hero-contam-badge{display:inline-flex;align-items:center;gap:12px;border:1.5px solid var(--sage);border-radius:8px;padding:8px 14px;background:#fff;box-shadow:0 2px 6px rgba(37,39,37,.1)}
 .hero-contam-panel{background:var(--warm);color:var(--charcoal);padding:30px 24px;border-top:1px solid var(--line)}
-.bonus-service{background:var(--beige)}
+.bonus-service{background:var(--beige);padding:28px 0}
 .bonus-toggle-row{border:1px solid var(--line);background:var(--warm)}
 .bonus-badge{width:100%;justify-content:center;border:0;box-shadow:none;background:transparent;padding:8px 14px}
 .bonus-panel{border:1px solid var(--line);border-top:0}
 .bonus-video{display:block;width:100%;height:auto}
-@media(max-width:760px){.bonus-service{padding:60px 0}}
+@media(max-width:760px){.bonus-service{padding:20px 0}}
 .hero-contam-lead{color:#b3651f;font-weight:800}
 .hero-contam-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;max-width:640px;margin-left:auto;margin-right:auto}
 .hero-contam-list>li{padding-bottom:20px;border-bottom:1px solid var(--line)}
