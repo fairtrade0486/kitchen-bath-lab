@@ -25,6 +25,7 @@
 .tags-label{display:inline-block;margin:14px 0 2px;padding:6px 10px;border:1px solid var(--line);color:var(--charcoal);font-size:11px;font-weight:700}
 .service-highlight{margin:16px 0 0;padding:0;font-size:13px;line-height:1.75;color:#555}
 .service-warning{margin:14px 0 0;padding:14px 16px;background:var(--warm);border-left:3px solid #b8543a;font-size:13px;line-height:1.7;color:#4a4a4a}
+.scope-title{display:inline-block;border:1px solid var(--sage);outline:1px solid var(--sage);outline-offset:2px;padding:4px 14px;font-size:20px}
 .service-highlight strong{display:block;margin-bottom:4px;color:#9a5d35;font-size:14px;font-weight:800}
 .pricing{background:var(--warm)}.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}.price-group{background:var(--beige);padding:30px}.price-group.package{background:var(--deep);color:white}.price-label{display:block;font-size:10px;letter-spacing:1.7px;color:var(--sage);margin-bottom:25px}.package .price-label{color:#c4cec5}.clean-price{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-top:1px solid var(--line)}.package .clean-price{border-color:rgba(255,255,255,.2)}.clean-price strong{font-size:16px}.clean-price b{font-family:Georgia,"Noto Serif KR",serif;font-size:24px;font-weight:500}
 .clean-price small{font-size:11px;font-weight:400;color:#c5cec6;line-height:1.8}
