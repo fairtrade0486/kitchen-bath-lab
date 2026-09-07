@@ -506,11 +506,13 @@ export default function Home() {
           {bonusOpen && (
             <div className="hero-contam-panel bonus-panel" id="bonus-service-panel">
               <video className="bonus-video" src="/mist-disinfection.mp4" autoPlay muted loop playsInline />
+              <img className="bonus-info-img" src="/mist-info-1b.jpg" alt="당신의 불안한 마음을 이해하는 것" />
               <img className="bonus-info-img" src="/mist-info-1.jpg" alt="툴앤툴 피톤치드 연무액 제품" />
               <img className="bonus-info-img" src="/mist-info-2.jpg" alt="숲의 선물, 피톤치드란" />
               <img className="bonus-info-img" src="/mist-info-3.jpg" alt="01. 검증된 원액" />
               <img className="bonus-info-img" src="/mist-info-4.jpg" alt="02. 검증된 안전함" />
               <img className="bonus-info-img" src="/mist-info-5.jpg" alt="국내 유일 글로벌 제품안전연구소의 흡입독성 시험 통과" />
+              <img className="bonus-info-img" src="/mist-info-5b.jpg" alt="악취제거 99.9%" />
               <img className="bonus-info-img" src="/mist-info-6.jpg" alt="03. 검증된 청결함" />
               <img className="bonus-info-img" src="/mist-info-7.jpg" alt="연무액의 성능 검증 및 함유 성분" />
             </div>
