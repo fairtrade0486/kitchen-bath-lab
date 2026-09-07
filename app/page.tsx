@@ -3,7 +3,7 @@
 import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
 
 const services = [
-  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "샤워부스", "수전", "세면대 및 거울", "수납장", "변기", "하수구 및 덮개, 트랩"] },
+  { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "세면대 및 거울", "변기", "샤워부스", "수전", "수납장", "하수구 및 덮개, 트랩"] },
 ];
 
 const serviceAreas = [services[0]];
