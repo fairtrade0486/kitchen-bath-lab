@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
  const requestHeaders = await headers();
  const host = requestHeaders.get("host") ?? "localhost:3000";
  const protocol = host.startsWith("localhost") ? "http" : "https";
- const image = `${protocol}://${host}/og-v2.png`;
+ const image = `${protocol}://${host}/og-v3.png`;
  return {
  title: "욕실 부분청소 | KITCHEN & BATH_LAB",
  description: "매칭하지 않습니다. 욕실, 한곳에 집중하는 영종지역 1인 부분청소 서비스.",
