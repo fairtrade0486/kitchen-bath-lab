@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
  return {
  title: "욕실·주방 부분청소 | KITCHEN & BATH_LAB",
  description: "매칭하지 않습니다. 욕실, 한곳에 집중하는 영종지역 1인 부분청소 서비스.",
- openGraph: { title: "집 전체를 청소하지 않습니다.", description: "욕실, 한곳에 집중하는 영종지역 1:1 홈케어", images: [image], locale: "ko_KR", type: "website" },
+ openGraph: { title: "“아파트의 가치”를 지키는 욕실 관리", description: "프리미엄 홈케어 솔루션", images: [image], locale: "ko_KR", type: "website" },
  twitter: { card: "summary_large_image", images: [image] },
  };
 }
