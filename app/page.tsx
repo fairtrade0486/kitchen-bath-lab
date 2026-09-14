@@ -651,6 +651,7 @@ export default function Home() {
                                 );
                               })}
                             </div>
+                        )}
                         {selectedDate && React.createElement("div", { className: "admin-add-booking" },
                                                              React.createElement("button", { type: "button", className: "admin-add-toggle", onClick: () => { setAdminAddOpen(current => !current); setAdminAddError(""); } },
                                                                                  React.createElement("strong", null, "예약 추가"),
