@@ -397,6 +397,13 @@
 .admin-active .calendar-head strong{font-size:17px!important;color:var(--deep)!important}
 .admin-active .calendar-days button span,.admin-active .calendar-days button{width:40px!important;height:40px!important}
 .admin-active .admin-slot-control{margin-top:20px!important}
+.admin-add-booking{margin-top:20px}
+.admin-add-toggle{width:100%;border:1px solid var(--line);background:var(--beige);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;font-family:Georgia,"Noto Serif KR",serif;font-size:18px;font-weight:800;color:var(--deep);cursor:pointer}
+.admin-add-booking-form{border:1px solid var(--line);border-top:0;padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
+.admin-add-booking-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#6d746d;font-weight:700}
+.admin-add-booking-form select,.admin-add-booking-form input[type=text]{border:1px solid var(--line);padding:12px;font-size:14px;background:white}
+.admin-add-booking-form>button:last-child{border:0;background:var(--deep);color:white;padding:14px;font-weight:800;cursor:pointer}
+.admin-add-booking-form>button:last-child:disabled{background:#879188;cursor:default}
 .admin-active .admin-slot-control h3{margin:0 0 6px!important;font-size:18px!important;color:var(--deep)!important}
 @media(max-width:760px){.admin-active .booking-form{width:calc(100% - 24px)!important;padding:14px!important}.admin-active .admin-section-trigger{min-height:72px!important;font-size:20px!important}.admin-active .admin-section-content{padding:0 14px 18px!important}.admin-active .calendar-days button span,.admin-active .calendar-days button{width:36px!important;height:36px!important}.admin-active .admin-customer-history-head{gap:8px!important;padding:14px 12px!important}.admin-active .admin-customer-history-head>button{font-size:12px!important}}
 
