@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
+import React from "react";
 
 const services = [
   { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "세면대 및 거울", "변기", "샤워부스", "수전", "수납장", "하수구 및 덮개, 트랩"] },
@@ -46,6 +47,12 @@ export default function Home() {
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
+  const [adminAddOpen, setAdminAddOpen] = useState(false);
+  const [adminAddCustomerKey, setAdminAddCustomerKey] = useState("");
+  const [adminAddTime, setAdminAddTime] = useState("");
+  const [adminAddService, setAdminAddService] = useState("딥케어 욕실(2개)");
+  const [adminAddSubmitting, setAdminAddSubmitting] = useState(false);
+  const [adminAddError, setAdminAddError] = useState("");
   const [activeContamPanel, setActiveContamPanel] = useState<"contam" | "bleach" | null>(null);
   const [bonusOpen, setBonusOpen] = useState(false);
   const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
@@ -120,6 +127,13 @@ export default function Home() {
 
   useEffect(() => { refreshCustomerHistory(); }, [adminMode]);
 
+  useEffect(() => {
+    setAdminAddOpen(false);
+    setAdminAddCustomerKey("");
+    setAdminAddTime("");
+    setAdminAddError("");
+  }, [selectedDate]);
+
   async function completeBooking(id: number) {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
       method: "POST", headers: supabaseHeaders, body: JSON.stringify({ p_booking_id: id, p_password: "930707" }),
@@ -150,6 +164,36 @@ export default function Home() {
       return;
     }
     await refreshSlots();
+  }
+
+  async function addAdminBooking() {
+    if (!selectedDateKey || !adminAddTime || !adminAddCustomerKey) return;
+    const customer = customerHistory.find(c => `${c.name}__${c.address}` === adminAddCustomerKey);
+    if (!customer) return;
+    if (!adminAddService.trim()) { setAdminAddError("서비스 내용을 입력해 주세요."); return; }
+    setAdminAddSubmitting(true);
+    setAdminAddError("");
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_add_booking`, {
+      method: "POST",
+      headers: supabaseHeaders,
+      body: JSON.stringify({ p_date: selectedDateKey, p_time: adminAddTime, p_name: customer.name, p_phone: customer.phone, p_service: adminAddService, p_address: customer.address, p_password: "930707" }),
+    });
+    setAdminAddSubmitting(false);
+    if (!response.ok) {
+      setAdminAddError("예약 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
+    const ok = await response.json() as boolean;
+    if (!ok) {
+      setAdminAddError("해당 시간은 이미 예약되어 있거나 마감된 시간입니다.");
+      await refreshSlots();
+      return;
+    }
+    setAdminAddOpen(false);
+    setAdminAddCustomerKey("");
+    setAdminAddTime("");
+    await refreshSlots();
+    await refreshAdminBookings();
   }
 
   async function setBookingStatus(id: number, status: "예약접수" | "통화필요" | "예약확정" | "예약취소") {
@@ -607,7 +651,35 @@ export default function Home() {
                                 );
                               })}
                             </div>
-                          )}
+                        {selectedDate && React.createElement("div", { className: "admin-add-booking" },
+                                                             React.createElement("button", { type: "button", className: "admin-add-toggle", onClick: () => { setAdminAddOpen(current => !current); setAdminAddError(""); } },
+                                                                                 React.createElement("strong", null, "예약 추가"),
+                                                                                 React.createElement("span", null, adminAddOpen ? "▲" : "▼")
+                                                                                 ),
+                                                             adminAddOpen && React.createElement("div", { className: "admin-add-booking-form" },
+                                                                                                 React.createElement("label", null, "고객 선택",
+                                                                                                                     React.createElement("select", { value: adminAddCustomerKey, onChange: e => setAdminAddCustomerKey(e.target.value) },
+                                                                                                                                         React.createElement("option", { value: "" }, "고객을 선택해 주세요"),
+                                                                                                                                         customerHistory.map(c => React.createElement("option", { key: `${c.name}__${c.address}`, value: `${c.name}__${c.address}` }, `${c.name} (${c.address || "주소 미입력"})`))
+                                                                                                                                         )
+                                                                                                                     ),
+                                                                                                 React.createElement("label", null, "시간",
+                                                                                                                     React.createElement("select", { value: adminAddTime, onChange: e => setAdminAddTime(e.target.value) },
+                                                                                                                                         React.createElement("option", { value: "" }, "시간 선택"),
+                                                                                                                                         timeSlots.map(([time, label]) => {
+                                                                                                                                           const booked = (bookedSlots[selectedDateKey] ?? []).includes(time);
+                                                                                                                                           const closed = (closedSlots[selectedDateKey] ?? []).includes(time);
+                                                                                                                                           return React.createElement("option", { key: time, value: time, disabled: booked || closed }, label + (booked || closed ? " (마감)" : ""));
+                                                                                                                                           })
+                                                                                                                                         )
+                                                                                                                     ),
+                                                                                                 React.createElement("label", null, "서비스",
+                                                                                                                     React.createElement("input", { type: "text", value: adminAddService, onChange: e => setAdminAddService(e.target.value) })
+                                                                                                                     ),
+                                                                                                 adminAddError && React.createElement("small", { className: "field-error" }, adminAddError),
+                                                                                                 React.createElement("button", { type: "button", disabled: adminAddSubmitting || !adminAddCustomerKey || !adminAddTime, onClick: addAdminBooking }, adminAddSubmitting ? "등록 중..." : "예약 등록")
+                                                                                                 )
+                                                             )}
                           {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^반도유보라 퍼스티지 아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons" aria-label={`${booking.name} 예약 상태`}>{(["예약접수", "통화필요", "예약확정", "예약취소"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { if (item === "예약취소" && !window.confirm("정말 이 고객의 예약을 취소하시겠습니까?")) return; await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}<button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div></article>; })}
                         </div>
                       </div>
