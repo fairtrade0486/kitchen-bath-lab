@@ -63,7 +63,7 @@ export default function Home() {
   async function refreshSlots() {
     const monthStart = `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-01`;
     const monthEnd = `${calendarYear}-${String(calendarMonth + 1).padStart(2, "0")}-${String(daysInMonth).padStart(2, "0")}`;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/booking_slots?select=booking_date,booking_time,source&booking_date=gte.${monthStart}&booking_date=lte.${monthEnd}`, {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/booking_slots?select=booking_date,booking_time,source&booking_date=gte.${monthStart}&booking_date=lte.${monthEnd}&site=eq.kitchen_bath_lab`, {
       headers: supabaseHeaders,
       cache: "no-store",
     });
