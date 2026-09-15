@@ -600,7 +600,7 @@ export default function Home() {
                                     {customer.service_dates.map(date => <span key={date}>{date}</span>)}
                                   </div>
                                 )}
-                                React.createElement("div", { className: "admin-add-booking" },
+                                {React.createElement("div", { className: "admin-add-booking" },
                                 React.createElement("button", { type: "button", className: "admin-add-toggle", onClick: () => { setAdminAddOpenFor(current => current === key ? null : key); setAdminAddError(""); } },
                                 React.createElement("strong", null, "예약 추가"),
                                 React.createElement("span", null, adminAddOpenFor === key ? "▲" : "▼")
@@ -621,7 +621,7 @@ export default function Home() {
                                 adminAddError && React.createElement("small", { className: "field-error" }, adminAddError),
                                 React.createElement("button", { type: "button", disabled: adminAddSubmitting || !adminAddDate || !adminAddTime, onClick: () => addAdminBooking({ name: customer.name, phone: customer.phone, address: customer.address }) }, adminAddSubmitting ? "등록 중..." : "예약 등록")
                                 )
-                                )
+                                )}
                                 
                               </div>
                             );
