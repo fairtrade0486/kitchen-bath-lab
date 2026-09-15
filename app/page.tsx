@@ -600,6 +600,29 @@ export default function Home() {
                                     {customer.service_dates.map(date => <span key={date}>{date}</span>)}
                                   </div>
                                 )}
+                                React.createElement("div", { className: "admin-add-booking" },
+                                React.createElement("button", { type: "button", className: "admin-add-toggle", onClick: () => { setAdminAddOpenFor(current => current === key ? null : key); setAdminAddError(""); } },
+                                React.createElement("strong", null, "예약 추가"),
+                                React.createElement("span", null, adminAddOpenFor === key ? "▲" : "▼")
+                                ),
+                                adminAddOpenFor === key && React.createElement("div", { className: "admin-add-booking-form" },
+                                React.createElement("label", null, "날짜",
+                                React.createElement("input", { type: "date", value: adminAddDate, onChange: (e: any) => setAdminAddDate(e.target.value) })
+                                ),
+                                React.createElement("label", null, "시간",
+                                React.createElement("select", { value: adminAddTime, onChange: (e: any) => setAdminAddTime(e.target.value) },
+                                React.createElement("option", { value: "" }, "시간 선택"),
+                                timeSlots.map(([time, label]) => React.createElement("option", { key: time, value: time }, label))
+                                )
+                                ),
+                                React.createElement("label", null, "서비스",
+                                React.createElement("input", { type: "text", value: adminAddService, onChange: (e: any) => setAdminAddService(e.target.value) })
+                                ),
+                                adminAddError && React.createElement("small", { className: "field-error" }, adminAddError),
+                                React.createElement("button", { type: "button", disabled: adminAddSubmitting || !adminAddDate || !adminAddTime, onClick: () => addAdminBooking({ name: customer.name, phone: customer.phone, address: customer.address }) }, adminAddSubmitting ? "등록 중..." : "예약 등록")
+                                )
+                                )
+                                
                               </div>
                             );
                           })
