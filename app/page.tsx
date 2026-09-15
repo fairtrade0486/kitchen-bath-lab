@@ -652,35 +652,6 @@ export default function Home() {
                               })}
                             </div>
                         )}
-                        {selectedDate && React.createElement("div", { className: "admin-add-booking" },
-                                                             React.createElement("button", { type: "button", className: "admin-add-toggle", onClick: () => { setAdminAddOpen(current => !current); setAdminAddError(""); } },
-                                                                                 React.createElement("strong", null, "예약 추가"),
-                                                                                 React.createElement("span", null, adminAddOpen ? "▲" : "▼")
-                                                                                 ),
-                                                             adminAddOpen && React.createElement("div", { className: "admin-add-booking-form" },
-                                                                                                 React.createElement("label", null, "고객 선택",
-                                                                                                    React.createElement("select", { value: adminAddCustomerKey, onChange: (e: any) => setAdminAddCustomerKey(e.target.value) },
-                                                                                                                                         React.createElement("option", { value: "" }, "고객을 선택해 주세요"),
-                                                                                                                                         customerHistory.map(c => React.createElement("option", { key: `${c.name}__${c.address}`, value: `${c.name}__${c.address}` }, `${c.name} (${c.address || "주소 미입력"})`))
-                                                                                                                                         )
-                                                                                                                     ),
-                                                                                                 React.createElement("label", null, "시간",
-                                                                                                    React.createElement("select", { value: adminAddTime, onChange: (e: any) => setAdminAddTime(e.target.value) },
-                                                                                                                                         React.createElement("option", { value: "" }, "시간 선택"),
-                                                                                                                                         timeSlots.map(([time, label]) => {
-                                                                                                                                           const booked = (bookedSlots[selectedDateKey] ?? []).includes(time);
-                                                                                                                                           const closed = (closedSlots[selectedDateKey] ?? []).includes(time);
-                                                                                                                                           return React.createElement("option", { key: time, value: time, disabled: booked || closed }, label + (booked || closed ? " (마감)" : ""));
-                                                                                                                                           })
-                                                                                                                                         )
-                                                                                                                     ),
-                                                                                                 React.createElement("label", null, "서비스",
-                                                                                                    React.createElement("input", { type: "text", value: adminAddService, onChange: (e: any) => setAdminAddService(e.target.value) })
-                                                                                                                     ),
-                                                                                                 adminAddError && React.createElement("small", { className: "field-error" }, adminAddError),
-                                                                                                 React.createElement("button", { type: "button", disabled: adminAddSubmitting || !adminAddCustomerKey || !adminAddTime, onClick: addAdminBooking }, adminAddSubmitting ? "등록 중..." : "예약 등록")
-                                                                                                 )
-                                                             )}
                           {selectedDate && adminBookings.length === 0 ? <div className="admin-empty">아직 예약이 없습니다.</div> : selectedDate && adminBookings.map(booking => { const status = bookingStatuses[booking.id] ?? booking.booking_status ?? "예약접수"; return <article className="admin-day-booking-card" key={booking.id}><div className="admin-day-booking-info"><strong>{booking.name}</strong><span>{booking.phone}</span><span>{(booking.address || "주소 미입력").replace(/^반도유보라 퍼스티지 아파트\s*/, "")}</span><span>{booking.booking_time.slice(0, 5)}</span></div><div className="admin-status-buttons" aria-label={`${booking.name} 예약 상태`}>{(["예약접수", "통화필요", "예약확정", "예약취소"] as const).map(item => <button type="button" className={status === item ? "selected" : ""} key={item} onClick={async () => { if (item === "예약취소" && !window.confirm("정말 이 고객의 예약을 취소하시겠습니까?")) return; await setBookingStatus(booking.id, item); if (item === "통화필요") window.open(`tel:${booking.phone.replace(/\D/g, "")}`, "_blank"); }}>{item === "통화필요" ? "통화" : item}</button>)}<button type="button" disabled={booking.completed} onClick={() => completeBooking(booking.id)}>{booking.completed ? "서비스 완료 ✓" : "서비스 완료"}</button></div></article>; })}
                         </div>
                       </div>
