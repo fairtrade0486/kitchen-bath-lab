@@ -47,8 +47,8 @@ export default function Home() {
   const [customerHistory, setCustomerHistory] = useState<Array<{ name: string; phone: string; address: string; visit_count: number; service_dates: string[]; note: string }>>([]);
   const [expandedCustomers, setExpandedCustomers] = useState<Record<string, boolean>>({});
   const [bookingErrors, setBookingErrors] = useState<Record<string, string>>({});
-  const [adminAddOpen, setAdminAddOpen] = useState(false);
-  const [adminAddCustomerKey, setAdminAddCustomerKey] = useState("");
+  const [adminAddOpenFor, setAdminAddOpenFor] = useState<string | null>(null);
+  const [adminAddDate, setAdminAddDate] = useState("");
   const [adminAddTime, setAdminAddTime] = useState("");
   const [adminAddService, setAdminAddService] = useState("딥케어 욕실(2개)");
   const [adminAddSubmitting, setAdminAddSubmitting] = useState(false);
@@ -127,12 +127,6 @@ export default function Home() {
 
   useEffect(() => { refreshCustomerHistory(); }, [adminMode]);
 
-  useEffect(() => {
-    setAdminAddOpen(false);
-    setAdminAddCustomerKey("");
-    setAdminAddTime("");
-    setAdminAddError("");
-  }, [selectedDate]);
 
   async function completeBooking(id: number) {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_complete_booking`, {
@@ -166,17 +160,15 @@ export default function Home() {
     await refreshSlots();
   }
 
-  async function addAdminBooking() {
-    if (!selectedDateKey || !adminAddTime || !adminAddCustomerKey) return;
-    const customer = customerHistory.find(c => `${c.name}__${c.address}` === adminAddCustomerKey);
-    if (!customer) return;
+  async function addAdminBooking(customer: { name: string; phone: string; address: string }) {
+    if (!adminAddDate || !adminAddTime) return;
     if (!adminAddService.trim()) { setAdminAddError("서비스 내용을 입력해 주세요."); return; }
     setAdminAddSubmitting(true);
     setAdminAddError("");
     const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/admin_add_booking`, {
       method: "POST",
       headers: supabaseHeaders,
-      body: JSON.stringify({ p_date: selectedDateKey, p_time: adminAddTime, p_name: customer.name, p_phone: customer.phone, p_service: adminAddService, p_address: customer.address, p_password: "930707" }),
+      body: JSON.stringify({ p_date: adminAddDate, p_time: adminAddTime, p_name: customer.name, p_phone: customer.phone, p_service: adminAddService, p_address: customer.address, p_password: "930707" }),
     });
     setAdminAddSubmitting(false);
     if (!response.ok) {
@@ -186,11 +178,10 @@ export default function Home() {
     const ok = await response.json() as boolean;
     if (!ok) {
       setAdminAddError("해당 시간은 이미 예약되어 있거나 마감된 시간입니다.");
-      await refreshSlots();
       return;
     }
-    setAdminAddOpen(false);
-    setAdminAddCustomerKey("");
+    setAdminAddOpenFor(null);
+    setAdminAddDate("");
     setAdminAddTime("");
     await refreshSlots();
     await refreshAdminBookings();
