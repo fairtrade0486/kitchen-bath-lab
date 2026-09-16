@@ -24,10 +24,10 @@ const steps = [
 ];
 
 const APT_COMPLEXES = [
-  { name: "반도유보라 퍼스티지", dongStart: 101, dongEnd: 106 },
+  { name: "영종 반도유보라 퍼스티지", dongStart: 101, dongEnd: 106 },
   { name: "영종 제일풍경채 디오션", dongStart: 101, dongEnd: 107 },
   { name: "영종 오션파크 모아엘가 그랑데", dongStart: 611, dongEnd: 618 },
-  { name: "영종베르힐 스카이시티", dongStart: 521, dongEnd: 533 },
+  { name: "영종 베르힐 스카이시티", dongStart: 521, dongEnd: 533 },
 ];
 const APT_COMPLEX_PREFIX_RE = new RegExp(`^(${APT_COMPLEXES.map(c => c.name).join("|")})\\s*`);
 
