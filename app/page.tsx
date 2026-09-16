@@ -77,7 +77,7 @@ const selectedComplexDongs = selectedComplex
   : [];
 const OCTOBER_SLOT_CUTOFF = "2026-10-01";
 const timeSlots: [string, string][] = selectedDateKey && selectedDateKey >= OCTOBER_SLOT_CUTOFF
-? [["10:00", "오전 10시"], ["12:00", "낮 12시"], ["14:00", "오후 2시"], ["16:00", "오후 4시"]]
+? [["09:00", "오전 9시"], ["12:00", "낮 12시"], ["15:00", "오후 3시"], ["18:00", "오후 6시"]]
 : [["09:00", "오전 9시"], ["15:00", "오후 3시"], ["17:00", "오후 5시"]];
 
 async function refreshSlots() {
