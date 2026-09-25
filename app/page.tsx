@@ -574,8 +574,8 @@ return (
 <form onSubmit={submit} noValidate className={`booking-form${adminMode ? " admin-mode" : ""}`}>
 <div className="booking-plan-stack">
 <button type="button" className="booking-frequency-note booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
-<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
 <span className={`hero-contam-arrow booking-frequency-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
 </button>
 {freqNoteOpen && (
 <div className="booking-frequency-panel" id="booking-frequency-panel">
