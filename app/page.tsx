@@ -573,14 +573,12 @@ return (
 
 <form onSubmit={submit} noValidate className={`booking-form${adminMode ? " admin-mode" : ""}`}>
 <div className="booking-plan-stack">
-<button type="button" className="hero-contam-toggle-row booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
-<span className={`hero-contam-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-<span className="hero-contam-badge">
-<span className="hero-contam-toggle-title">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
-</span>
+<button type="button" className="booking-frequency-note booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
+<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
+<span className={`hero-contam-arrow booking-frequency-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
 </button>
 {freqNoteOpen && (
-<div className="hero-contam-panel booking-frequency-panel" id="booking-frequency-panel">
+<div className="booking-frequency-panel" id="booking-frequency-panel">
 <p>매주 청소 서비스를 받으시는 것은 비용적으로 과하고 불필요합니다.<br />매주 할 필요는 없고, 2주가 욕실 자재와 가족 건강을 지키는 마지노선입니다.</p>
 <p className="service-warning">🚨 2주 이상 방치 시 찾아오는 위생 경고</p>
 <h4>곰팡이보다 독한 분홍색 박테리아</h4>

@@ -1010,3 +1010,14 @@
   .hero-contam-list h4{font-size:19px}
   .hero-contam-list ul li{font-size:18px;line-height:1.7}
 }
+
+/* 한 달 2번이면 충분합니다 - 아코디언 전환 (2026-09) */
+.booking-frequency-note.booking-frequency-toggle{cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;appearance:none;-webkit-appearance:none}
+.booking-frequency-note-text{flex:1}
+.booking-frequency-arrow{display:inline-block;font-size:11px;line-height:1;transform:scale(1.4);flex-shrink:0;transition:transform .2s ease}
+.booking-frequency-arrow.is-open{transform:scale(1.4) rotate(180deg)}
+.booking-frequency-panel{margin:0 0 16px;padding:18px 16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--charcoal);text-align:left}
+.booking-frequency-panel h4{margin:14px 0 6px;font-size:15px;color:var(--deep)}
+.booking-frequency-panel h4:first-of-type{margin-top:0}
+.booking-frequency-panel p{margin:0 0 10px;font-size:13px;line-height:1.7;color:#555b55}
+.booking-frequency-panel p.service-warning{font-weight:700;color:var(--deep)}
