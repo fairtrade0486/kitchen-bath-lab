@@ -64,6 +64,7 @@ const [adminAddSubmitting, setAdminAddSubmitting] = useState(false);
 const [adminAddError, setAdminAddError] = useState("");
 const [activeContamPanel, setActiveContamPanel] = useState<"contam" | "bleach" | null>(null);
 const [bonusOpen, setBonusOpen] = useState(false);
+const [freqNoteOpen, setFreqNoteOpen] = useState(false);
 const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
 const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
 const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -571,8 +572,28 @@ return (
 <section className="booking section" id="booking"><div className="shell booking-grid">
 
 <form onSubmit={submit} noValidate className={`booking-form${adminMode ? " admin-mode" : ""}`}>
-<div className="booking-plan-stack"><p className="booking-frequency-note">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</p>
-<div className="price-group monthly-plan booking-plan selected" aria-label="딥케어 욕실 2개 월 2회 100,000원"><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div></div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
+<div className="booking-plan-stack">
+<button type="button" className="hero-contam-toggle-row booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
+<span className={`hero-contam-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
+<span className="hero-contam-badge">
+<span className="hero-contam-toggle-title">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
+</span>
+</button>
+{freqNoteOpen && (
+<div className="hero-contam-panel booking-frequency-panel" id="booking-frequency-panel">
+<p>매주 청소 서비스를 받으시는 것은 비용적으로 과하고 불필요합니다.<br />매주 할 필요는 없고, 2주가 욕실 자재와 가족 건강을 지키는 마지노선입니다.</p>
+<p className="service-warning">🚨 2주 이상 방치 시 찾아오는 위생 경고</p>
+<h4>곰팡이보다 독한 분홍색 박테리아</h4>
+<p>많은 분들이 핑크빛 물때나 곰팡이로 착각하시지만, 정체는 &apos;세라티아&apos;라는 기회감염성 병원균입니다. 일반 곰팡이처럼 겉에만 머무는 게 아니라, 방치 기간이 길어질수록 스스로를 보호하는 끈적한 막(바이오필름)을 형성해 자재 깊숙이 안착합니다. 특히 따뜻한 샤워 수증기와 결합해 공기 중 미세 입자로 퍼지는데, 이를 흡입할 경우 호흡기 감염, 요로 감염 등으로 이어질 수 있어 면역력이 약한 아이나 노약자가 있는 가정은 더 신경 써야 합니다.</p>
+<h4>보이지 않는 곰팡이 포자</h4>
+<p>눈에 보이는 검은 곰팡이가 피기 전, 배수구 안쪽에서 무수한 포자가 생성되어 공기 중으로 날아다니며 피부 발진과 알레르기를 유발합니다.</p>
+<h4>미네랄의 돌질화(백화 현상)</h4>
+<p>수돗물 속 미네랄이 딱딱한 석회질로 굳어 자재 내부를 부식시키고 변색을 일으킵니다.</p>
+<p>이 모든 오염과 유해균이 고착화되기 전, 2주 주기를 지키는 것이 가족의 위생과 비용 모두를 잡는 가장 합리적인 관리법입니다.</p>
+</div>
+)}
+<div className="price-group monthly-plan booking-plan selected" aria-label="딥케어 욕실 2개 월 2회 100,000원"><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div>
+</div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
 패턴에 맞춰 조율합니다.</p></div>
 <div className="desktop-calendar-box">
 <div className="calendar-head"><strong>예약 날짜 선택</strong><div><select aria-label="연도 선택" value={calendarYear} onChange={e => { setCalendarYear(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{years.map(y => <option key={y} value={y}>{y}년</option>)}</select><select aria-label="월 선택" value={calendarMonth} onChange={e => { setCalendarMonth(Number(e.target.value)); setSelectedDate(null); setSelectedTimeValue(""); }}>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i}>{i + 1}월</option>)}</select></div></div>
