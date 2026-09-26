@@ -1028,3 +1028,19 @@
   color:#8B5E3C!important;
   border-color:#8B5E3C!important;
 }
+
+.booking-frequency-note.booking-frequency-toggle{
+  position:relative;
+  overflow:hidden;
+}
+.booking-frequency-note.booking-frequency-toggle::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:45%;
+  height:100%;
+  background:linear-gradient(120deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.85) 50%,rgba(255,255,255,0) 100%);
+  animation:bonusShine 0.9s linear infinite;
+  pointer-events:none;
+}
