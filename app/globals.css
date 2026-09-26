@@ -1044,3 +1044,8 @@
   animation:bonusShine 0.9s linear infinite;
   pointer-events:none;
 }
+
+.booking-frequency-panel p.frequency-note-lead{font-size:26px!important;font-weight:700!important;color:var(--deep)!important}
+.booking-frequency-panel p{font-size:19.5px!important;line-height:1.75!important}
+.booking-frequency-panel h4{font-size:22.5px!important}
+.booking-frequency-panel p.service-warning{font-size:19.5px!important}
