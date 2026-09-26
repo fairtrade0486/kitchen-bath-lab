@@ -1021,3 +1021,10 @@
 .booking-frequency-panel h4:first-of-type{margin-top:0}
 .booking-frequency-panel p{margin:0 0 10px;font-size:13px;line-height:1.7;color:#555b55}
 .booking-frequency-panel p.service-warning{font-weight:700;color:var(--deep)}
+
+.booking-form .booking-plan-stack .booking-frequency-note.booking-frequency-toggle,
+.booking-plan-stack .booking-frequency-note.booking-frequency-toggle,
+.booking-frequency-note.booking-frequency-toggle{
+  color:#8B5E3C!important;
+  border-color:#8B5E3C!important;
+}
