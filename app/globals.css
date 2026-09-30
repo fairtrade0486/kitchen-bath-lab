@@ -1093,3 +1093,12 @@
 
 /* 욕실 부위별 오염 펼침 맨 위 안내문 (2026-10) */
 .hero-contam-panel p.service-warning{margin:0 0 20px;padding:0;background:transparent}
+
+/* 청소 범위 카드: 설명글 삭제 후 간격 복구 (2026-10) */
+@media(max-width:760px){
+  .service-list.service-areas .tags{top:0}
+  .service-list.service-areas .service-card>p.service-highlight{top:-10px}
+}
+@media(min-width:761px){
+  .service-list.service-areas .service-card>p.service-highlight{font-size:26px!important;line-height:1.75!important;white-space:pre-line!important;min-height:76px!important}
+}
