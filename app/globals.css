@@ -1073,4 +1073,7 @@
 .booking-frequency-panel p.compare-basis{margin:0 0 10px!important;font-size:14px!important;line-height:1.5!important;color:#777}
 .booking-frequency-panel{min-width:0;max-width:100%;overflow-x:hidden}
 .compare-table-wrap{max-width:calc(100% + 32px)}
-.service-card .kiehl-accordion{margin:26px 0 0}
+.service-card .kiehl-accordion{margin:26px -32px 0}
+@media(min-width:761px){.service-card .kiehl-accordion{margin:26px -53px 0}}
+.steam-caption{margin:34px 0;text-align:center;font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.4;color:var(--deep)}
+@media(min-width:761px){.steam-caption{font-size:26px;margin:44px 0}}
