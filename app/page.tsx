@@ -592,14 +592,13 @@ return (
 <p>수돗물 속 미네랄이 딱딱한 석회질로 굳어 자재 내부를 부식시키고 변색을 일으킵니다.</p>
 <p>이 모든 오염과 유해균이 고착화되기 전, 2주 주기를 지키는 것이 가족의 위생과 비용 모두를 잡는 가장 합리적인 관리법입니다.</p>
 <h4 className="compare-title">타사와 키친앤바스랩 비교</h4>
-<p className="compare-basis">타사 공식 사이트 기준 (2026.9.30 확인)</p>
 <div className="compare-table-wrap">
 <table className="compare-table">
 <thead><tr><th></th><th className="compare-other">타사</th><th className="compare-ours">키친앤바스랩</th></tr></thead>
 <tbody>
 <tr><th scope="row">크기</th><td className="compare-other">일반형 (40평 미만)<br />대형 (40평 이상)</td><td className="compare-ours">평수 구분 없음</td></tr>
 <tr><th scope="row">욕실 개수</th><td className="compare-other">욕실 1실</td><td className="compare-ours">욕실 2개</td></tr>
-<tr><th scope="row">이용 비용</th><td className="compare-other">일반형 월 71,900원<br />대형 월 91,900원<br />+ 등록비 50,000원<br />(최초 1회)</td><td className="compare-ours">월 100,000원<br />(등록비 없음)</td></tr>
+<tr><th scope="row">이용 비용</th><td className="compare-other">일반형 109,000원<br />대형 129,000원</td><td className="compare-ours">월 100,000원</td></tr>
 <tr><th scope="row">방문 횟수</th><td className="compare-other">월 1회</td><td className="compare-ours">월 2회</td></tr>
 <tr><th scope="row">청소 범위</th><td className="compare-other">욕실 청소<br />(환풍구 제외)</td><td className="compare-ours">욕실 전체청소<br />(환풍구 포함)</td></tr>
 <tr><th scope="row">작업자</th><td className="compare-other">랜덤 배정</td><td className="compare-ours">고정 마스터</td></tr>
