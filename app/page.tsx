@@ -599,8 +599,7 @@ return (
 <tbody>
 <tr><th scope="row">크기</th><td className="compare-other">일반형 (40평 미만)<br />대형 (40평 이상)</td><td className="compare-ours">평수 구분 없음</td></tr>
 <tr><th scope="row">욕실 개수</th><td className="compare-other">욕실 1실</td><td className="compare-ours">욕실 2개</td></tr>
-<tr><th scope="row">이용 비용</th><td className="compare-other">일반형 월 71,900원<br />대형 월 91,900원</td><td className="compare-ours">월 100,000원</td></tr>
-<tr><th scope="row">등록비</th><td className="compare-other">50,000원<br />(최초 1회)</td><td className="compare-ours">없음</td></tr>
+<tr><th scope="row">이용 비용</th><td className="compare-other">일반형 월 71,900원<br />대형 월 91,900원<br />+ 등록비 50,000원<br />(최초 1회)</td><td className="compare-ours">월 100,000원<br />(등록비 없음)</td></tr>
 <tr><th scope="row">방문 횟수</th><td className="compare-other">월 1회</td><td className="compare-ours">월 2회</td></tr>
 <tr><th scope="row">청소 범위</th><td className="compare-other">욕실 청소<br />(환풍구 제외)</td><td className="compare-ours">욕실 전체청소<br />(환풍구 포함)</td></tr>
 <tr><th scope="row">작업자</th><td className="compare-other">랜덤 배정</td><td className="compare-ours">고정 마스터</td></tr>
