@@ -1110,3 +1110,6 @@
   .steam-panel-desc{font-size:26px;line-height:1.75}
   .service-card .kiehl-accordion{margin-bottom:6px}
 }
+
+/* 욕실 부위별 오염 아코디언을 청소 범위 카드 안(키엘 위)으로 이동 (2026-10) */
+.service-card .kiehl-accordion.contam-accordion{margin-bottom:0}

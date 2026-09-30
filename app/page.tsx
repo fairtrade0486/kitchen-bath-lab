@@ -335,9 +335,104 @@ return (
 </div>
 </div>
 <div className="hero-contam-toggle-group">
-<button type="button" className="hero-contam-toggle-row" aria-expanded={activeContamPanel === "contam"} aria-controls="hero-contam-panel" onClick={() => setActiveContamPanel(current => current === "contam" ? null : "contam")}>
-<span className={`hero-contam-arrow${activeContamPanel === "contam" ? " is-open" : ""}`} aria-hidden="true">▾</span>
+<button type="button" className="hero-contam-toggle-row" aria-expanded={activeContamPanel === "bleach"} aria-controls="hero-bleach-panel" onClick={() => setActiveContamPanel(current => current === "bleach" ? null : "bleach")}>
+<span className={`hero-contam-arrow${activeContamPanel === "bleach" ? " is-open" : ""}`} aria-hidden="true">▾</span>
 <span className="hero-contam-badge">
+<svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
+<path d="M50 12 L92 82 A5 5 0 0 1 87.5 90 H12.5 A5 5 0 0 1 8 82 Z" fill="none" stroke="#34483D" strokeWidth="7" strokeLinejoin="round" />
+<line x1="50" y1="38" x2="50" y2="60" stroke="#4E8FBF" strokeWidth="7" strokeLinecap="round" />
+<circle cx="50" cy="74" r="4.5" fill="#4E8FBF" />
+</svg>
+<span className="hero-contam-toggle-title">락스와 수세미의 불편한 진실</span>
+</span>
+</button>
+</div>
+{activeContamPanel === "bleach" && (
+<div className="hero-contam-panel" id="hero-bleach-panel">
+<p className="admin-section-desc"><strong className="hero-contam-lead">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다.</strong> 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
+<ol className="hero-contam-list">
+<li>
+<h4>오염 은폐 착시</h4>
+<ul>
+<li>세정력이 부족함에도 불구하고 표백 기능이 워낙 강력하다 보니, 오염물이 씻겨 나가지 않고 그대로 남아 있는 상태에서 색상만 하얗게 변해 사용자가 완벽히 청소된 것으로 오해하기 쉽습니다.</li>
+</ul>
+</li>
+<li>
+<h4>타일 줄눈 손상</h4>
+<ul>
+<li>락스는 강알칼리성 물질로, 반복적으로 사용하면 백시멘트 줄눈의 코팅층을 미세하게 부식시키고 표면을 깎아냅니다. 이로 인해 줄눈에 미세한 구멍과 틈새가 생기면, 나중에는 곰팡이 포자가 더 깊숙이 침투하여 곰팡이가 이전보다 훨씬 더 빨리 재발하는 부작용이 생깁니다.</li>
+</ul>
+</li>
+<li>
+<h4>백화 현상 유발</h4>
+<ul>
+<li>줄눈 성분이 락스에 의해 녹아내렸다가 타일 표면으로 올라와 마르면서 하얀 얼룩을 남기는 &apos;백화 현상&apos;이 발생할 수 있습니다. 이 자국은 일반 물청소로는 쉽게 지워지지 않습니다.</li>
+</ul>
+</li>
+<li>
+<h4>금속 부식</h4>
+<ul>
+<li>수전, 샤워기 헤드, 수건걸이, 배수구 유가 등 욕실 내 금속 자재(특히 스테인리스나 도금 제품)에 락스 원액이나 고농도 희석액이 장시간 닿으면 변색되거나 부식이 진행되어 광택을 잃고 망가집니다.</li>
+</ul>
+</li>
+<li>
+<h4>독성 염소 가스 방출</h4>
+<ul>
+<li>락스가 욕실 내부의 유기물(곰팡이, 세균 등)을 태우며 소독하는 과정에서 특유의 수영장 냄새(클로라민 가스)가 발생하며, 이는 눈과 호흡기를 자극합니다.</li>
+</ul>
+</li>
+<li>
+<h4>치명적인 화학적 손상 가능성</h4>
+<ul>
+<li>환기가 불량한 밀폐된 욕실에서 장시간 사용하거나, 사용법을 어겨 뜨거운 물과 함께 사용할 경우, 혹은 산성 세제(구연산, 식초, 변기용 염산 세제 등)와 반응할 경우 인체에 치명적인 독성 염소 가스가 다량 분출됩니다. 이는 급성 기침, 두통, 어지러움은 물론 심각한 화학적 폐 손상(폐부종 등)을 유발할 수 있어 대단히 위험합니다.</li>
+</ul>
+</li>
+</ol>
+<p className="admin-section-desc" style={{ marginTop: "28px" }}><strong className="hero-contam-lead">잘못된 도구 사용은 락스만큼이나 표면 손상과 오염 고착의 큰 원인이 됩니다.</strong></p>
+<ol className="hero-contam-list">
+<li>
+<h4>일시적 세정 착시</h4>
+<ul>
+<li>거친 수세미로 표면을 강하게 문지르면 오염물과 함께 표면 자체가 갈려 나가면서 순간적으로 매끈하고 깨끗해 보이는 착시가 생깁니다. 하지만 이는 오염이 제거된 것이 아니라 <strong>표면에 무수한 미세 스크래치를 남기며 오염물을 억지로 밀어낸 것일 뿐</strong>이며, 얼마 지나지 않아 그 흠집을 따라 오염이 더 빠르게 재발합니다.</li>
+</ul>
+</li>
+<li>
+<h4>스크래치로 인한 고착 오염</h4>
+<ul>
+<li>청소 시 수세미를 잘못 사용하면 도기, 플라스틱, 인조대리석 등의 표면에 미세한 스크래치를 내어 광택을 잃게 만들고, 그 미세한 흠집(크랙) 내부로 물때, 기름때, 곰팡이 균사 등이 더 깊숙이 파고들어 <strong>일상적인 청소로는 쉽게 제거되지 않는 고착 오염</strong>을 유발합니다.</li>
+</ul>
+</li>
+<li>
+<h4>올바른 수세미 선택</h4>
+<ul>
+<li>대리석, 유리, 도기 등 기스에 취약한 표면에는 <strong>연마재가 없는 아크릴 망사나 &apos;노스크래치(No-Scratch)&apos; 전용 부드러운 패드</strong>를 사용해야 하며, <strong>거친 녹색 수세미나 철 수세미는 사용을 하면 안 됩니다.</strong></li>
+</ul>
+</li>
+</ol>
+</div>
+)}
+<div className="hero-redesign-strip">
+<strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
+</div>
+</section>
+
+<section className="about shell section" id="about">
+<div className="about-left"><div className="portrait"><img className="profile-photo" src="/profile-navy.png" alt="직접 방문하는 담당자" /><div className="nameplate"><small>YOUR CLEANER</small><b>크린프로마스터</b></div></div><div className="about-copy"><h2 className="visitor-title"><span>누가 방문하는지,</span><em>미리 확인하세요.</em></h2><blockquote>“낯선 작업자가 오는 불안 없이,<br /><span className="quote-indent">사진 속 제가 항상 방문합니다.”</span></blockquote></div></div>
+<div className="about-greeting" aria-label="인사말 영역">
+<p className="greeting-kicker">HOME CLEAN MASTER’S STORY</p>
+<p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 크린프로마스터입니다.</p>
+<p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
+<p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
+<p className="greeting-principle">오랜 현장 경험과 축적된 노하우를 바탕으로, 지금까지 경험하지 못한 새로운 청소의 기준을 제시하겠습니다. 섬세함과 전문성을 더해, 공간이 달라지는 진정한 변화를 경험하게 해드리겠습니다.</p>
+
+</div>
+</section>
+
+<section className="service section" id="service">
+<div className="shell">
+<div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3 className={s.en === "BATHROOM" ? "scope-title" : undefined}>{s.en === "BATHROOM" ? "청소 범위" : s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "BATHROOM" && <><div className="kiehl-accordion contam-accordion"><button type="button" className="hero-contam-toggle-row bonus-toggle-row" aria-expanded={activeContamPanel === "contam"} aria-controls="hero-contam-panel" onClick={() => setActiveContamPanel(current => current === "contam" ? null : "contam")}>
+<span className={`hero-contam-arrow${activeContamPanel === "contam" ? " is-open" : ""}`} aria-hidden="true">▾</span>
+<span className="hero-contam-badge bonus-badge">
 <svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
 <path d="M28 18 H62 a12 12 0 0 1 12 12 v6" fill="none" stroke="#34483D" strokeWidth="7" strokeLinecap="round" />
 <circle cx="74" cy="42" r="11" fill="#34483D" />
@@ -351,21 +446,8 @@ return (
 </svg>
 <span className="hero-contam-toggle-title">욕실 부위별 오염</span>
 </span>
-</button>
-<button type="button" className="hero-contam-toggle-row" aria-expanded={activeContamPanel === "bleach"} aria-controls="hero-bleach-panel" onClick={() => setActiveContamPanel(current => current === "bleach" ? null : "bleach")}>
-<span className={`hero-contam-arrow${activeContamPanel === "bleach" ? " is-open" : ""}`} aria-hidden="true">▾</span>
-<span className="hero-contam-badge">
-<svg className="hero-contam-taegeuk" viewBox="0 0 100 100" aria-hidden="true">
-<path d="M50 12 L92 82 A5 5 0 0 1 87.5 90 H12.5 A5 5 0 0 1 8 82 Z" fill="none" stroke="#34483D" strokeWidth="7" strokeLinejoin="round" />
-<line x1="50" y1="38" x2="50" y2="60" stroke="#4E8FBF" strokeWidth="7" strokeLinecap="round" />
-<circle cx="50" cy="74" r="4.5" fill="#4E8FBF" />
-</svg>
-<span className="hero-contam-toggle-title">락스와 수세미의 불편한 진실</span>
-</span>
-</button>
-</div>
-{activeContamPanel === "contam" && (
-<div className="hero-contam-panel" id="hero-contam-panel">
+</button>{activeContamPanel === "contam" && (
+<div className="hero-contam-panel bonus-panel" id="hero-contam-panel">
 <p className="service-warning">⚠️ "욕실은 매일 오염이 누적되는 공간입니다"<br />매일 뜨거운 물과 세제를 사용하는 욕실은, 집안에서 가장 혹독한 환경입니다.<br />반복되는 습기와 미네랄 성분은 타일 줄눈과 도기 내부를 서서히 부식시킵니다.</p>
 <ol className="hero-contam-list">
 <li>
@@ -461,91 +543,7 @@ return (
 </li>
 </ol>
 </div>
-)}
-{activeContamPanel === "bleach" && (
-<div className="hero-contam-panel" id="hero-bleach-panel">
-<p className="admin-section-desc"><strong className="hero-contam-lead">락스(차아염소산나트륨)는 &apos;살균소독제 및 표백제&apos;일 뿐, 기름때나 무기물 오염을 분해하는 &apos;세제&apos;가 아닙니다.</strong> 욕실의 주 오염원인 알칼리성 물때(칼슘 성분)나 비누 찌꺼기, 사람의 피부 각질 등으로 인한 오염은 락스만으로 깨끗하게 제거되지 않습니다.</p>
-<ol className="hero-contam-list">
-<li>
-<h4>오염 은폐 착시</h4>
-<ul>
-<li>세정력이 부족함에도 불구하고 표백 기능이 워낙 강력하다 보니, 오염물이 씻겨 나가지 않고 그대로 남아 있는 상태에서 색상만 하얗게 변해 사용자가 완벽히 청소된 것으로 오해하기 쉽습니다.</li>
-</ul>
-</li>
-<li>
-<h4>타일 줄눈 손상</h4>
-<ul>
-<li>락스는 강알칼리성 물질로, 반복적으로 사용하면 백시멘트 줄눈의 코팅층을 미세하게 부식시키고 표면을 깎아냅니다. 이로 인해 줄눈에 미세한 구멍과 틈새가 생기면, 나중에는 곰팡이 포자가 더 깊숙이 침투하여 곰팡이가 이전보다 훨씬 더 빨리 재발하는 부작용이 생깁니다.</li>
-</ul>
-</li>
-<li>
-<h4>백화 현상 유발</h4>
-<ul>
-<li>줄눈 성분이 락스에 의해 녹아내렸다가 타일 표면으로 올라와 마르면서 하얀 얼룩을 남기는 &apos;백화 현상&apos;이 발생할 수 있습니다. 이 자국은 일반 물청소로는 쉽게 지워지지 않습니다.</li>
-</ul>
-</li>
-<li>
-<h4>금속 부식</h4>
-<ul>
-<li>수전, 샤워기 헤드, 수건걸이, 배수구 유가 등 욕실 내 금속 자재(특히 스테인리스나 도금 제품)에 락스 원액이나 고농도 희석액이 장시간 닿으면 변색되거나 부식이 진행되어 광택을 잃고 망가집니다.</li>
-</ul>
-</li>
-<li>
-<h4>독성 염소 가스 방출</h4>
-<ul>
-<li>락스가 욕실 내부의 유기물(곰팡이, 세균 등)을 태우며 소독하는 과정에서 특유의 수영장 냄새(클로라민 가스)가 발생하며, 이는 눈과 호흡기를 자극합니다.</li>
-</ul>
-</li>
-<li>
-<h4>치명적인 화학적 손상 가능성</h4>
-<ul>
-<li>환기가 불량한 밀폐된 욕실에서 장시간 사용하거나, 사용법을 어겨 뜨거운 물과 함께 사용할 경우, 혹은 산성 세제(구연산, 식초, 변기용 염산 세제 등)와 반응할 경우 인체에 치명적인 독성 염소 가스가 다량 분출됩니다. 이는 급성 기침, 두통, 어지러움은 물론 심각한 화학적 폐 손상(폐부종 등)을 유발할 수 있어 대단히 위험합니다.</li>
-</ul>
-</li>
-</ol>
-<p className="admin-section-desc" style={{ marginTop: "28px" }}><strong className="hero-contam-lead">잘못된 도구 사용은 락스만큼이나 표면 손상과 오염 고착의 큰 원인이 됩니다.</strong></p>
-<ol className="hero-contam-list">
-<li>
-<h4>일시적 세정 착시</h4>
-<ul>
-<li>거친 수세미로 표면을 강하게 문지르면 오염물과 함께 표면 자체가 갈려 나가면서 순간적으로 매끈하고 깨끗해 보이는 착시가 생깁니다. 하지만 이는 오염이 제거된 것이 아니라 <strong>표면에 무수한 미세 스크래치를 남기며 오염물을 억지로 밀어낸 것일 뿐</strong>이며, 얼마 지나지 않아 그 흠집을 따라 오염이 더 빠르게 재발합니다.</li>
-</ul>
-</li>
-<li>
-<h4>스크래치로 인한 고착 오염</h4>
-<ul>
-<li>청소 시 수세미를 잘못 사용하면 도기, 플라스틱, 인조대리석 등의 표면에 미세한 스크래치를 내어 광택을 잃게 만들고, 그 미세한 흠집(크랙) 내부로 물때, 기름때, 곰팡이 균사 등이 더 깊숙이 파고들어 <strong>일상적인 청소로는 쉽게 제거되지 않는 고착 오염</strong>을 유발합니다.</li>
-</ul>
-</li>
-<li>
-<h4>올바른 수세미 선택</h4>
-<ul>
-<li>대리석, 유리, 도기 등 기스에 취약한 표면에는 <strong>연마재가 없는 아크릴 망사나 &apos;노스크래치(No-Scratch)&apos; 전용 부드러운 패드</strong>를 사용해야 하며, <strong>거친 녹색 수세미나 철 수세미는 사용을 하면 안 됩니다.</strong></li>
-</ul>
-</li>
-</ol>
-</div>
-)}
-<div className="hero-redesign-strip">
-<strong>“플랫폼 인력 파견이 아닙니다.</strong><span>이웃주민인 제가 항상 방문합니다.”</span>
-</div>
-</section>
-
-<section className="about shell section" id="about">
-<div className="about-left"><div className="portrait"><img className="profile-photo" src="/profile-navy.png" alt="직접 방문하는 담당자" /><div className="nameplate"><small>YOUR CLEANER</small><b>크린프로마스터</b></div></div><div className="about-copy"><h2 className="visitor-title"><span>누가 방문하는지,</span><em>미리 확인하세요.</em></h2><blockquote>“낯선 작업자가 오는 불안 없이,<br /><span className="quote-indent">사진 속 제가 항상 방문합니다.”</span></blockquote></div></div>
-<div className="about-greeting" aria-label="인사말 영역">
-<p className="greeting-kicker">HOME CLEAN MASTER’S STORY</p>
-<p>안녕하세요.<br />귀댁에 방문 서비스를 제공할 크린프로마스터입니다.</p>
-<p><strong className="company-name">㈜통인</strong>의 협력 업무를 통해 삼성화재 보험 가입자에게 제공되는 홈클린서비스 중 주방·욕실 청소를 서울·경기 지역에서 6년, <strong className="company-name">㈜영구크린</strong>의 협력 업무를 통해 ㈜대림비앤코 비데 렌탈 고객에게 제공되는 욕실 클리닝 서비스를 서울·경기 지역에서 3년, 정기 구독형 욕실 및 주방 청소 전문 서비스 <strong className="company-name">㈜호텔리브</strong>에서 서울 파크리오 1·2·3단지 전담 매니저로 3년간 활동한 경력이 있습니다.</p>
-<p>이후 은퇴하여 영종도로 이사 와서 한가한 생활을 하던 중, 그동안 쌓아온 경험과 노하우를 그냥 묻어두기 아깝다는 생각이 들었습니다. 그래서 이곳에서 다시 인생 4막을 시작하려 합니다.</p>
-<p className="greeting-principle">오랜 현장 경험과 축적된 노하우를 바탕으로, 지금까지 경험하지 못한 새로운 청소의 기준을 제시하겠습니다. 섬세함과 전문성을 더해, 공간이 달라지는 진정한 변화를 경험하게 해드리겠습니다.</p>
-
-</div>
-</section>
-
-<section className="service section" id="service">
-<div className="shell">
-<div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3 className={s.en === "BATHROOM" ? "scope-title" : undefined}>{s.en === "BATHROOM" ? "청소 범위" : s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "BATHROOM" && <><div className="kiehl-accordion"><button type="button" className="hero-contam-toggle-row bonus-toggle-row" aria-expanded={steamOpen} aria-controls="steam-clean-panel" onClick={() => setSteamOpen(current => !current)}><span className={`hero-contam-arrow${steamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span><span className="hero-contam-badge bonus-badge"><span className="hero-contam-toggle-title">독일 키엘(kiehl's)의 친환경 약품 +<br />100℃ 고화력 스팀청소</span></span></button>{steamOpen && (<div className="hero-contam-panel bonus-panel" id="steam-clean-panel"><p className="steam-panel-desc">현장 노하우, 친환경 약품과 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p><img className="bonus-info-img" src="/kiehl-lineup.jpg" alt="키엘(KIEHL) 욕실 전용 고농축 청소 제품 라인업" /><div className="steam-caption">고온스팀 멸균작업</div><video className="bonus-video" src="/steam-cleaning.mp4" autoPlay muted loop playsInline /></div>)}</div></>}</article>})}</div>
+)}</div><div className="kiehl-accordion"><button type="button" className="hero-contam-toggle-row bonus-toggle-row" aria-expanded={steamOpen} aria-controls="steam-clean-panel" onClick={() => setSteamOpen(current => !current)}><span className={`hero-contam-arrow${steamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span><span className="hero-contam-badge bonus-badge"><span className="hero-contam-toggle-title">독일 키엘(kiehl's)의 친환경 약품 +<br />100℃ 고화력 스팀청소</span></span></button>{steamOpen && (<div className="hero-contam-panel bonus-panel" id="steam-clean-panel"><p className="steam-panel-desc">현장 노하우, 친환경 약품과 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p><img className="bonus-info-img" src="/kiehl-lineup.jpg" alt="키엘(KIEHL) 욕실 전용 고농축 청소 제품 라인업" /><div className="steam-caption">고온스팀 멸균작업</div><video className="bonus-video" src="/steam-cleaning.mp4" autoPlay muted loop playsInline /></div>)}</div></>}</article>})}</div>
 
 </div>
 </section>
