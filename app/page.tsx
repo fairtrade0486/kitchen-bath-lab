@@ -591,6 +591,8 @@ return (
 <h4>미네랄의 돌질화(백화 현상)</h4>
 <p>수돗물 속 미네랄이 딱딱한 석회질로 굳어 자재 내부를 부식시키고 변색을 일으킵니다.</p>
 <p>이 모든 오염과 유해균이 고착화되기 전, 2주 주기를 지키는 것이 가족의 위생과 비용 모두를 잡는 가장 합리적인 관리법입니다.</p>
+<h4 className="compare-title">타사와 키친앤바스랩 비교</h4>
+<p className="compare-basis">타사 공식 사이트 기준 (2026.9.30 확인)</p>
 <div className="compare-table-wrap">
 <table className="compare-table">
 <thead><tr><th></th><th className="compare-other">타사</th><th className="compare-ours">키친앤바스랩</th></tr></thead>
