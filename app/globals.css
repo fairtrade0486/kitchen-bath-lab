@@ -1083,8 +1083,8 @@
 .price-compare-toggle{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .price-compare-toggle:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
 .booking-plan .price-label.price-label-toggle{letter-spacing:-.06em;white-space:nowrap}
-.price-compare-arrow{display:inline-block;flex-shrink:0;margin-right:3px;font-size:16px;line-height:1;transition:transform .2s ease}
-.price-compare-arrow.is-open{transform:rotate(180deg)}
+.price-compare-arrow{display:inline-block;flex-shrink:0;margin-right:12px;font-size:18px;line-height:1;transform:scale(1.6);transition:transform .2s ease}
+.price-compare-arrow.is-open{transform:scale(1.6) rotate(180deg)}
 .price-compare-panel{order:-1;margin:6px 0 24px}
 .booking-frequency-panel.price-compare-panel h4.compare-title{margin-top:0}
 @media(min-width:761px){
