@@ -1077,3 +1077,16 @@
 @media(min-width:761px){.service-card .kiehl-accordion{margin:26px -53px 0}}
 .steam-caption{margin:34px 0;text-align:center;font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.4;color:var(--deep)}
 @media(min-width:761px){.steam-caption{font-size:26px;margin:44px 0}}
+
+
+/* 가격 박스 클릭 시 타사 비교표 펼침 (2026-10) */
+.price-compare-toggle{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.price-compare-toggle:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+.booking-plan .price-label.price-label-toggle{letter-spacing:-.06em;white-space:nowrap}
+.price-compare-arrow{display:inline-block;flex-shrink:0;margin-right:3px;font-size:16px;line-height:1;transition:transform .2s ease}
+.price-compare-arrow.is-open{transform:rotate(180deg)}
+.price-compare-panel{order:-1;margin:6px 0 24px}
+.booking-frequency-panel.price-compare-panel h4.compare-title{margin-top:0}
+@media(min-width:761px){
+  .booking-form .booking-plan-stack .price-compare-panel{order:1!important;width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+}

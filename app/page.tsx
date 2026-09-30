@@ -69,6 +69,7 @@ const [activeContamPanel, setActiveContamPanel] = useState<"contam" | "bleach" |
 const [bonusOpen, setBonusOpen] = useState(false);
 const [steamOpen, setSteamOpen] = useState(false);
 const [freqNoteOpen, setFreqNoteOpen] = useState(false);
+const [priceCompareOpen, setPriceCompareOpen] = useState(false);
 const firstWeekday = new Date(calendarYear, calendarMonth, 1).getDay();
 const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
 const calendarCells = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
@@ -579,7 +580,7 @@ return (
 <div className="booking-plan-stack">
 <button type="button" className="booking-frequency-note booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
 <span className={`hero-contam-arrow booking-frequency-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.<span className="booking-frequency-compare">(타사와 비교해 보세요)</span></span>
+<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
 </button>
 {freqNoteOpen && (
 <div className="booking-frequency-panel" id="booking-frequency-panel">
@@ -592,6 +593,11 @@ return (
 <h4>미네랄의 돌질화(백화 현상)</h4>
 <p>수돗물 속 미네랄이 딱딱한 석회질로 굳어 자재 내부를 부식시키고 변색을 일으킵니다.</p>
 <p>이 모든 오염과 유해균이 고착화되기 전, 2주 주기를 지키는 것이 가족의 위생과 비용 모두를 잡는 가장 합리적인 관리법입니다.</p>
+</div>
+)}
+<div className="price-group monthly-plan booking-plan selected price-compare-toggle" role="button" tabIndex={0} aria-expanded={priceCompareOpen} aria-controls="price-compare-panel" aria-label="딥케어 욕실 2개 월 2회 100,000원" onClick={() => setPriceCompareOpen(current => !current)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setPriceCompareOpen(current => !current); } }}><span className="price-label price-label-toggle"><span className={`price-compare-arrow${priceCompareOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div>
+{priceCompareOpen && (
+<div className="booking-frequency-panel price-compare-panel" id="price-compare-panel">
 <h4 className="compare-title">타사와 키친앤바스랩 비교</h4>
 <div className="compare-table-wrap">
 <table className="compare-table">
@@ -611,7 +617,6 @@ return (
 <p className="compare-caption">타사 정기방문 (욕실 1실 · 1개월 1회): 일반형 월 71,900원 / 대형 월 91,900원 + 등록비 50,000원 (2026.9.30 기준){COMPETITOR_URL ? <> · <a href={COMPETITOR_URL} target="_blank" rel="noopener noreferrer">타사 공식 사이트</a></> : null}</p>
 </div>
 )}
-<div className="price-group monthly-plan booking-plan selected" aria-label="딥케어 욕실 2개 월 2회 100,000원"><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div>
 </div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
 패턴에 맞춰 조율합니다.</p></div>
 <div className="desktop-calendar-box">
