@@ -3,6 +3,9 @@
 import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
 import React from "react";
 
+// 타사 공식 사이트 주소를 여기에 넣으면 표 아래에 링크가 나타나요. 비워두면 문구만 보여요.
+const COMPETITOR_URL = "";
+
 const services = [
 { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "세면대 및 거울", "변기", "샤워부스", "수전", "수납장", "하수구 및 덮개, 트랩"] },
 ];
@@ -575,7 +578,7 @@ return (
 <div className="booking-plan-stack">
 <button type="button" className="booking-frequency-note booking-frequency-toggle" aria-expanded={freqNoteOpen} aria-controls="booking-frequency-panel" onClick={() => setFreqNoteOpen(current => !current)}>
 <span className={`hero-contam-arrow booking-frequency-arrow${freqNoteOpen ? " is-open" : ""}`} aria-hidden="true">▾</span>
-<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.</span>
+<span className="booking-frequency-note-text">한 달 2번이면 충분합니다. 다음 관리 전까지는 물만 뿌리세요.<span className="booking-frequency-compare">(타사와 비교해 보세요)</span></span>
 </button>
 {freqNoteOpen && (
 <div className="booking-frequency-panel" id="booking-frequency-panel">
@@ -588,6 +591,23 @@ return (
 <h4>미네랄의 돌질화(백화 현상)</h4>
 <p>수돗물 속 미네랄이 딱딱한 석회질로 굳어 자재 내부를 부식시키고 변색을 일으킵니다.</p>
 <p>이 모든 오염과 유해균이 고착화되기 전, 2주 주기를 지키는 것이 가족의 위생과 비용 모두를 잡는 가장 합리적인 관리법입니다.</p>
+<div className="compare-table-wrap">
+<table className="compare-table">
+<thead><tr><th></th><th className="compare-other">타사</th><th className="compare-ours">키친앤바스랩</th></tr></thead>
+<tbody>
+<tr><th scope="row">크기</th><td className="compare-other">일반형 (40평 미만)<br />대형 (40평 이상)</td><td className="compare-ours">평수 구분 없음</td></tr>
+<tr><th scope="row">욕실 개수</th><td className="compare-other">욕실 1실</td><td className="compare-ours">욕실 2개</td></tr>
+<tr><th scope="row">이용 비용</th><td className="compare-other">일반형 월 71,900원<br />대형 월 91,900원</td><td className="compare-ours">월 100,000원</td></tr>
+<tr><th scope="row">등록비</th><td className="compare-other">50,000원<br />(최초 1회)</td><td className="compare-ours">없음</td></tr>
+<tr><th scope="row">방문 횟수</th><td className="compare-other">월 1회</td><td className="compare-ours">월 2회</td></tr>
+<tr><th scope="row">청소 범위</th><td className="compare-other">욕실 청소<br />(환풍구 제외)</td><td className="compare-ours">욕실 전체청소<br />(환풍구 포함)</td></tr>
+<tr><th scope="row">작업자</th><td className="compare-other">랜덤 배정</td><td className="compare-ours">고정 마스터</td></tr>
+<tr><th scope="row">특별 서비스</th><td className="compare-other">없음</td><td className="compare-ours">피톤치드 연무 소독</td></tr>
+</tbody>
+</table>
+</div>
+<div className="compare-shot-wrap"><img className="compare-shot" src="/compare-daelim.png" alt="타사 공식 사이트 요금표 화면. 1회권 일반형 109,000원, 대형 129,000원. 정기방문 1개월 1회 일반형 월 71,900원, 대형 월 91,900원. 등록비 50,000원." /></div>
+<p className="compare-caption">타사 정기방문 (욕실 1실 · 1개월 1회): 일반형 월 71,900원 / 대형 월 91,900원 + 등록비 50,000원 (2026.9.30 기준){COMPETITOR_URL ? <> · <a href={COMPETITOR_URL} target="_blank" rel="noopener noreferrer">타사 공식 사이트</a></> : null}</p>
 </div>
 )}
 <div className="price-group monthly-plan booking-plan selected" aria-label="딥케어 욕실 2개 월 2회 100,000원"><span className="price-label">딥케어 욕실(2개)</span><span className="monthly-freq">월2회</span><b className="monthly-price">100,000원</b></div>
