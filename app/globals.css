@@ -1090,3 +1090,6 @@
 @media(min-width:761px){
   .booking-form .booking-plan-stack .price-compare-panel{order:1!important;width:88%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
 }
+
+/* 욕실 부위별 오염 펼침 맨 위 안내문 (2026-10) */
+.hero-contam-panel p.service-warning{margin:0 0 20px;padding:0;background:transparent}
