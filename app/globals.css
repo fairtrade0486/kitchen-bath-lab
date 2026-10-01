@@ -1075,8 +1075,8 @@
 .compare-table-wrap{max-width:calc(100% + 32px)}
 .service-card .kiehl-accordion{margin:26px -32px 0}
 @media(min-width:761px){.service-card .kiehl-accordion{margin:26px -53px 0}}
-.steam-caption{margin:34px 0;text-align:center;font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.4;color:var(--deep)}
-@media(min-width:761px){.steam-caption{font-size:26px;margin:44px 0}}
+.steam-caption{margin:34px 0 22px;text-align:center;font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.4;color:var(--deep)}
+@media(min-width:761px){.steam-caption{font-size:26px;margin:44px 0 28px}}
 
 
 /* 가격 박스 클릭 시 타사 비교표 펼침 (2026-10) */
@@ -1113,3 +1113,11 @@
 
 /* 욕실 부위별 오염 아코디언을 청소 범위 카드 안(키엘 위)으로 이동 (2026-10) */
 .service-card .kiehl-accordion.contam-accordion{margin-bottom:0}
+
+/* 연무소독 콘텐츠 간격 */
+.mist-disinfection-content{margin-top:32px}
+.mist-disinfection-content .steam-caption{margin:0 0 20px}
+@media(max-width:760px){
+  .mist-disinfection-content{margin-top:24px}
+  .mist-disinfection-content .steam-caption{margin-bottom:16px}
+}

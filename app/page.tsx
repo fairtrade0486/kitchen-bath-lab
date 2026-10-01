@@ -545,7 +545,7 @@ return (
 <section className="service section" id="service">
 <div className="shell">
 <div className="service-list service-areas">{serviceAreas.map((s, index) => { const [description, emphasis] = s.desc.split("\n"); return <article key={s.no} className="service-card"><div className="service-top"><small>{s.en}</small></div><h3 className={s.en === "BATHROOM" ? "scope-title" : undefined}>{s.en === "BATHROOM" ? "청소 범위" : s.name}</h3>{s.desc && <p>{description}<br /><strong className="service-emphasis">{emphasis}</strong></p>}<div className="tags">{s.tags.map(t => <span key={t}>{t}</span>)}</div>{s.en === "BATHROOM" && <><div className="kiehl-accordion"><button type="button" className="hero-contam-toggle-row bonus-toggle-row" aria-expanded={steamOpen} aria-controls="steam-clean-panel" onClick={() => setSteamOpen(current => !current)}><span className={`hero-contam-arrow${steamOpen ? " is-open" : ""}`} aria-hidden="true">▾</span><span className="hero-contam-badge bonus-badge"><span className="hero-contam-toggle-title">독일 키엘(kiehl's)의 친환경 약품<br />100℃ 고화력 스팀청소 +<br />숨은 보너스 혜택: 연무소독</span></span></button>{steamOpen && (<div className="hero-contam-panel bonus-panel" id="steam-clean-panel"><p className="steam-panel-desc">현장 노하우, 친환경 약품과 고온 스팀 장비를 결합하여, 자재의 손상 없이 오염의 원인을 근본적으로 해결하는 자재 맞춤형 오염 해결 솔루션(Stain-Free Solution)을 제공합니다.</p><img className="bonus-info-img" src="/kiehl-lineup.jpg" alt="키엘(KIEHL) 욕실 전용 고농축 청소 제품 라인업" /><div className="steam-caption">고온스팀 멸균작업</div><video className="bonus-video" src="/steam-cleaning.mp4" autoPlay muted loop playsInline />
-<video className="bonus-video" src="/mist-disinfection.mp4" autoPlay muted loop playsInline />
+<div className="mist-disinfection-content"><h4 className="steam-caption">피톤치드 연무소독 작업</h4><video className="bonus-video" src="/mist-disinfection.mp4" autoPlay muted loop playsInline />
 <img className="bonus-info-img" src="/mist-info-1b.jpg" alt="당신의 불안한 마음을 이해하는 것" />
 <img className="bonus-info-img" src="/mist-info-1.jpg" alt="툴앤툴 피톤치드 연무액 제품" />
 <img className="bonus-info-img" src="/mist-info-2.jpg" alt="숲의 선물, 피톤치드란" />
@@ -554,7 +554,7 @@ return (
 <img className="bonus-info-img" src="/mist-info-5.jpg" alt="국내 유일 글로벌 제품안전연구소의 흡입독성 시험 통과" />
 <img className="bonus-info-img" src="/mist-info-5b.jpg" alt="악취제거 99.9%" />
 <img className="bonus-info-img" src="/mist-info-6.jpg" alt="03. 검증된 청결함" />
-<img className="bonus-info-img" src="/mist-info-7.jpg" alt="연무액의 성능 검증 및 함유 성분" /></div>)}</div></>}</article>})}</div>
+<img className="bonus-info-img" src="/mist-info-7.jpg" alt="연무액의 성능 검증 및 함유 성분" /></div></div>)}</div></>}</article>})}</div>
 
 </div>
 </section>
