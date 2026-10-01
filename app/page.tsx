@@ -3,8 +3,7 @@
 import { FormEvent, PointerEvent as ReactPointerEvent, TouchEvent, useEffect, useState } from "react";
 import React from "react";
 
-// 타사 공식 사이트 주소를 여기에 넣으면 표 아래에 링크가 나타나요. 비워두면 문구만 보여요.
-const COMPETITOR_URL = "";
+const DAELIM_SOURCE_URL = "https://www.daelimbath.com/brand/bath_care";
 
 const services = [
 { no: "01", name: "욕실 청소", en: "BATHROOM", time: "약 2시간", price: "가격 미정", desc: "", tags: ["욕실 천장·벽면·바닥 전체", "환풍구", "욕조", "세면대 및 거울", "비데 케어", "변기", "샤워부스", "수전", "수납장", "하수구 및 덮개, 트랩", "곰팡이 제거 및 예방시술"] },
@@ -598,8 +597,8 @@ return (
 </tbody>
 </table>
 </div>
-<div className="compare-shot-wrap"><img className="compare-shot" src="/compare-daelim.png" alt="타사 공식 사이트 요금표 화면. 1회권 일반형 109,000원, 대형 129,000원. 정기방문 1개월 1회 일반형 월 71,900원, 대형 월 91,900원. 등록비 50,000원." /></div>
-<p className="compare-caption">타사 정기방문 (욕실 1실 · 1개월 1회): 일반형 월 71,900원 / 대형 월 91,900원 + 등록비 50,000원 (2026.9.30 기준){COMPETITOR_URL ? <> · <a href={COMPETITOR_URL} target="_blank" rel="noopener noreferrer">타사 공식 사이트</a></> : null}</p>
+<div className="compare-shot-wrap"><img className="compare-shot" src="/compare-daelim-one-time-full-header.png" alt="대림바스 공식 홈페이지 가격표 중 크기별 1회권 요금: 일반형 109,000원, 대형 129,000원." /></div>
+<p className="compare-source-note">※ 타사 서비스 기준 및 단가는 <a href={DAELIM_SOURCE_URL} target="_blank" rel="noopener noreferrer">대림바스 공식 홈페이지</a>의 스마트 욕실케어 공시 가격(2026년 기준)을 참고하였습니다.</p>
 </div>
 )}
 </div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
