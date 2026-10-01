@@ -597,8 +597,7 @@ return (
 </tbody>
 </table>
 </div>
-<div className="compare-shot-wrap"><img className="compare-shot" src="/compare-daelim-one-time-full-header.png" alt="대림바스 공식 홈페이지 가격표 중 크기별 1회권 요금: 일반형 109,000원, 대형 129,000원." /></div>
-<p className="compare-source-note">※ 타사 서비스 기준 및 단가는 <a href={DAELIM_SOURCE_URL} target="_blank" rel="noopener noreferrer">대림바스 공식 홈페이지</a>의 스마트 욕실케어 공시 가격(2026년 기준)을 참고하였습니다.</p>
+<div className="compare-shot-wrap"><a className="compare-shot-link" href={DAELIM_SOURCE_URL} target="_blank" rel="noopener noreferrer" aria-label="대림바스 공식 홈페이지 가격표 열기"><img className="compare-shot" src="/compare-daelim.png" alt="대림바스 스마트 욕실케어 가격표" /></a></div>
 </div>
 )}
 </div><div className="booking-intro-group"><h2 className="booking-intro">첫 방문일을 선택해 주세요.</h2><p>첫 방문일을 선택한 뒤, 다음 일정은 생활
