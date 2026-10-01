@@ -811,6 +811,7 @@
   .booking-form .booking-intro-group {
     position: relative;
     left: 8%;
+    width: 84%;
   }
 
   .booking-form .calendar-head > strong {
