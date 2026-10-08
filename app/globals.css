@@ -436,9 +436,9 @@
 .admin-day-booking-info{display:grid!important;gap:6px!important;white-space:normal!important;overflow:visible!important;margin-bottom:14px!important}
 .admin-info-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
 .admin-info-row strong{flex:0 0 auto}
-.admin-info-row span{flex:0 0 auto;font-size:13px!important;font-weight:800!important;color:var(--deep)!important}
+.admin-info-row span{flex:0 0 auto;font-size:15px!important;font-weight:800!important;color:var(--deep)!important}
 .admin-info-row span:not(:last-child)::after{content:"\00b7";color:#a7aea7;margin-left:8px}
-.admin-info-row .admin-info-time{font-size:16px!important}
+.admin-info-row .admin-info-big{font-size:16px!important}
 
 .admin-new-calendar .calendar-days{align-items:stretch!important}
 .admin-new-calendar .calendar-days button{min-height:92px!important;width:100%!important;overflow:visible!important;padding:4px 2px 6px!important}
