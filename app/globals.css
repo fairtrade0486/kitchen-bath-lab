@@ -63,6 +63,7 @@
 .consult-kakao svg{fill:#1a1a1a}
 .consult-btn:hover{transform:translateY(-2px)}
 .consult-btn:active{transform:translateY(1px)}
+.consult-buttons{width:100%}.consult-call{flex:1}
 @media(max-width:420px){
   .consult-buttons{flex-direction:column}
   .consult-btn{width:100%;padding:13px 26px;font-size:15px}
