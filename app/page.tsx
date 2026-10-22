@@ -27,7 +27,6 @@ const steps = [
 
 const APT_COMPLEXES = [
   { name: "영종 금호 어울림", dongStart: 101, dongEnd: 106 },
-  { name: "영종자이아파트", dongStart: 101, dongEnd: 115, label: "영종 자이" },
   { name: "영종 제일풍경채 디오션", dongStart: 101, dongEnd: 107 },
   { name: "영종 오션파크 모아엘가 그랑데", dongStart: 611, dongEnd: 618 },
   { name: "영종 베르힐 스카이시티", dongStart: 521, dongEnd: 533 },

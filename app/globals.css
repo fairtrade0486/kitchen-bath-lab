@@ -57,8 +57,8 @@
 .consult-buttons{display:flex;flex-direction:row;flex-wrap:nowrap;gap:10px;margin-top:10px}
 .consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 38px;border-radius:10px;font-size:19px;font-weight:800;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:transform .15s ease,box-shadow .15s ease}
 .consult-btn svg{width:21px;height:21px;flex-shrink:0}
-.consult-call{background:#4478f5;color:#fff!important;box-shadow:0 4px 12px rgba(68,120,245,.35)}
-.consult-call svg{fill:#fff}
+.consult-call{background:#FEE500;color:#1a1a1a!important;box-shadow:0 4px 12px rgba(254,229,0,.3)}
+.consult-call svg{fill:#1a1a1a}
 .consult-kakao{background:#FEE500;color:#1a1a1a!important;box-shadow:0 4px 12px rgba(254,229,0,.3)}
 .consult-kakao svg{fill:#1a1a1a}
 .consult-btn:hover{transform:translateY(-2px)}
