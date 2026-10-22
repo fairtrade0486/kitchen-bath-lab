@@ -25,7 +25,7 @@ const steps = [
 ["04", "작업 확인", "완료 후 전후 상태를 함께 확인하고 관리법을 알려드립니다."],
 ];
 
-const APT_COMPLEXES = [
+const APT_COMPLEXES: { name: string; dongStart: number; dongEnd: number; label?: string }[] = [
   { name: "영종 금호 어울림", dongStart: 101, dongEnd: 106 },
   { name: "영종 제일풍경채 디오션", dongStart: 101, dongEnd: 107 },
   { name: "영종 오션파크 모아엘가 그랑데", dongStart: 611, dongEnd: 618 },
